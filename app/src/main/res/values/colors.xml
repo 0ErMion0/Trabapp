@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="navyBlack">#0D123C</color>
     <color name="mainNavy">#313D9D</color>
+    <color name="gray">#800D123C</color>
+
 </resources>
