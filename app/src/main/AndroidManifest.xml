@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.trabapp">
 
@@ -15,16 +14,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trabapp">
         <activity
+            android:name=".MyCalendear"
+            android:exported="false" />
+        <activity
+            android:name=".DiaryInfo"
+            android:exported="false" />
+        <activity
+            android:name=".MemoryInfo"
+            android:exported="false" />
+        <activity
+            android:name=".MyMemory"
+            android:exported="false" />
+        <activity
+            android:name=".MyInfo"
+            android:exported="false" />
+        <activity
+            android:name=".MemRecored"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
-            android:theme="@style/ScreenTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/ScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MapActivity"
             android:exported="false" />
