@@ -88,6 +88,7 @@
         />
 
     <Button
+        android:id="@+id/btnJoin"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginStart="15dp"
