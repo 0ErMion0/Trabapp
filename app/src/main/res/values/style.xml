@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- styles.xml -->
+    <style name="kingSize">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">@color/navyBlack</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
+    </style>
+    <style name="hintText">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textColor">@color/navyBlack</item>
+        <item name="android:background">80</item>
+    </style>
+    <style name="whiteBold">
+        <item name="android:textSize">17dp</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>
