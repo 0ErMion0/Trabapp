@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.Trabapp" parent="Base.Theme.Trabapp" />
+
+    <style name="ScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/screen_background</item>
+    </style>
 </resources>
