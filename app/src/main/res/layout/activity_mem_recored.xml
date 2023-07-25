@@ -7,4 +7,325 @@
     tools:context=".MemRecored">
     <!--[추억 기록 화면]-->
 
+    <!--[상단 네비게이션]-->
+    <!--뒤로가기 버튼-->
+    <ImageButton
+        android:id="@+id/imgBtnBack"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00FFFFFF"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/left_icon" />
+
+    <!--타이틀-->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="180dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:singleLine="true"
+        android:text="추억 기록"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/title"
+
+        app:layout_constraintStart_toEndOf="@+id/imgBtnBack"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat" />
+
+    <ImageButton
+        android:id="@+id/imgBtnCheck"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="#00FFFFFF"
+        android:importantForAccessibility="no"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/check_icon" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+            <!--[사진 선택]-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="133dp"
+                android:layout_height="133dp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="10dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageButton
+                    android:id="@+id/imageBtnPic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="#00FFFFFF"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/before_select_pic" />
+            </androidx.cardview.widget.CardView>
+
+            <!--[제목 입력]-->
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:hint="제목을 입력하세요"
+                android:inputType="text"
+                android:text="푹신한숙소짱조아"
+                android:textAlignment="center"
+                android:textAppearance="@style/titleRegular"
+                android:background="@drawable/roundbox_edit_text"
+                android:singleLine="true"/>
+
+            <!--[추억 지정]-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textTitleMemory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="추억 지정"
+                    android:textAppearance="@style/titleSmall"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/imgBtnPlus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="#00FFFFFF"
+                    android:importantForAccessibility="no"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/plus_icon" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--그리드 레이아웃 처리-->
+                <GridLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                >
+
+                <RadioButton
+                    android:id="@+id/rdoBtnMemName1"
+                    android:layout_width="110dp"
+                    android:layout_height="48dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/circle_red"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="대학동기팟"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/smallBold" />
+
+                <RadioButton
+                    android:id="@+id/rdoBtnMemName2"
+                    android:layout_width="110dp"
+                    android:layout_height="48dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableStart="@drawable/circle_blue"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="가족"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/smallBold" />
+
+                <RadioButton
+                    android:id="@+id/rdoBtnMemName3"
+                    android:layout_width="110dp"
+                    android:layout_height="48dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableStart="@drawable/circle_green"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="일본여행 with 친구들"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/smallBold" />
+                <RadioButton
+                    android:id="@+id/rdoBtnMemName4"
+                    android:layout_width="110dp"
+                    android:layout_height="48dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableStart="@drawable/circle_purple"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="디코팟"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/smallBold" />
+                <RadioButton
+                    android:id="@+id/rdoBtnMemName5"
+                    android:layout_width="110dp"
+                    android:layout_height="48dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableStart="@drawable/circle_orange"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="가족2"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/smallBold" />
+            </GridLayout></RadioGroup>
+
+            <!--[세로선]-->
+            <View
+                android:layout_marginTop="20dp"
+                android:background="@color/gray2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="20dp"/>
+
+            <!--[일정]-->
+            <TextView
+                android:id="@+id/textTitleSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일정"
+                android:textAppearance="@style/titleSmall"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnCalenderStart"
+                    android:layout_width="150dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    android:drawableRight="@drawable/calendar_icon"
+                    android:gravity="left"
+                    android:padding="11dp"
+                    android:text="2023 - 07 - 25"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/content"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:gravity=""
+                    android:text="  ~ "
+                    android:textAppearance="@style/content" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnCalenderEnd"
+                    android:layout_width="150dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    android:drawableRight="@drawable/calendar_icon"
+                    android:padding="11dp"
+                    android:text="2023 - 07 - 25"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/content"
+                    tools:ignore="RtlCompat" />
+            </LinearLayout>
+            <!--[세로선]-->
+            <View
+                android:layout_marginTop="20dp"
+                android:background="@color/gray2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="20dp"/>
+
+            <!--[내용]-->
+            <TextView
+                android:id="@+id/textTitleContents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내용"
+                android:textAppearance="@style/titleSmall"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextContents"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/roundbox_edit_text"
+                android:gravity="top"
+                android:hint="내용을 입력하세요"
+                android:inputType="text|textMultiLine"
+                android:lineSpacingExtra="10sp"
+                android:maxHeight="500dp"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:text="푹신한숙소짱조아행복해 난 세상에서 가장 행복한 뱁새야\n\n테스트용\n123\n123\n456\n567"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/titleRegular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="RtlCompat"
+                tools:singleLine="true"
+                android:layout_marginBottom="30dp"/>
+
+        </LinearLayout></ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
