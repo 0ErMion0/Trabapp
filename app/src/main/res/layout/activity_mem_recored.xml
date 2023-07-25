@@ -87,7 +87,7 @@
 
             <!--[제목 입력]-->
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/editTextTitle"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
