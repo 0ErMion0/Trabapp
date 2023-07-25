@@ -31,7 +31,8 @@
         android:textAppearance="@style/title"
 
         app:layout_constraintStart_toEndOf="@+id/imgBtnBack"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat" />
 
     <ImageButton
 
