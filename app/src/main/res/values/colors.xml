@@ -8,12 +8,13 @@
     <color name="gray2">#4D313D9D</color>
     <color name="gray3">#99D4D6E0</color>
     <color name="pointYellow">#FFCA41</color>
+    <color name="red">#FF5151</color>
+    <color name="red2">#75FF5151</color>
 
-    <color name="red">#FF96BE</color>
+    <color name="pink">#FF96BE</color>
     <color name="orange">#FFD494</color>
     <color name="green">#BDFF94</color>
     <color name="mint">#AEFFF5</color>
     <color name="blue">#94C5FF</color>
     <color name="purple">#E394FF</color>
-
 </resources>
