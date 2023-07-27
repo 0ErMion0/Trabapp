@@ -40,6 +40,7 @@
         android:layout_height="38dp"
         android:background="#00ff0000"
         android:paddingLeft="16dp"
+        android:hint="즐거운 우리들의 여행"
         android:textAppearance="@style/content"
         tools:ignore="SpeakableTextPresentCheck" />
 </LinearLayout>
@@ -130,54 +131,71 @@
             android:text="색상"
             android:textAppearance="@style/popuphinttext" />
 
-        <ImageView
-            android:id="@+id/pinkColorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pink_circle"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="13dp"
-            />
-        <ImageView
-            android:id="@+id/yellowColorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/yellow_circle"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="13dp"
-            />
-        <ImageView
-            android:id="@+id/greenColorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/green_circle"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="13dp"
-            />
-        <ImageView
-            android:id="@+id/mintColorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mint_circle"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="13dp"
-            />
-        <ImageView
-            android:id="@+id/blueColorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/blue_circle"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="13dp"
-            />
-        <ImageView
-            android:id="@+id/purpleColorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/purple_circle"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="13dp"
-            />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rdoRed"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radio_red"
+                android:button="@android:color/transparent"
+                android:buttonTint="#00FFFFFF"
+                android:checked="true"
+                android:padding="10dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/rdoOrange"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radio_orange"
+                android:button="@android:color/transparent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/rdoGreen"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radio_green"
+                android:button="@android:color/transparent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/rdoMint"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radio_mint"
+                android:button="@android:color/transparent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/rdoBlue"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radio_blue"
+                android:button="@android:color/transparent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/rdoPurple"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radio_purple"
+                android:button="@android:color/transparent"
+                tools:ignore="TouchTargetSizeCheck" />
+        </RadioGroup>
 
     </LinearLayout>
 

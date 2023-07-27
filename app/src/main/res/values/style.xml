@@ -6,6 +6,7 @@
         <item name="android:textColor">@color/navyBlack</item>
         <item name="fontFamily">@font/pretendard_bold</item>
     </style>
+
     <style name="whiteBold">
         <item name="android:textSize">17dp</item>
         <item name="android:fontFamily">@font/pretendard_bold</item>
@@ -40,6 +41,16 @@
         <item name="android:textSize">16dp</item>
         <item name="android:fontFamily">@font/pretendard_bold</item>
         <item name="android:textColor">@color/navyBlack</item>
+    </style>
+    <style name="smallGray">
+        <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="smallGray2">
+        <item name="android:textSize">10dp</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textColor">@color/gray</item>
     </style>
     <style name="welcome">
         <item name="android:textSize">40dp</item>
