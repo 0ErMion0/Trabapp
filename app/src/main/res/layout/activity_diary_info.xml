@@ -28,8 +28,8 @@
         android:singleLine="true"
         android:text="개쩌는 파리, 김뱁새가 영접하다"
         android:textAppearance="@style/title"
-        app:layout_constraintStart_toEndOf="@+id/imgBtnBack"
 
+        app:layout_constraintStart_toEndOf="@+id/imgBtnBack"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
