@@ -32,4 +32,34 @@
         <item name="android:fontFamily">@font/pretendard_regular</item>
         <item name="android:textColor">@color/navyBlack</item>
     </style>
+    <style name="groupdate">
+        <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textColor">@color/gray2</item>
+    </style>
+    <style name="searchtext">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textColor">@color/navyBlack</item>
+    </style>
+    <style name="popuptitle">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textColor">@color/navyBlack</item>
+    </style>
+    <style name="popupcontent">
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textColor">@color/navyBlack</item>
+    </style>
+    <style name="popuphinttext">
+    <item name="android:textSize">13dp</item>
+    <item name="android:fontFamily">@font/pretendard_regular</item>
+    <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="popupdate">
+        <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textColor">@color/navyBlack</item>
+    </style>
 </resources>
