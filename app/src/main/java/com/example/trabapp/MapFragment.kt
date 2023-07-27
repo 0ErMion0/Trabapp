@@ -1,39 +1,38 @@
 package com.example.trabapp
 
+import android.location.Geocoder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MapFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MapFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var mMap: GoogleMap // 수정 코드(1)
+    private var marker: Marker? = null
+    private lateinit var mapSearchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+        //setContentView(R.layout.fragment_map)
 
+
+    }
+    // 기존 코드
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Initialize view
@@ -43,46 +42,75 @@ class MapFragment : Fragment() {
         val supportMapFragment =
             childFragmentManager.findFragmentById(R.id.google_map) as SupportMapFragment
 
+        // 기존 코드, 누르면 그 눌린 부분에 마커 찍힘
+//        // Async map
+//        supportMapFragment.getMapAsync { googleMap ->
+//            // When map is loaded
+//            googleMap.setOnMapClickListener { latLng ->
+//                // When clicked on map
+//                // Initialize marker options
+//                val markerOptions = MarkerOptions()
+//                // Set position of marker
+//                markerOptions.position(latLng)
+//                // Set title of marker
+//                markerOptions.title("${latLng.latitude} : ${latLng.longitude}")
+//                // Remove all markers
+//                googleMap.clear()
+//                // Animating to zoom the marker
+//                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
+//                // Add marker on map
+//                googleMap.addMarker(markerOptions)
+//            }
+//        }
+
+        // 수정 코드(1)
         // Async map
         supportMapFragment.getMapAsync { googleMap ->
-            // When map is loaded
-            googleMap.setOnMapClickListener { latLng ->
+            mMap = googleMap
+
+            // Add a marker in Sydney and move the camera
+            val SEOUL = LatLng(37.556, 126.97)
+            mMap.addMarker(
+                // 나중에 자기 위치 기반으로 시작 마커 나오도록 바꾸기, 확대도!
+                MarkerOptions()
+                    .position(SEOUL)
+                    .title("Marker in SEOUL")
+                    .snippet("한국 수도")
+            )
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL))
+
+            // Set up the OnMapClickListener
+            mMap.setOnMapClickListener { latLng ->
                 // When clicked on map
+                // Remove all markers
+                mMap.clear()
+
                 // Initialize marker options
                 val markerOptions = MarkerOptions()
                 // Set position of marker
                 markerOptions.position(latLng)
+
+                // Convert the latitude and longitude into a human-readable address
+                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+                val address = addresses?.firstOrNull()?.getAddressLine(0)
+
                 // Set title of marker
-                markerOptions.title("${latLng.latitude} : ${latLng.longitude}")
+                //markerOptions.title("${latLng.latitude} : ${latLng.longitude}")
+                markerOptions.title(address ?: "UnKnown Location")
                 // Remove all markers
-                googleMap.clear()
+                mMap.clear()
                 // Animating to zoom the marker
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
+                // 만약 이렇게 애니메이션 넣었는데 지도 바로 불러와지지 않는 오류 계속 나면
+                //mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng)) // 이걸로 바꾸기
+
                 // Add marker on map
-                googleMap.addMarker(markerOptions)
+                mMap.addMarker(markerOptions)
             }
         }
+
         // Return view
         return view
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MapFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MapFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
