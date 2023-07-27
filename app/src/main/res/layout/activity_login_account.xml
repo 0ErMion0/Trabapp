@@ -30,7 +30,7 @@
         android:ems="10"
         android:hint="아이디"
         android:inputType="text"
-        android:textAppearance="@style/hintText"
+        android:textAppearance="@style/content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCreateAccount" />
@@ -46,7 +46,7 @@
         android:ems="10"
         android:hint="비밀번호"
         android:inputType="text"
-        android:textAppearance="@style/hintText"
+        android:textAppearance="@style/content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
