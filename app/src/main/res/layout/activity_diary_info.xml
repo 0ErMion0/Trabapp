@@ -75,7 +75,7 @@
 
     <!--[이미지]-->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -100,7 +100,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
             android:paddingLeft="15dp"
             android:paddingRight="15dp">
 
@@ -112,11 +111,10 @@
                 tools:layout_marginTop="0dp">
 
                 <ImageView
-                    android:id="@+id/imagePic"
+                    android:id="@+id/imgPic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/test_pic" />
             </androidx.cardview.widget.CardView>

@@ -75,7 +75,7 @@
                 app:cardCornerRadius="10dp">
 
                 <ImageButton
-                    android:id="@+id/imageBtnPic"
+                    android:id="@+id/imgBtnPic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -87,7 +87,7 @@
 
             <!--[제목 입력]-->
             <EditText
-                android:id="@+id/editTextTitle"
+                android:id="@+id/edtTextTitle"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
@@ -129,6 +129,7 @@
                     app:srcCompat="@drawable/plus_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <RadioGroup
+                android:id="@+id/rdoGrp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -140,23 +141,23 @@
                 android:columnCount="3"
                 >
 
-                <RadioButton
-                    android:id="@+id/rdoBtnMemName1"
-                    android:layout_width="110dp"
-                    android:layout_height="48dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/radio_selector"
-                    android:button="@android:color/transparent"
-                    android:checked="true"
-                    android:clickable="false"
-                    android:drawableStart="@drawable/circle_red"
-                    android:drawablePadding="5dp"
-                    android:padding="10dp"
-                    android:singleLine="true"
-                    android:text="대학동기팟"
-                    android:textAlignment="textStart"
-                    android:textAppearance="@style/smallBold" />
+                    <RadioButton
+                        android:id="@+id/rdoBtnMemName1"
+                        android:layout_width="110dp"
+                        android:layout_height="48dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:drawableStart="@drawable/circle_red"
+                        android:drawablePadding="5dp"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:text="대학동기팟"
+                        android:textAlignment="textStart"
+                        android:textAppearance="@style/smallBold" />
 
                 <RadioButton
                     android:id="@+id/rdoBtnMemName2"
@@ -286,6 +287,7 @@
                     android:textAppearance="@style/content"
                     tools:ignore="RtlCompat" />
             </LinearLayout>
+
             <!--[세로선]-->
             <View
                 android:layout_marginTop="20dp"

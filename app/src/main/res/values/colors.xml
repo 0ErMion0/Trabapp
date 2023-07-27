@@ -9,4 +9,11 @@
     <color name="gray3">#99D4D6E0</color>
     <color name="pointYellow">#FFCA41</color>
 
+    <color name="red">#FF96BE</color>
+    <color name="orange">#FFD494</color>
+    <color name="green">#BDFF94</color>
+    <color name="mint">#AEFFF5</color>
+    <color name="blue">#94C5FF</color>
+    <color name="purple">#E394FF</color>
+
 </resources>
