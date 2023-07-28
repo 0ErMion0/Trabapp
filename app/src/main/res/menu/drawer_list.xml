@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/myProfile"
-        android:title="My profile" />
+        android:id="@+id/myMemory"
+        android:title="내 추억" />
     <item
-        android:id="@+id/people"
-        android:title="People" />
-    <item
-        android:id="@+id/settings"
-        android:title="Settings" />
+        android:id="@+id/myCalender"
+        android:title="내 일정" />
 </menu>

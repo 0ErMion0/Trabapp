@@ -344,15 +344,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var mMap: GoogleMap // 구글 맵 불러옴
     private var marker: Marker? = null // 마커
     private lateinit var mapSearchView: SearchView // 검색창
-    private lateinit var searchBox: EditText
-    private lateinit var locationText: TextView
 
     lateinit var supportMapFragment : SupportMapFragment
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle:ActionBarDrawerToggle
     private lateinit var navView: NavigationView
-    private lateinit var menuButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) { // initialize SupportMapFragment, SearchView
         super.onCreate(savedInstanceState)
@@ -373,16 +370,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
         // Call setNavigationItemSelectedListener on the NavigationView to detect when items are clicked
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.myProfile -> {
-                    Toast.makeText(this, "My Profile", Toast.LENGTH_SHORT).show()
+                R.id.myMemory -> {
+                    val intent:Intent = Intent(this, MyMemory::class.java)
+                    startActivity(intent)
                     true
                 }
-                R.id.people -> {
-                    Toast.makeText(this, "People", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.settings -> {
-                    Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+                R.id.myCalender -> {
+                    val intent:Intent = Intent(this, MyCalendear::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> {

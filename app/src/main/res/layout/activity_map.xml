@@ -8,8 +8,7 @@
     android:id="@+id/drawerLayout"
     tools:context=".MapActivity"
     android:orientation="vertical"
-        android:fitsSystemWindows="true"
-        tools:openDrawer="start"
+
     >
 <!--    android:fitsSystemWindows="true"-->
 <!--    tools:openDrawer="start"-->
@@ -56,6 +55,16 @@
         </LinearLayout>
 
         <!--    구글맵-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
         <fragment
             android:id="@+id/google_map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
