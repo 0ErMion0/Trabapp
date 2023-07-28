@@ -8,7 +8,6 @@
     android:id="@+id/drawerLayout"
     tools:context=".MapActivity"
     android:orientation="vertical"
-
     >
 <!--    android:fitsSystemWindows="true"-->
 <!--    tools:openDrawer="start"-->
@@ -20,39 +19,31 @@
 
 
 <!--    Fragment없이 시도1-->
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <!--메뉴버튼?-->
-            <ImageView
-                android:id="@+id/button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="18.5dp"
-                android:text="Button"
-                android:src="@drawable/g_search_btn"/>
+
             <!--검색창-->
             <SearchView
                 android:id="@+id/mapSearch"
                 android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18.5dp"
-                android:layout_marginRight="16.6dp"
-                android:layout_marginBottom="18.5dp"
-                android:background="@drawable/map_search_1"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/round_edit_text"
                 android:elevation="45dp"
                 android:iconifiedByDefault="false"
                 android:queryHint="Search..."
+                android:gravity="left"
+                android:paddingLeft="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
+
 
         <!--    구글맵-->
         <ScrollView
@@ -73,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
-    </LinearLayout>
+    </FrameLayout>
 
 <!--    슬라이드 메뉴-->
     <com.google.android.material.navigation.NavigationView

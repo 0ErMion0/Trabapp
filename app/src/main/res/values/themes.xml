@@ -3,6 +3,8 @@
     <style name="Base.Theme.Trabapp" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/navyBlack</item>
+        <item name="colorAccent">@color/pointYellow</item>
+        <item name="android:windowBackground">@color/white</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
