@@ -1,10 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Trabapp" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.Trabapp" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/navyBlack</item>
+        <item name="colorPrimaryDark">@color/navyBlack</item>
         <item name="colorAccent">@color/pointYellow</item>
         <item name="android:windowBackground">@color/white</item>
+
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 

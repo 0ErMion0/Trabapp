@@ -2,8 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/myMemory"
-        android:title="내 추억" />
+        android:title="내 추억"
+
+        />
     <item
         android:id="@+id/myCalender"
         android:title="내 일정" />
+
 </menu>

@@ -43,6 +43,26 @@ class MemoryInfo : AppCompatActivity() {
             var str_members : String = btnConfirm.text.toString()   // 멤버들
             var str_color : String = ""                             // 컬러
 
+            // 라디오버튼
+            if (rdoGrpColor.checkedRadioButtonId == R.id.rdoRed){           // 빨강
+                str_color = "red"
+            }
+            else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoOrange){   // 주황
+            }
+            else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoGreen){    // 초록
+                str_color = "green"
+            }
+            else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoMint){    // 민트
+                str_color = "mint"
+            }
+            else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoBlue){    // 파랑
+                str_color = "blue"
+            }
+            else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoPurple){  // 보라
+                str_color = "purple"
+            }
+
+
 
         }
 
