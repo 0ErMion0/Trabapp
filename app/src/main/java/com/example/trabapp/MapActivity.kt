@@ -32,10 +32,13 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat.startActivity
+import androidx.drawerlayout.widget.DrawerLayout
 
 import com.google.android.gms.common.api.ApiException
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
@@ -45,6 +48,7 @@ import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRe
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import com.google.android.material.navigation.NavigationView
 
 
 //class MapActivity : AppCompatActivity() {
@@ -340,13 +344,48 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var mMap: GoogleMap // 구글 맵 불러옴
     private var marker: Marker? = null // 마커
     private lateinit var mapSearchView: SearchView // 검색창
-    private lateinit var searchBox: EditText
-    private lateinit var locationText: TextView
 
     lateinit var supportMapFragment : SupportMapFragment
+
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var actionBarToggle:ActionBarDrawerToggle
+    private lateinit var navView: NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) { // initialize SupportMapFragment, SearchView
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
+
+
+        // 슬라이드 메뉴
+        drawerLayout = findViewById(R.id.drawerLayout)
+        // Pass the ActionBarToggle action into the drawerListener
+        actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
+        drawerLayout.addDrawerListener(actionBarToggle)
+        // Display the hamburger icon to launch the drawer
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Call syncState() on the action bar so it'll automatically change to the back button when the drawer layout is open
+        actionBarToggle.syncState()
+        // Call findViewById on the NavigationView
+        navView = findViewById(R.id.navView)
+        // Call setNavigationItemSelectedListener on the NavigationView to detect when items are clicked
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.myMemory -> {
+                    val intent:Intent = Intent(this, MyMemory::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.myCalender -> {
+                    val intent:Intent = Intent(this, MyCalendear::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+
 
         // 아래로 옮김
         supportMapFragment = supportFragmentManager
@@ -464,6 +503,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
 
             // Add marker on map
             mMap.addMarker(markerOptions)
+        }
+    }
+
+    // 슬라이드 메뉴: toggle clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (actionBarToggle.onOptionsItemSelected(item)) {
+            true // Return true if the toggle click is handled
+        } else {
+            super.onOptionsItemSelected(item)
         }
     }
 

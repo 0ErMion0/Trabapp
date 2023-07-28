@@ -15,25 +15,32 @@
         android:theme="@style/Theme.Trabapp">
         <activity
             android:name=".LoginAccount"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".MyCalendear"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".DiaryInfo"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".MemoryInfo"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".MyMemory"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".MyInfo"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".MemRecored"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
 <!--        스플래쉬 액티비티-->
         <activity
@@ -84,7 +91,8 @@
 
 <!--        <activity-->
 <!--            android:name=".MainActivity"-->
-<!--            android:exported="true">-->
+<!--            android:exported="true"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -92,5 +100,4 @@
 <!--            </intent-filter>-->
 <!--        </activity>-->
     </application>
-
 </manifest>
