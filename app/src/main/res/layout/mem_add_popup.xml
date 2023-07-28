@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="333dp"
-    android:layout_height="211dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical">
 
@@ -12,42 +12,82 @@
         android:padding="16dp"
         android:textAppearance="@style/popuptitle"
         android:text="추억 추가" />
+
+    <!--가로선-->
     <View
         android:background="@color/gray2"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_gravity="center"
         android:layout_height="1dp"/>
 
 
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
-
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginLeft="6dp"
-        android:padding="10dp"
-        android:text="추억명"
-        android:textAppearance="@style/popuphinttext" />
+        android:orientation="horizontal" >
 
-    <EditText
-        android:id="@+id/newGroupName"
-        android:layout_width="255dp"
-        android:layout_height="38dp"
-        android:background="#00ff0000"
-        android:paddingLeft="16dp"
-        android:hint="즐거운 우리들의 여행"
-        android:textAppearance="@style/content"
-        tools:ignore="SpeakableTextPresentCheck" />
-</LinearLayout>
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="6dp"
+            android:padding="10dp"
+            android:text="추억명"
+            android:textAppearance="@style/popuphinttext"
+            tools:ignore="TextSizeCheck" />
 
+        <EditText
+            android:id="@+id/newGroupName"
+            android:layout_width="255dp"
+            android:layout_height="38dp"
+            android:background="#00ff0000"
+            android:hint="즐거운 우리들의 여행"
+            android:text=""
+            android:paddingLeft="16dp"
+            android:textAppearance="@style/content"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <!--가로선-->
     <View
         android:background="@color/gray2"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="1dp"/>
+
+    <!--멤버-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="6dp"
+            android:padding="10dp"
+            android:text="멤버"
+            android:textAppearance="@style/popuphinttext"
+            tools:ignore="TextSizeCheck" />
+        <EditText
+            android:id="@+id/edtTextMember"
+            android:layout_width="255dp"
+            android:layout_height="38dp"
+            android:background="#00ff0000"
+            android:hint="똥쟁이 1호, 똥쟁이 2호"
+            android:text=""
+            android:paddingLeft="16dp"
+            android:textAppearance="@style/content"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+
+    <!--가로선-->
+    <View
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
         android:layout_gravity="center"
         android:layout_height="1dp"/>
 
@@ -57,24 +97,25 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginLeft="6dp"
             android:padding="10dp"
             android:text="일정"
-            android:textAppearance="@style/popuphinttext" />
+            android:textAppearance="@style/popuphinttext"
+            tools:ignore="TextSizeCheck" />
 
         <TextView
             android:id="@+id/startDate"
             android:layout_width="98dp"
             android:layout_height="38dp"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical"
-            android:textAppearance="@style/popupdate"
-            android:textAlignment="center"
             android:gravity="center"
-            android:text="2020 . 05 . 20"/>
+            android:text="2020 . 05 . 20"
+            android:textAlignment="center"
+            android:textAppearance="@style/popupdate"
+            tools:ignore="TextSizeCheck" />
 
         <ImageView
             android:id="@+id/startDateIconBtn"
@@ -89,17 +130,19 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="~"
-            android:textAppearance="@style/popuphinttext"/>
+            android:textAppearance="@style/popuphinttext"
+            tools:ignore="TextSizeCheck" />
 
         <TextView
             android:id="@+id/endDate"
             android:layout_width="98dp"
             android:layout_height="38dp"
             android:layout_gravity="center_vertical"
-            android:textAppearance="@style/popupdate"
-            android:textAlignment="center"
             android:gravity="center"
-            android:text="2020 . 06 . 10"/>
+            android:text="2020 . 06 . 10"
+            android:textAlignment="center"
+            android:textAppearance="@style/popupdate"
+            tools:ignore="TextSizeCheck" />
 
         <ImageView
             android:id="@+id/endDateIconBtn"
@@ -110,9 +153,10 @@
             />
     </LinearLayout>
 
+    <!--가로선-->
     <View
         android:background="@color/gray2"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_gravity="center"
         android:layout_height="1dp"/>
 
@@ -129,7 +173,8 @@
             android:layout_marginRight="60dp"
             android:padding="10dp"
             android:text="색상"
-            android:textAppearance="@style/popuphinttext" />
+            android:textAppearance="@style/popuphinttext"
+            tools:ignore="TextSizeCheck" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -199,12 +244,14 @@
 
     </LinearLayout>
 
+    <!--가로선-->
     <View
         android:background="@color/gray2"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_gravity="center"
         android:layout_height="1dp"/>
 
+    <!--버튼 나열-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -213,17 +260,17 @@
 
 
         <Button
-            android:id="@+id/cancelBtn"
+            android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="취소"
-            android:textColor="@color/red2"
-            android:background="#00ff0000"
-            android:padding="0dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
+            android:background="#00ff0000"
             android:gravity="center"
-            />
+            android:padding="0dp"
+            android:text="취소"
+            android:textColor="@color/red2"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/addGroupAcceptBtn"

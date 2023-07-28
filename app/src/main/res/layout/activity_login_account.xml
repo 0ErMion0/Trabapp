@@ -74,6 +74,8 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="6dp"
         android:text="로그인"
+        android:background="@drawable/round_navy_box"
+
         android:textAppearance="@style/whiteBold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
