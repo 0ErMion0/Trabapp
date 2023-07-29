@@ -72,7 +72,10 @@
 <!--        지도 액티비티-->
         <activity
             android:name=".MapActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
+<!--        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"-->
+<!--        android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
 
 <!--        <activity-->
 <!--            android:name=".MapActivity"-->
@@ -98,7 +101,8 @@
 <!--        나중에 주석 해제하기. 메인 엑티비티를 런처로 설정하는 것-->
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
 <!--        <activity-->
 <!--            android:name=".MainActivity"-->

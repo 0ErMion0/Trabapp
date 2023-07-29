@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Trabapp" parent="Theme.AppCompat.DayNight.DarkActionBar">
+<!--    <style name="Base.Theme.Trabapp" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <style name="Base.Theme.Trabapp" parent="Theme.AppCompat.DayNight.DarkActionBar">
+<!--        android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/navyBlack</item>
         <item name="colorPrimaryDark">@color/navyBlack</item>

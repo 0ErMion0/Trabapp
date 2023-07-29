@@ -96,15 +96,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">      <!--스크롤바 감추기-->
+        app:layout_constraintTop_toTopOf="parent">
+
+<!--        <fragment-->
+<!--            android:id="@+id/google_map"-->
+<!--            android:name="com.example.trabapp.memory_item_layout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            />-->
 
         <!--[그룹 목록]-->
         <LinearLayout
+            android:id="@+id/groupLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--그룹 버튼(카드뷰)-->
+<!--            <fragment-->
+<!--                android:id="@+id/memoryItemLayout"-->
+<!--                android:name="com.example.trabapp.fragment_memory_item_layout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                />-->
+
+<!--            그룹 버튼(카드뷰)-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/groupButton"
                 android:layout_width="match_parent"

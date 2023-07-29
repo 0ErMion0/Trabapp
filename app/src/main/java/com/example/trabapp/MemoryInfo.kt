@@ -61,9 +61,6 @@ class MemoryInfo : AppCompatActivity() {
             else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoPurple){  // 보라
                 str_color = "purple"
             }
-
-
-
         }
 
 
