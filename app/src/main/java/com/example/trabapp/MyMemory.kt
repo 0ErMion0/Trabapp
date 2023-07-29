@@ -1,6 +1,7 @@
 package com.example.trabapp
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +32,10 @@ class MyMemory : AppCompatActivity() {
     lateinit var scrollView2: ScrollView
     lateinit var layout: LinearLayout
 
+//    // 수정
+//    companion object {
+//        const val REQUEST_CODE_MEMORY_INFO = 1
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,7 +121,7 @@ class MyMemory : AppCompatActivity() {
 
                 sqlitedb = dbManager.writableDatabase
                 sqlitedb.execSQL("INSERT INTO memories VALUES ('"
-                        +str_memTitle+"','"+str_memMb+"', "+str_startDate+" , '"+str_endDate+"', '"+str_memColor+"')")
+                    +"', '"+str_memTitle+"','"+str_memMb+"', "+str_startDate+" , '"+str_endDate+"', '"+str_memColor+"')")
                 sqlitedb.close()
                 //dbManager.close()
 
@@ -172,6 +177,8 @@ class MyMemory : AppCompatActivity() {
             // Set data from the database to the views
             groupName.text = str_memTitle // 그룹 이름 설정
             groupDate.text = "$str_startDate ~ $str_endDate" // 날짜 설정
+            //groupName.setText(str_memTitle) // 그룹 이름 설정
+            //groupDate.setText("$str_startDate ~ $str_endDate") // 날짜 설정
 
             // Set the color of ImageView based on the value from the database
             when (str_memColor) {
@@ -188,7 +195,7 @@ class MyMemory : AppCompatActivity() {
             // 레이아웃 클릭하면 추억 기록으로 이동 및 데이터 전달
             memoryItemView.setOnClickListener {
                 val intent = Intent(this, MemoryInfo::class.java)
-                intent.putExtra("intent_name", str_memTitle)
+                intent.putExtra("intent_memTitle", str_memTitle)
                 startActivity(intent)
             }
 
