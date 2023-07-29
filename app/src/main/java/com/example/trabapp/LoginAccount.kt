@@ -82,7 +82,7 @@ class LoginAccount : AppCompatActivity() {
                         }
 
                         //화면 전환
-                        val intent = Intent(applicationContext, DiaryInfo::class.java)
+                        val intent = Intent(applicationContext, MapActivity::class.java)
                         startActivity(intent)
 
                     }else{  //비밀번호가 틀릴 때

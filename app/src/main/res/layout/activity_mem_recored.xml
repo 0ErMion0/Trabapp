@@ -81,7 +81,7 @@
                     android:layout_gravity="center"
                     android:background="#00FFFFFF"
                     android:importantForAccessibility="no"
-                    android:scaleType="fitCenter"
+                    android:scaleType="centerCrop"
                     app:srcCompat="@drawable/before_select_pic" />
             </androidx.cardview.widget.CardView>
 
