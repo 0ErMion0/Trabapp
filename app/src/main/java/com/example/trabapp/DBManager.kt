@@ -5,11 +5,8 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBManager(
+class DBManager (
     context: Context?,
-    s: String,
-    nothing: Nothing?,
-    i: Int,
 //    name: String?,
 //    factory: SQLiteDatabase.CursorFactory?,
 //    version: Int

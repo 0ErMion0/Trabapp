@@ -123,139 +123,183 @@
 <!--                app:layout_constraintStart_toStartOf="parent"-->
 <!--                />-->
 
-<!--            그룹 버튼(카드뷰)-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/groupButton"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/roundbox_edit_text">
-                    <ImageView
-                        android:id="@+id/groupColor"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/pink_circle"
-                        android:scaleType="fitCenter"
-                        android:padding="10dp"
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/groupName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="대학 동기팟 프랑스"
-                            android:layout_marginTop="11dp"
-                            android:textAppearance="@style/content"
-                            android:layout_marginRight="15dp"
-                            android:singleLine="true"/>
-                        <TextView
-                            android:id="@+id/groupDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="11dp"
-                            android:text="2020 . 05 . 20 ~ 2020 . 06 . 10"
-                            android:textAppearance="@style/groupdate"
-                            tools:ignore="TextSizeCheck" />
-                    </LinearLayout>
+<!--&lt;!&ndash;            그룹 버튼(카드뷰)&ndash;&gt;-->
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/groupButton"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                >-->
+<!--                <LinearLayout-->
+<!--                    -->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:background="@drawable/roundbox_edit_text">-->
+<!--                    <ImageView-->
+<!--                        android:id="@+id/groupColor"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:scaleType="fitCenter"-->
+<!--                        android:padding="10dp"-->
+<!--                        />-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="vertical">-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/groupName"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="11dp"-->
+<!--                            android:textAppearance="@style/content"-->
+<!--                            android:layout_marginRight="15dp"-->
+<!--                            android:singleLine="true"/>-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/groupDate"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="11dp"-->
+<!--                            android:textAppearance="@style/groupdate"-->
+<!--                            tools:ignore="TextSizeCheck" />-->
+<!--                    </LinearLayout>-->
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/groupButton2"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/roundbox_edit_text">
-                    <ImageView
-                        android:id="@+id/groupColor2"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/blue_circle"
-                        android:scaleType="fitCenter"
-                        android:padding="10dp"
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/groupName2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="가족 국내여행"
-                            android:layout_marginTop="11dp"
-                            android:textAppearance="@style/content"
-                            android:layout_marginRight="15dp"
-                            android:singleLine="true"/>
-                        <TextView
-                            android:id="@+id/groupDate2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="11dp"
-                            android:text="2020 . 05 . 20 ~ 2020 . 06 . 10"
-                            android:textAppearance="@style/groupdate"
-                            tools:ignore="TextSizeCheck" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/groupButton"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="60dp"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                >-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/groupLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:background="@drawable/roundbox_edit_text">-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/groupColor"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:src="@drawable/pink_circle"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:padding="10dp"-->
+<!--                    />-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/groupName"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="대학 동기팟 프랑스"-->
+<!--                        android:layout_marginTop="11dp"-->
+<!--                        android:textAppearance="@style/content"-->
+<!--                        android:layout_marginRight="15dp"-->
+<!--                        android:singleLine="true"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/groupDate"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="11dp"-->
+<!--                        android:text="2020 . 05 . 20 ~ 2020 . 06 . 10"-->
+<!--                        android:textAppearance="@style/groupdate"-->
+<!--                        tools:ignore="TextSizeCheck" />-->
+<!--                </LinearLayout>-->
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/groupButton3"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/roundbox_edit_text">
-                    <ImageView
-                        android:id="@+id/groupColor3"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/circle_green"
-                        android:scaleType="fitCenter"
-                        android:padding="10dp"
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/groupName3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="일본여행 with 친구들"
-                            android:layout_marginTop="11dp"
-                            android:textAppearance="@style/content"
-                            android:layout_marginRight="15dp"
-                            android:singleLine="true"/>
-                        <TextView
-                            android:id="@+id/groupDate3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="11dp"
-                            android:text="2020 . 05 . 20 ~ 2020 . 06 . 10"
-                            android:textAppearance="@style/groupdate"
-                            tools:ignore="TextSizeCheck" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--            </LinearLayout>-->
+            <!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/groupButton2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                >-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:background="@drawable/roundbox_edit_text">-->
+<!--                    <ImageView-->
+<!--                        android:id="@+id/groupColor2"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:src="@drawable/blue_circle"-->
+<!--                        android:scaleType="fitCenter"-->
+<!--                        android:padding="10dp"-->
+<!--                        />-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="vertical">-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/groupName2"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="가족 국내여행"-->
+<!--                            android:layout_marginTop="11dp"-->
+<!--                            android:textAppearance="@style/content"-->
+<!--                            android:layout_marginRight="15dp"-->
+<!--                            android:singleLine="true"/>-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/groupDate2"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="11dp"-->
+<!--                            android:text="2020 . 05 . 20 ~ 2020 . 06 . 10"-->
+<!--                            android:textAppearance="@style/groupdate"-->
+<!--                            tools:ignore="TextSizeCheck" />-->
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/groupButton3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                >-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:background="@drawable/roundbox_edit_text">-->
+<!--                    <ImageView-->
+<!--                        android:id="@+id/groupColor3"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:src="@drawable/circle_green"-->
+<!--                        android:scaleType="fitCenter"-->
+<!--                        android:padding="10dp"-->
+<!--                        />-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="vertical">-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/groupName3"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="일본여행 with 친구들"-->
+<!--                            android:layout_marginTop="11dp"-->
+<!--                            android:textAppearance="@style/content"-->
+<!--                            android:layout_marginRight="15dp"-->
+<!--                            android:singleLine="true"/>-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/groupDate3"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="11dp"-->
+<!--                            android:text="2020 . 05 . 20 ~ 2020 . 06 . 10"-->
+<!--                            android:textAppearance="@style/groupdate"-->
+<!--                            tools:ignore="TextSizeCheck" />-->
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
 
         </LinearLayout>

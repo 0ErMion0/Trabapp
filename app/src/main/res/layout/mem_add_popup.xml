@@ -112,7 +112,7 @@
             android:layout_height="38dp"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:text="2020 . 05 . 20"
+            android:text="2020-05-20"
             android:textAlignment="center"
             android:textAppearance="@style/popupdate"
             tools:ignore="TextSizeCheck" />
@@ -139,7 +139,7 @@
             android:layout_height="38dp"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:text="2020 . 06 . 10"
+            android:text="2020-06-10"
             android:textAlignment="center"
             android:textAppearance="@style/popupdate"
             tools:ignore="TextSizeCheck" />
