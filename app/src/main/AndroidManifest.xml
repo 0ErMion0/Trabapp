@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.trabapp">
 
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -15,6 +17,9 @@
         android:theme="@style/Theme.Trabapp">
         <activity
             android:name=".LoginAccount"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".CreateAccount"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -49,23 +54,33 @@
             android:name=".MyInfo"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".MemRecored"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- 스플래쉬 액티비티 -->
 <!--        <activity-->
-<!--            android:name=".SplashActivity"-->
-<!--            android:exported="false" /> -->
-         <activity
-         android:name=".SplashActivity"
-         android:exported="true"
-         android:theme="@style/ScreenTheme">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
+<!--            android:name=".MemRecored"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
+        <activity
+                    android:name=".MemRecored"
+                    android:exported="true"
+                    android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
+                </activity>
+        <!-- 스플래쉬 액티비티 -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+<!--         <activity-->
+<!--         android:name=".SplashActivity"-->
+<!--         android:exported="true"-->
+<!--         android:theme="@style/ScreenTheme">-->
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
+<!--         </activity>-->
         <!-- 지도 액티비티 -->
         <activity
             android:name=".MapActivity"
@@ -91,18 +106,18 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
         <!-- 나중에 주석 해제하기. 메인 엑티비티를 런처로 설정하는 것 -->
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
-         <activity
-         android:name=".MainActivity"
-         android:exported="true">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+<!--         <activity-->
+<!--         android:name=".MainActivity"-->
+<!--         android:exported="true">-->
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
+<!--         </activity>-->
     </application>
 
 </manifest>

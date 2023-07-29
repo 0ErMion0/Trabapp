@@ -97,7 +97,7 @@ class MemoryInfo : AppCompatActivity() {
             }
 
             sqlitedb = dbManager.writableDatabase
-            sqlitedb.execSQL("INSERT INTO personnel VALUES ('$str_title','$str_members', '$str_startDate' , '$str_endDate', '$str_color')")
+            sqlitedb.execSQL("UPDATE INTO memories VALUES ('$str_title','$str_members', '$str_startDate' , '$str_endDate', '$str_color')")
             sqlitedb.close()
 
 
@@ -162,12 +162,8 @@ class MemoryInfo : AppCompatActivity() {
             memLayout.addView(diaryItemView)
             num++;
         }
-
-
-
-
+        cursor.close()
+        sqlitedb.close()
+        dbManager.close()
     }
-
-
-
 }
