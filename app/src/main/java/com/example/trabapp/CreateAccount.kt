@@ -83,8 +83,8 @@ class CreateAccount : AppCompatActivity() {
                     }
                 }
             }
-            sqlitedb.close()
+            //sqlitedb.close()
         }
-        dbHelper.close()
+        //dbHelper.close()
     }
 }
