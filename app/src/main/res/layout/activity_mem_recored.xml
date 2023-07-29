@@ -97,142 +97,143 @@
                 android:textAlignment="center"
                 android:textAppearance="@style/titleRegular"
                 android:background="@drawable/roundbox_edit_text"
-                android:singleLine="true"/>
-
-            <!--[추억 지정]-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/textTitleMemory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="추억 지정"
-                    android:textAppearance="@style/titleSmall"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/imgBtnPlus"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="#00FFFFFF"
-                    android:importantForAccessibility="no"
-                    android:padding="10dp"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/plus_icon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <RadioGroup
-                android:id="@+id/rdoGrp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <!--그리드 레이아웃 처리-->
-                <GridLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                >
-
-                    <RadioButton
-                        android:id="@+id/rdoBtnMemName1"
-                        android:layout_width="110dp"
-                        android:layout_height="48dp"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="3dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@android:color/transparent"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:drawableStart="@drawable/circle_red"
-                        android:drawablePadding="5dp"
-                        android:padding="10dp"
-                        android:singleLine="true"
-                        android:text="대학동기팟"
-                        android:textAlignment="textStart"
-                        android:textAppearance="@style/smallBold" />
-
-                <RadioButton
-                    android:id="@+id/rdoBtnMemName2"
-                    android:layout_width="110dp"
-                    android:layout_height="48dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="3dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radio_selector"
-                    android:button="@android:color/transparent"
-                    android:drawableStart="@drawable/circle_blue"
-                    android:drawablePadding="5dp"
-                    android:padding="10dp"
-                    android:singleLine="true"
-                    android:text="가족"
-                    android:textAlignment="textStart"
-                    android:textAppearance="@style/smallBold" />
-
-                <RadioButton
-                    android:id="@+id/rdoBtnMemName3"
-                    android:layout_width="110dp"
-                    android:layout_height="48dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="3dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radio_selector"
-                    android:button="@android:color/transparent"
-                    android:drawableStart="@drawable/circle_green"
-                    android:drawablePadding="5dp"
-                    android:padding="10dp"
-                    android:singleLine="true"
-                    android:text="일본여행 with 친구들"
-                    android:textAlignment="textStart"
-                    android:textAppearance="@style/smallBold" />
-                <RadioButton
-                    android:id="@+id/rdoBtnMemName4"
-                    android:layout_width="110dp"
-                    android:layout_height="48dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="3dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radio_selector"
-                    android:button="@android:color/transparent"
-                    android:drawableStart="@drawable/circle_purple"
-                    android:drawablePadding="5dp"
-                    android:padding="10dp"
-                    android:singleLine="true"
-                    android:text="디코팟"
-                    android:textAlignment="textStart"
-                    android:textAppearance="@style/smallBold" />
-                <RadioButton
-                    android:id="@+id/rdoBtnMemName5"
-                    android:layout_width="110dp"
-                    android:layout_height="48dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="3dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radio_selector"
-                    android:button="@android:color/transparent"
-                    android:drawableStart="@drawable/circle_orange"
-                    android:drawablePadding="5dp"
-                    android:padding="10dp"
-                    android:singleLine="true"
-                    android:text="가족2"
-                    android:textAlignment="textStart"
-                    android:textAppearance="@style/smallBold" />
-            </GridLayout></RadioGroup>
-
-            <!--[세로선]-->
-            <View
-                android:layout_marginTop="20dp"
-                android:background="@color/gray2"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:singleLine="true"
                 android:layout_marginBottom="20dp"/>
+
+<!--            &lt;!&ndash;[추억 지정]&ndash;&gt;-->
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="20dp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textTitleMemory"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="추억 지정"-->
+<!--                    android:textAppearance="@style/titleSmall"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/imgBtnPlus"-->
+<!--                    android:layout_width="48dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:background="#00FFFFFF"-->
+<!--                    android:importantForAccessibility="no"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:srcCompat="@drawable/plus_icon" />-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--            <RadioGroup-->
+<!--                android:id="@+id/rdoGrp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                &lt;!&ndash;그리드 레이아웃 처리&ndash;&gt;-->
+<!--                <GridLayout-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:columnCount="3"-->
+<!--                >-->
+
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/rdoBtnMemName1"-->
+<!--                        android:layout_width="110dp"-->
+<!--                        android:layout_height="48dp"-->
+<!--                        android:layout_columnWeight="1"-->
+<!--                        android:layout_margin="3dp"-->
+<!--                        android:background="@drawable/radio_selector"-->
+<!--                        android:button="@android:color/transparent"-->
+<!--                        android:checked="true"-->
+<!--                        android:clickable="false"-->
+<!--                        android:drawableStart="@drawable/circle_red"-->
+<!--                        android:drawablePadding="5dp"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:text="대학동기팟"-->
+<!--                        android:textAlignment="textStart"-->
+<!--                        android:textAppearance="@style/smallBold" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/rdoBtnMemName2"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_columnWeight="1"-->
+<!--                    android:layout_margin="3dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/radio_selector"-->
+<!--                    android:button="@android:color/transparent"-->
+<!--                    android:drawableStart="@drawable/circle_blue"-->
+<!--                    android:drawablePadding="5dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:text="가족"-->
+<!--                    android:textAlignment="textStart"-->
+<!--                    android:textAppearance="@style/smallBold" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/rdoBtnMemName3"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_columnWeight="1"-->
+<!--                    android:layout_margin="3dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/radio_selector"-->
+<!--                    android:button="@android:color/transparent"-->
+<!--                    android:drawableStart="@drawable/circle_green"-->
+<!--                    android:drawablePadding="5dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:text="일본여행 with 친구들"-->
+<!--                    android:textAlignment="textStart"-->
+<!--                    android:textAppearance="@style/smallBold" />-->
+<!--                <RadioButton-->
+<!--                    android:id="@+id/rdoBtnMemName4"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_columnWeight="1"-->
+<!--                    android:layout_margin="3dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/radio_selector"-->
+<!--                    android:button="@android:color/transparent"-->
+<!--                    android:drawableStart="@drawable/circle_purple"-->
+<!--                    android:drawablePadding="5dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:text="디코팟"-->
+<!--                    android:textAlignment="textStart"-->
+<!--                    android:textAppearance="@style/smallBold" />-->
+<!--                <RadioButton-->
+<!--                    android:id="@+id/rdoBtnMemName5"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_columnWeight="1"-->
+<!--                    android:layout_margin="3dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/radio_selector"-->
+<!--                    android:button="@android:color/transparent"-->
+<!--                    android:drawableStart="@drawable/circle_orange"-->
+<!--                    android:drawablePadding="5dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:text="가족2"-->
+<!--                    android:textAlignment="textStart"-->
+<!--                    android:textAppearance="@style/smallBold" />-->
+<!--            </GridLayout></RadioGroup>-->
+
+<!--            &lt;!&ndash;[가로선]&ndash;&gt;-->
+<!--            <View-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@color/gray2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="2dp"-->
+<!--                android:layout_marginBottom="20dp"/>-->
 
             <!--[일정]-->
             <TextView
