@@ -25,22 +25,22 @@
             android:name=".DiaryInfo"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!--
- <activity
+
+        <activity
             android:name=".MemoryInfo"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        -->
-        <activity
-            android:name=".MemoryInfo"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+<!--        <activity-->
+<!--            android:name=".MemoryInfo"-->
+<!--            android:exported="true"-->
+<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
         <activity
             android:name=".MyMemory"
             android:exported="false"
@@ -52,22 +52,25 @@
         <activity
             android:name=".MemRecored"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 스플래쉬 액티비티 -->
-        <activity
-            android:name=".SplashActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".SplashActivity" -->
-        <!-- android:exported="true" -->
-        <!-- android:theme="@style/ScreenTheme"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!-- 스플래쉬 액티비티 -->
+<!--        <activity-->
+<!--            android:name=".SplashActivity"-->
+<!--            android:exported="false" /> -->
+         <activity
+         android:name=".SplashActivity"
+         android:exported="true"
+         android:theme="@style/ScreenTheme">
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
         <!-- 지도 액티비티 -->
         <activity
             android:name=".MapActivity"
-            android:exported="false" /> <!-- android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" -->
+            android:exported="false" />
+        <!-- android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" -->
         <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" -->
         <!-- <activity -->
         <!-- android:name=".MapActivity" -->
@@ -86,11 +89,20 @@
 
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false" /> <!-- 나중에 주석 해제하기. 메인 엑티비티를 런처로 설정하는 것 -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:required="false" />
+        <!-- 나중에 주석 해제하기. 메인 엑티비티를 런처로 설정하는 것 -->
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
+         <activity
+         android:name=".MainActivity"
+         android:exported="true">
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
     </application>
 
 </manifest>

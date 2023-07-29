@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity(){
             Toast.makeText(this@MainActivity,
                 "자동 로그인되었습니다.", Toast.LENGTH_SHORT).show()
 
-            //화면 전환
-            val intent = Intent(applicationContext, MyInfo::class.java)
+            //화면 전환 - 맵으로
+            val intent = Intent(applicationContext, MapActivity::class.java)
             startActivity(intent)
 
             finish()
