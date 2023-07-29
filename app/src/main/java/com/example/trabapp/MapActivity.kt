@@ -350,11 +350,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle:ActionBarDrawerToggle
     private lateinit var navView: NavigationView
+    //private lateinit var toolBar : Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) { // initialize SupportMapFragment, SearchView
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
+        //toolBar.setBackgroundColor(Color.rgb(0, 123 ,3))
 
         // 슬라이드 메뉴
         drawerLayout = findViewById(R.id.drawerLayout)
