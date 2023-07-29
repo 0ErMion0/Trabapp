@@ -23,10 +23,9 @@ import org.w3c.dom.Text
 class MemoryInfo : AppCompatActivity() {
     lateinit var backButton: ImageButton // 뒤로 가기 버튼
 
-    lateinit var memDB: DBManager
-    lateinit var diaryDB : DBManager
-    lateinit var sqlMem: SQLiteDatabase
-    lateinit var sqlDia: SQLiteDatabase
+    lateinit var dbManager: DBManager
+    lateinit var sqlitedb:SQLiteDatabase
+
     lateinit var memLayout: LinearLayout
 
     lateinit var btnConfirm : Button
@@ -46,11 +45,7 @@ class MemoryInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_memory_info)
 
-
-        // 추억 DB
-        memDB = DBManager(this,"memories",null,1)
-
-
+        dbManager=DBManager(this)
 
         // ---id 연결---
         edtTextTitle = findViewById(R.id.edtTextTitle)
@@ -72,7 +67,7 @@ class MemoryInfo : AppCompatActivity() {
         }
 
 
-
+        // 확인 버튼
         btnConfirm.setOnClickListener(){
             // db에 넣을 변수 선언
             var str_title : String = edtTextTitle.text.toString()   // 제목
@@ -82,10 +77,11 @@ class MemoryInfo : AppCompatActivity() {
             var str_endDate : String = "2023 - 07 - 20"
 
             // 라디오버튼
-            if (rdoGrpColor.checkedRadioButtonId == R.id.rdoRed){           // 빨강
-                str_color = "red"
+            if (rdoGrpColor.checkedRadioButtonId == R.id.rdoRed){           // 빨강(핑크)
+                str_color = "pink"
             }
             else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoOrange){   // 주황
+                str_color = "orange"
             }
             else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoGreen){    // 초록
                 str_color = "green"
@@ -100,9 +96,9 @@ class MemoryInfo : AppCompatActivity() {
                 str_color = "purple"
             }
 
-            sqlMem = memDB.writableDatabase
-            sqlMem.execSQL("INSERT INTO personnel VALUES ('$str_title','$str_members', '$str_startDate' , '$str_endDate', '$str_color')")
-            sqlMem.close()
+            sqlitedb = dbManager.writableDatabase
+            sqlitedb.execSQL("INSERT INTO personnel VALUES ('$str_title','$str_members', '$str_startDate' , '$str_endDate', '$str_color')")
+            sqlitedb.close()
 
 
         }
@@ -127,9 +123,9 @@ class MemoryInfo : AppCompatActivity() {
     // 데이터베이스 조회 후 목록에 추가하는 함수
     private fun loadMemories(){
         //dbManager = DBManager(this, "memories", null, 1)
-        sqlDia = diaryDB.readableDatabase
+        sqlitedb = dbManager.readableDatabase
 
-        val cursor = diaryDB.getAllMemories()
+        val cursor = dbManager.getAllMemories()
 
         var num : Int = 0
 

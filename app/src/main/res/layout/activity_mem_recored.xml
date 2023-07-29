@@ -135,7 +135,7 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_weight="0.2"
-                    android:gravity=""
+                    android:gravity="center"
                     android:text="  ~ "
                     android:textAppearance="@style/content" />
 

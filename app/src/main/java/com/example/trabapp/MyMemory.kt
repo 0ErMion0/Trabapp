@@ -162,7 +162,7 @@ class MyMemory : AppCompatActivity() {
             val memoryItemView = layoutInflater.inflate(R.layout.memory_item_layout, null)
 
             // Find views in the memory_item_layout
-            val groupButton = memoryItemView.findViewById<CardView>(R.id.groupButton)
+            //val groupButton = memoryItemView.findViewById<CardView>(R.id.groupButton)
             val groupColor = memoryItemView.findViewById<ImageView>(R.id.groupColor)
             val groupName = memoryItemView.findViewById<TextView>(R.id.groupName)
             val groupDate = memoryItemView.findViewById<TextView>(R.id.groupDate)
