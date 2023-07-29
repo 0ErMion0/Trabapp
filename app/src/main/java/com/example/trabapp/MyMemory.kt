@@ -2,7 +2,6 @@ package com.example.trabapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,10 +16,7 @@ import android.widget.RadioGroup
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
-import androidx.cardview.widget.CardView
-import com.example.trabapp.databinding.ActivityMainBinding
 import com.example.trabapp.databinding.ActivityMyMemoryBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
