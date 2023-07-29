@@ -30,8 +30,8 @@ class LoginAccount : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_account)
-
-        dbHelper = DBHelper(this)
+//
+//        dbHelper = DBHelper(this)
 
         btnLogin = findViewById(R.id.btnLogin)
         btnCheck = findViewById(R.id.checkBox)
@@ -41,7 +41,7 @@ class LoginAccount : AppCompatActivity() {
 
         //로그인 클릭
         btnLogin.setOnClickListener {
-            sqlitedb = dbHelper.writableDatabase
+            sqlitedb = DBHelper(this).writableDatabase
 
             str_id = edtId.text.toString()
             str_password = edtPassword.text.toString()
@@ -93,8 +93,8 @@ class LoginAccount : AppCompatActivity() {
                 }
 
             }
-            sqlitedb.close()
+            //sqlitedb.close()
         }
-        dbHelper.close()
+        //dbHelper.close()
     }
 }

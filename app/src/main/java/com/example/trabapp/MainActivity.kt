@@ -27,8 +27,10 @@ class MainActivity : AppCompatActivity(){
                 "자동 로그인되었습니다.", Toast.LENGTH_SHORT).show()
 
             //화면 전환
-            val intent = Intent(applicationContext, DiaryInfo::class.java)
+            val intent = Intent(applicationContext, MyInfo::class.java)
             startActivity(intent)
+
+            finish()
         }
 
         btnReg.setOnClickListener {

@@ -54,7 +54,7 @@ class DBHelper (context: Context?)
             res = false
 
         //닫기
-        MyDB.close()
+        //MyDB.close()
         cursor.close()
 
         //반환
