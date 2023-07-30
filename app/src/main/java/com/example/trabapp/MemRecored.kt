@@ -99,7 +99,6 @@ class MemRecored : AppCompatActivity() {
             val str_diStartDate : String = "2023 - 07 - 02"
             val str_diEndDate : String = "2023 - 07 - 20"
             var str_emotion : String
-//            val str_diImg : String = "이미지.."
 
             // 만족도 (라디오 버튼)
             str_emotion = when (rdoGrpEmotion.checkedRadioButtonId) {

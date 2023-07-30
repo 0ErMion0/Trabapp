@@ -266,7 +266,8 @@ class MemoryInfo : AppCompatActivity() {
             val str_diaContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString()
             val str_diaStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString()
             val str_diaEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString()
-            val str_emotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
+//            val str_emotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
+            val str_diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
 
 
 
@@ -278,33 +279,38 @@ class MemoryInfo : AppCompatActivity() {
             val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
             val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
             val textDate = diaryItemView.findViewById<TextView>(R.id.textDate)
-            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+//            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+            var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
 
-            val mem_recored = layoutInflater.inflate(R.layout.activity_mem_recored, null)
-            val rdoGrpEmotion = mem_recored.findViewById<RadioGroup>(R.id.rdoGrpEmotion)
-            val rdoReallyBad = mem_recored.findViewById<RadioButton>(R.id.rdoReallyBad)
-            val rdoBad = mem_recored.findViewById<RadioButton>(R.id.rdoBad)
-            val rdoSoso = mem_recored.findViewById<RadioButton>(R.id.rdoSoso)
-            val rdoGood = mem_recored.findViewById<RadioButton>(R.id.rdoGood)
-            val rdoReallyGood = mem_recored.findViewById<RadioButton>(R.id.rdoReallyGood)
+
+            // 라디오 관련
+//            val mem_recored = layoutInflater.inflate(R.layout.activity_mem_recored, null)
+//            val rdoGrpEmotion = mem_recored.findViewById<RadioGroup>(R.id.rdoGrpEmotion)
+//            val rdoReallyBad = mem_recored.findViewById<RadioButton>(R.id.rdoReallyBad)
+//            val rdoBad = mem_recored.findViewById<RadioButton>(R.id.rdoBad)
+//            val rdoSoso = mem_recored.findViewById<RadioButton>(R.id.rdoSoso)
+//            val rdoGood = mem_recored.findViewById<RadioButton>(R.id.rdoGood)
+//            val rdoReallyGood = mem_recored.findViewById<RadioButton>(R.id.rdoReallyGood)
 
             diaryItemView.id = num
 
+            // 정보 넣기
             testTitle.setText(str_diaTitle)
             textContents.setText(str_diaContents)
             textDate.text = "$str_diaStartDate ~ $str_diaEndDate"
-            when (str_emotion){
-                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
-                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
-                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
-                "Good" -> imotion.setImageResource(R.drawable.face_good)
-                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
-            }
+            // 라디오
+//            when (str_emotion){
+//                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
+//                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
+//                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
+//                "Good" -> imotion.setImageResource(R.drawable.face_good)
+//                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
+//            }
 
 
             // 이미지
-//            val bm = byteArrayToBitmap(str_diImg)
-//            imgPic.setImageBitmap(bm)
+            val bm = byteArrayToBitmap(str_diImg)
+            imgPic.setImageBitmap(bm)
 
             // 일지 클릭 시 상세로
             diaryItemView.setOnClickListener {
@@ -346,12 +352,12 @@ class MemoryInfo : AppCompatActivity() {
 
 
     // 이미지!!!!!
-//    fun ByteArray.toBitmap(): Bitmap {
-//        return BitmapFactory.decodeByteArray(this, 0, this.size)
-//    }
-//
-//    fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
-//        val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
-//        return bitmap
-//    }
+    fun ByteArray.toBitmap(): Bitmap {
+        return BitmapFactory.decodeByteArray(this, 0, this.size)
+    }
+
+    fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
+        val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
+        return bitmap
+    }
 }

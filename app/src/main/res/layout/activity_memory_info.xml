@@ -23,7 +23,7 @@
     <!--타이틀-->
     <EditText
         android:id="@+id/edtTextTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="56dp"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal|center_vertical"
@@ -31,7 +31,7 @@
         android:text="대학 동기팟 프랑스"
         android:textAlignment="textStart"
         android:textAppearance="@style/title"
-
+        android:focusableInTouchMode="false"
         app:layout_constraintStart_toEndOf="@+id/imgBtnBack"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat" />
@@ -72,9 +72,9 @@
     <!--[내용]-->
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="580dp"
+        android:layout_height="650dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="30dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,14 +98,15 @@
             <EditText
                 android:id="@+id/edtTextMember"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/roundbox_edit_text"
                 android:ems="10"
                 android:hint="김철수, 홍길동"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:padding="10dp"
+                android:scrollHorizontally="false"
                 android:text=""
                 android:textAppearance="@style/content" />
 
