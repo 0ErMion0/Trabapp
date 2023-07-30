@@ -48,13 +48,21 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var floatBtn : FloatingActionButton
 
     // db에 보낼 변수들 정의 - 추억 상세
-    private lateinit var str_memFirstTitle : String // 초기 추억 제목
+    //private lateinit var str_memFirstTitle : String // 초기 추억 제목
     lateinit var str_memTitle : String // 추억 제목
     lateinit var str_memMb : String  // 멤버
     lateinit var str_memStartDate : String // 시작일
     lateinit var str_memEndDate : String // 마감일
     lateinit var str_memColor : String // 기록 색
 
+    lateinit var str_diaTitle : String
+
+    // GPT 망한 답변
+    companion object {
+        const val MEM_RECORED_REQUEST_CODE = 100 // You can use any unique request code
+    }
+
+    // GPT
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +70,7 @@ class MemoryInfo : AppCompatActivity() {
         setContentView(R.layout.activity_memory_info)
 
         // ---id 연결---
+        memLayout = findViewById(R.id.memLayout)
         btnConfirm = findViewById(R.id.btnConfirm)
         edtTextTitle = findViewById(R.id.edtTextTitle)
         edtTextMember = findViewById(R.id.edtTextMember)
@@ -78,6 +87,8 @@ class MemoryInfo : AppCompatActivity() {
         val intent = intent
         str_memTitle = intent.getStringExtra("intent_memTitle").toString()
         //str_memFirstTitle = intent.getStringExtra("intent_memFirstTitle").toString()
+        str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
+
 
         dbManager=DBManager(this)
         loadMemories() // 추억 작성한 내용 추억 상세 페이지에 반영되도록
@@ -86,6 +97,7 @@ class MemoryInfo : AppCompatActivity() {
         floatBtn = findViewById(R.id.floatBtn)
         floatBtn.setOnClickListener{
             val intent: Intent = Intent(this, MemRecored::class.java)
+            intent.putExtra("intent_memTitleForDi", str_memTitle) //
             startActivity(intent)
         }
 
@@ -182,6 +194,17 @@ class MemoryInfo : AppCompatActivity() {
             val intent: Intent = Intent(this, MyMemory::class.java)
             startActivity(intent)
         }
+
+        // GPT
+        // Load memories only if the activity is accessed from MyMemory
+//        if (intent.hasExtra("intent_memTitle")) {
+//            str_memTitle = intent.getStringExtra("intent_memTitle").toString()
+//            loadMemories()
+//        }
+//        if(intent.hasExtra("intent_memTitleDi")){
+//            str_memTitle = intent.getStringExtra("intent_title").toString()
+//            loadMemories()
+//        }
     }
 
 
@@ -195,7 +218,7 @@ class MemoryInfo : AppCompatActivity() {
         var cursorMem : Cursor // 추억 관련 - 제목으로 해당 추억 찾아가야 함
         cursorMem = sqlitedb.rawQuery("SELECT * FROM memories WHERE memTitle = '" + str_memTitle +"';", null)
         var cursorDiy : Cursor // 일지 관련
-        cursorDiy = sqlitedb.rawQuery("SELECT * FROM diaries", null)
+        cursorDiy = sqlitedb.rawQuery("SELECT * FROM diaries WHERE memTitleForDi = '" + str_memTitle +"';", null)
 
         var num : Int = 0
 
@@ -230,11 +253,13 @@ class MemoryInfo : AppCompatActivity() {
         while (cursorDiy.moveToNext()){
             // 데이터베이스에 저장된 값 가져옴
             // 일지 목록
-            val str_diaTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString()
+            //val str_diaTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString()
+            str_diaTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString()
             val str_diaContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString()
             val str_diaStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString()
             val str_diaEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString()
             val str_diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
+
 
             // ---- 작성한 일지 토대로 일지 목록 만듦 ----
             // 아이템 레이아웃 불러오기
@@ -255,7 +280,7 @@ class MemoryInfo : AppCompatActivity() {
 
             diaryItemView.setOnClickListener {
                 val intent = Intent(this, DiaryInfo::class.java)
-                intent.putExtra("intent_name", str_diaTitle)
+                intent.putExtra("intent_diTitle", str_diaTitle)
                 startActivity(intent)
             }
 
@@ -269,17 +294,23 @@ class MemoryInfo : AppCompatActivity() {
         //dbManager.close()
     }
 
-    // 변경사항 저장 후에 목록 업데이트 될 수 있도록 추가
+    // GPT 망한 답변. 이러면 목록이 2배가 됨.
+    // Add this method to receive the result from MemRecored activity
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == MEM_RECORED_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // Data received from MemRecored activity
+            str_diaTitle = data?.getStringExtra("intent_diTitle").toString()
+            //str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
+
+            // Update the UI or reload the data as per your requirement
+            loadMemories()
+        }
+    }
+
 //    override fun onResume() {
 //        super.onResume()
-//        // Call loadMemories() to refresh the data whenever the activity resumes
-//        loadMemories()
-//    }
-
-//    // 버튼에서도, loadMemories()에서도 sqlitedb 쓰기 때문에 액티비티 종료할 때 close하도록 함
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        //sqlitedb.close()
-//        loadMemories()
+//        loadMemories() // Call loadMemories() to refresh the data whenever the activity resumes
 //    }
 }

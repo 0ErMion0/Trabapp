@@ -8,11 +8,13 @@
     android:layout_marginBottom="10dp">
 
     <LinearLayout
+        android:id="@+id/dGroupButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/roundbox_edit_text"
         android:orientation="horizontal"
         android:padding="15dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -54,8 +56,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="10dp"
+            app:cardCornerRadius="10dp">
 
             <ImageView
                 android:id="@+id/imgPic"

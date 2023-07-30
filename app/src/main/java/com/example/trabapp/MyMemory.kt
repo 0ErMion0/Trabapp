@@ -98,6 +98,7 @@ class MyMemory : AppCompatActivity() {
                 var str_startDate : String = startDate.text.toString() // 시작일
                 var str_endDate : String = endDate.text.toString() // 마감일
                 var str_memColor : String = "" // 기록 색
+                var str_memTitleForDi : String = newGroupName.text.toString() // 일지에서 쓸 추억 제목
 
                 // 라디오버튼
                 if (rdoGrpColor.checkedRadioButtonId == R.id.rdoRed){           // 빨강(핑크)
@@ -122,6 +123,7 @@ class MyMemory : AppCompatActivity() {
                 sqlitedb = dbManager.writableDatabase
                 sqlitedb.execSQL("INSERT INTO memories VALUES ('"
                     +"', '"+str_memTitle+"','"+str_memMb+"', "+str_startDate+" , '"+str_endDate+"', '"+str_memColor+"')")
+                sqlitedb.execSQL("INSERT INTO diaries (memTitleForDi) VALUES ('str_memTitle')")
                 sqlitedb.close()
                 //dbManager.close()
 
@@ -133,12 +135,14 @@ class MyMemory : AppCompatActivity() {
                 intentMyMemory.putExtra("intent_title", str_memTitle)
 //                //intentMemoryInfo.putExtra("intent_title", str_memTitle)
 
+                Toast.makeText(this, "내 추억을 작성했습니다.", Toast.LENGTH_SHORT).show()
+
                 startActivity(intentMyMemory) // 이 과정까지 해야 데이터가 전달됨(안되는데욬ㅋㅋㅋㅋ
 ////                startActivity(intentMemoryInfo)
 
                 //
-                Toast.makeText(this, "내 추억을 작성했습니다.", Toast.LENGTH_SHORT).show()
-                mAlertDialog.dismiss() // 원래 화면으로 돌아감
+                //Toast.makeText(this, "내 추억을 작성했습니다.", Toast.LENGTH_SHORT).show()
+                //mAlertDialog.dismiss() // 원래 화면으로 돌아감
             }
             // 취소 버튼
             val noButton = mDialogView.findViewById<Button>(R.id.btnCancel)

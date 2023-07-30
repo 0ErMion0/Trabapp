@@ -15,7 +15,6 @@ class DBManager (
     override fun onCreate(db: SQLiteDatabase?) {
         // 추억 테이블
         db!!.execSQL("CREATE TABLE memories(" +
-                "memFirstTitle text, " +
                 "memTitle text, " +
                 "memMb text, " +
                 "memStartDate text, " +
@@ -23,6 +22,7 @@ class DBManager (
                 "memColor text)")
         // 일지 테이블
         db!!.execSQL("CREATE TABLE diaries(" +
+                "memTitleForDi text, " +
                 "diTitle text, " +
                 "diContents text, " +
                 "diStartDate text, " +
