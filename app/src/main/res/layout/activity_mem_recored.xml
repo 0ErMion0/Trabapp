@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="0dp"
     tools:context=".MemRecored">
     <!--[추억 기록 화면]-->
 
@@ -37,6 +38,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat" />
 
+    <!--체크버튼-->
     <ImageButton
         android:id="@+id/imgBtnCheck"
         android:layout_width="48dp"
@@ -66,39 +68,97 @@
             android:layout_marginRight="30dp"
             android:orientation="vertical">
 
-            <!--[사진 선택]-->
+            <!--만족도-->
             <androidx.cardview.widget.CardView
-                android:layout_width="133dp"
-                android:layout_height="133dp"
-                android:layout_gravity="center_horizontal"
-                android:elevation="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
                 app:cardCornerRadius="10dp">
 
                 <ImageButton
                     android:id="@+id/imgBtnPic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="#00FFFFFF"
-                    android:importantForAccessibility="no"
+                    android:background="@android:color/transparent"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/before_select_pic" />
             </androidx.cardview.widget.CardView>
 
+            <RadioGroup
+                android:id="@+id/rdoGrpEmotion"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <RadioButton
+                    android:id="@+id/rdoReallyBad"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_really_bad"
+                    android:drawablePadding="0dp" />
+
+                <RadioButton
+                    android:id="@+id/rdoBad"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_bad" />
+
+                <RadioButton
+                    android:id="@+id/rdoSoso"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_soso" />
+
+                <RadioButton
+                    android:id="@+id/rdoGood"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_good" />
+
+                <RadioButton
+                    android:id="@+id/rdoReallyGood"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:drawableTop="@drawable/face_really_good" />
+            </RadioGroup>
+
+
             <!--[제목 입력]-->
+
+
             <EditText
                 android:id="@+id/edtTextTitle"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/roundbox_edit_text"
                 android:hint="제목을 입력하세요"
                 android:inputType="text"
+                android:singleLine="true"
                 android:text=""
                 android:textAlignment="center"
-                android:textAppearance="@style/titleRegular"
-                android:background="@drawable/roundbox_edit_text"
-                android:singleLine="true"
-                android:layout_marginBottom="20dp"/>
+                android:textAppearance="@style/titleRegular" />
 
             <!--[일정]-->
             <TextView
@@ -156,11 +216,11 @@
 
             <!--[세로선]-->
             <View
-                android:layout_marginTop="20dp"
-                android:background="@color/gray2"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/gray2" />
 
             <!--[내용]-->
             <TextView
@@ -178,6 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/roundbox_edit_text"
                 android:gravity="top"
                 android:hint="내용을 입력하세요"
@@ -192,8 +253,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="RtlCompat"
-                tools:singleLine="true"
-                android:layout_marginBottom="30dp"/>
+                tools:singleLine="true" />
 
-        </LinearLayout></ScrollView>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

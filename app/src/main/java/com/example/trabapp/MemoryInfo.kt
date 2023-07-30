@@ -6,6 +6,8 @@ import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Layout
@@ -47,6 +49,8 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var rdoPurple : RadioButton
     lateinit var floatBtn : FloatingActionButton
 
+
+
     // db에 보낼 변수들 정의 - 추억 상세
     //private lateinit var str_memFirstTitle : String // 초기 추억 제목
     lateinit var str_memTitle : String // 추억 제목
@@ -57,10 +61,12 @@ class MemoryInfo : AppCompatActivity() {
 
     lateinit var str_diaTitle : String
 
-//    // GPT 망한 답변
+    // GPT 망한 답변
 //    companion object {
 //        const val MEM_RECORED_REQUEST_CODE = 100 // You can use any unique request code
 //    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,16 +89,8 @@ class MemoryInfo : AppCompatActivity() {
 
         val intent = intent
         str_memTitle = intent.getStringExtra("intent_memTitle").toString()
+        //str_memFirstTitle = intent.getStringExtra("intent_memFirstTitle").toString()
         str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
-
-//        if (intent.hasExtra("intent_memTitle")) {
-//            str_memTitle = intent.getStringExtra("intent_memTitle").toString()
-//            loadMemories()
-//        }
-//        if(intent.hasExtra("intent_memTitleDi")){
-//            str_memTitle = intent.getStringExtra("intent_title").toString()
-//            loadMemories()
-//        }
 
 
         dbManager=DBManager(this)
@@ -268,7 +266,8 @@ class MemoryInfo : AppCompatActivity() {
             val str_diaContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString()
             val str_diaStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString()
             val str_diaEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString()
-            val str_diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
+            val str_emotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
+
 
 
             // ---- 작성한 일지 토대로 일지 목록 만듦 ----
@@ -279,15 +278,35 @@ class MemoryInfo : AppCompatActivity() {
             val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
             val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
             val textDate = diaryItemView.findViewById<TextView>(R.id.textDate)
-            var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+
+            val mem_recored = layoutInflater.inflate(R.layout.activity_mem_recored, null)
+            val rdoGrpEmotion = mem_recored.findViewById<RadioGroup>(R.id.rdoGrpEmotion)
+            val rdoReallyBad = mem_recored.findViewById<RadioButton>(R.id.rdoReallyBad)
+            val rdoBad = mem_recored.findViewById<RadioButton>(R.id.rdoBad)
+            val rdoSoso = mem_recored.findViewById<RadioButton>(R.id.rdoSoso)
+            val rdoGood = mem_recored.findViewById<RadioButton>(R.id.rdoGood)
+            val rdoReallyGood = mem_recored.findViewById<RadioButton>(R.id.rdoReallyGood)
 
             diaryItemView.id = num
 
-            testTitle.text = str_diaTitle
-            textContents.text = str_diaContents
+            testTitle.setText(str_diaTitle)
+            textContents.setText(str_diaContents)
             textDate.text = "$str_diaStartDate ~ $str_diaEndDate"
-//          imgPic = str_diImg
+            when (str_emotion){
+                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
+                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
+                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
+                "Good" -> imotion.setImageResource(R.drawable.face_good)
+                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
+            }
 
+
+            // 이미지
+//            val bm = byteArrayToBitmap(str_diImg)
+//            imgPic.setImageBitmap(bm)
+
+            // 일지 클릭 시 상세로
             diaryItemView.setOnClickListener {
                 val intent = Intent(this, DiaryInfo::class.java)
                 intent.putExtra("intent_diTitle", str_diaTitle)
@@ -304,8 +323,8 @@ class MemoryInfo : AppCompatActivity() {
         //dbManager.close()
     }
 
-//    // GPT 망한 답변. 이러면 목록이 2배가 됨.
-//    // Add this method to receive the result from MemRecored activity
+    // GPT 망한 답변. 이러면 목록이 2배가 됨.
+    // Add this method to receive the result from MemRecored activity
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
 //
@@ -322,5 +341,17 @@ class MemoryInfo : AppCompatActivity() {
 //    override fun onResume() {
 //        super.onResume()
 //        loadMemories() // Call loadMemories() to refresh the data whenever the activity resumes
+//    }
+//
+
+
+    // 이미지!!!!!
+//    fun ByteArray.toBitmap(): Bitmap {
+//        return BitmapFactory.decodeByteArray(this, 0, this.size)
+//    }
+//
+//    fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
+//        val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
+//        return bitmap
 //    }
 }
