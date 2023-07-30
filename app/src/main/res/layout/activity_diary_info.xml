@@ -131,14 +131,15 @@
                 android:layout_marginTop="20dp"
                 android:text="개쩌는 파리, 김뱁새가 영접하다"
                 android:textAppearance="@style/titleSmall" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="30dp"
                 android:text="  마참내 에펠탑 영접~!!~! \n신난돠~~~~~ \n\n
 사진 마구마구 찍어야지 \n촬칵촬칵쓰~~!!~! \n해외여행 즐 겁 따 \n아무말블라블라 \n스크롤 실험용"
-                />
+                android:textAppearance="@style/content" />
         </LinearLayout>
     </ScrollView>
 

@@ -1,5 +1,6 @@
 package com.example.trabapp
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -39,4 +40,6 @@ class DBManager (
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM memories", null)
     }
+
+
 }
