@@ -121,8 +121,7 @@ class MyMemory : AppCompatActivity() {
                 }
 
                 sqlitedb = dbManager.writableDatabase
-                sqlitedb.execSQL("INSERT INTO memories VALUES ('"
-                    +"', '"+str_memTitle+"','"+str_memMb+"', "+str_startDate+" , '"+str_endDate+"', '"+str_memColor+"')")
+                sqlitedb.execSQL("INSERT INTO memories VALUES ('"+str_memTitle+"','"+str_memMb+"', "+str_startDate+" , '"+str_endDate+"', '"+str_memColor+"')")
                 sqlitedb.execSQL("INSERT INTO diaries (memTitleForDi) VALUES ('str_memTitle')")
                 sqlitedb.close()
                 //dbManager.close()

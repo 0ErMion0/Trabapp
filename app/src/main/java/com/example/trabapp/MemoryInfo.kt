@@ -6,6 +6,8 @@ import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Layout
@@ -47,6 +49,8 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var rdoPurple : RadioButton
     lateinit var floatBtn : FloatingActionButton
 
+
+
     // db에 보낼 변수들 정의 - 추억 상세
     //private lateinit var str_memFirstTitle : String // 초기 추억 제목
     lateinit var str_memTitle : String // 추억 제목
@@ -58,11 +62,10 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var str_diaTitle : String
 
     // GPT 망한 답변
-    companion object {
-        const val MEM_RECORED_REQUEST_CODE = 100 // You can use any unique request code
-    }
+//    companion object {
+//        const val MEM_RECORED_REQUEST_CODE = 100 // You can use any unique request code
+//    }
 
-    // GPT
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -183,8 +186,13 @@ class MemoryInfo : AppCompatActivity() {
 
             sqlitedb.close()
 
-            loadMemories()
+            //loadMemories() // 이렇게 하면 추억 목록이 2배가 되는 문제 발생
             Toast.makeText(this, "변경되었습니다.", Toast.LENGTH_SHORT).show()
+
+            // 그냥 해당 액티비티 다시 로드해볼까? 근데 여기 로드 위해 필요한 내용 보내줘야 함
+            val intent: Intent = Intent(this, MemoryInfo::class.java)
+            intent.putExtra("intent_memTitle", str_memTitle)
+            startActivity(intent)
         }
 
         // ---뒤로 가기 버튼---
@@ -258,7 +266,8 @@ class MemoryInfo : AppCompatActivity() {
             val str_diaContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString()
             val str_diaStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString()
             val str_diaEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString()
-            val str_diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
+            val str_emotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
+
 
 
             // ---- 작성한 일지 토대로 일지 목록 만듦 ----
@@ -269,15 +278,35 @@ class MemoryInfo : AppCompatActivity() {
             val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
             val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
             val textDate = diaryItemView.findViewById<TextView>(R.id.textDate)
-            var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+
+            val mem_recored = layoutInflater.inflate(R.layout.activity_mem_recored, null)
+            val rdoGrpEmotion = mem_recored.findViewById<RadioGroup>(R.id.rdoGrpEmotion)
+            val rdoReallyBad = mem_recored.findViewById<RadioButton>(R.id.rdoReallyBad)
+            val rdoBad = mem_recored.findViewById<RadioButton>(R.id.rdoBad)
+            val rdoSoso = mem_recored.findViewById<RadioButton>(R.id.rdoSoso)
+            val rdoGood = mem_recored.findViewById<RadioButton>(R.id.rdoGood)
+            val rdoReallyGood = mem_recored.findViewById<RadioButton>(R.id.rdoReallyGood)
 
             diaryItemView.id = num
 
-            testTitle.text = str_diaTitle
-            textContents.text = str_diaContents
+            testTitle.setText(str_diaTitle)
+            textContents.setText(str_diaContents)
             textDate.text = "$str_diaStartDate ~ $str_diaEndDate"
-//          imgPic = str_diImg
+            when (str_emotion){
+                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
+                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
+                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
+                "Good" -> imotion.setImageResource(R.drawable.face_good)
+                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
+            }
 
+
+            // 이미지
+//            val bm = byteArrayToBitmap(str_diImg)
+//            imgPic.setImageBitmap(bm)
+
+            // 일지 클릭 시 상세로
             diaryItemView.setOnClickListener {
                 val intent = Intent(this, DiaryInfo::class.java)
                 intent.putExtra("intent_diTitle", str_diaTitle)
@@ -296,21 +325,33 @@ class MemoryInfo : AppCompatActivity() {
 
     // GPT 망한 답변. 이러면 목록이 2배가 됨.
     // Add this method to receive the result from MemRecored activity
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == MEM_RECORED_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // Data received from MemRecored activity
-            str_diaTitle = data?.getStringExtra("intent_diTitle").toString()
-            //str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
-
-            // Update the UI or reload the data as per your requirement
-            loadMemories()
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode == MEM_RECORED_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+//            // Data received from MemRecored activity
+//            str_diaTitle = data?.getStringExtra("intent_diTitle").toString()
+//            //str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
+//
+//            // Update the UI or reload the data as per your requirement
+//            loadMemories()
+//        }
+//    }
 
 //    override fun onResume() {
 //        super.onResume()
 //        loadMemories() // Call loadMemories() to refresh the data whenever the activity resumes
+//    }
+//
+
+
+    // 이미지!!!!!
+//    fun ByteArray.toBitmap(): Bitmap {
+//        return BitmapFactory.decodeByteArray(this, 0, this.size)
+//    }
+//
+//    fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
+//        val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
+//        return bitmap
 //    }
 }

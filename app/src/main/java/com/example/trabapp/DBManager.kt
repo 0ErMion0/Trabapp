@@ -28,7 +28,8 @@ class DBManager (
                 "diContents text, " +
                 "diStartDate text, " +
                 "diEndDate text, " +
-                "diImg blob)")
+                "diEmotion text, " +
+                "diImg blob )")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

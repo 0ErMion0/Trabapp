@@ -3,19 +3,25 @@ package com.example.trabapp
 import android.app.Activity
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.bumptech.glide.Glide
 import com.example.trabapp.databinding.ActivityMemRecoredBinding
+import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 
 
@@ -29,12 +35,19 @@ class MemRecored : AppCompatActivity() {
     lateinit var sqlitedb: SQLiteDatabase
 
     // 변수 선언
-    lateinit var imgBtnPic : ImageButton
     lateinit var edtTextTitle:EditText
     lateinit var btnCalenderStart: AppCompatButton
     lateinit var btnCalenderEnd: AppCompatButton
     lateinit var editTextContents:EditText
     lateinit var imgBtnCheck : ImageButton
+    lateinit var rdoGrpEmotion : RadioGroup
+    lateinit var rdoReallyBad : RadioButton
+    lateinit var rdoBad : RadioButton
+    lateinit var rdoSoso : RadioButton
+    lateinit var rdoGood : RadioButton
+    lateinit var rdoReallyGood : RadioButton
+    lateinit var imgBtnPic : ImageButton
+
 
     private lateinit var memTitleForDi : String
     private lateinit var str_diTitle : String
@@ -53,20 +66,29 @@ class MemRecored : AppCompatActivity() {
         //str_diTitle = intent.getStringExtra("intent_diTitle").toString()
 
         // id 연결
-        imgBtnPic = findViewById(R.id.imgBtnPic)
         edtTextTitle = findViewById(R.id.edtTextTitle)
         btnCalenderStart = findViewById(R.id.btnCalenderStart)
         btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
         editTextContents = findViewById(R.id.editTextContents)
         imgBtnCheck = findViewById(R.id.imgBtnCheck)
+        imgBtnPic = findViewById(R.id.imgBtnPic)
 
-        // 이미지버튼 클릭 시
+        rdoGrpEmotion = findViewById(R.id.rdoGrpEmotion)
+        rdoReallyBad = findViewById(R.id.rdoReallyBad)
+        rdoBad = findViewById(R.id.rdoBad)
+        rdoSoso = findViewById(R.id.rdoSoso)
+        rdoGood = findViewById(R.id.rdoGood)
+        rdoReallyGood = findViewById(R.id.rdoReallyGood)
+
+
+        // 사진선택 클릭 시
         binding.imgBtnPic.setOnClickListener {
             // 갤러리 호출
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             activityResult.launch(intent)
         }
+
 
         // 체크 버튼 클릭 시 - 데이터 추가
         imgBtnCheck.setOnClickListener(){
@@ -76,8 +98,28 @@ class MemRecored : AppCompatActivity() {
             val str_diContents :String = editTextContents.text.toString()
             val str_diStartDate : String = "2023 - 07 - 02"
             val str_diEndDate : String = "2023 - 07 - 20"
-            val str_diImg : String = "이미지.."
-            // 이미지는 어떻게........????
+            var str_emotion : String
+//            val str_diImg : String = "이미지.."
+
+            // 만족도 (라디오 버튼)
+            str_emotion = when (rdoGrpEmotion.checkedRadioButtonId) {
+                R.id.rdoReallyBad -> "ReallyBad"
+                R.id.rdoBad -> "Bad"
+                R.id.rdoSoso -> "Soso"
+                R.id.rdoGood -> "Good"
+                R.id.rdoReallyGood -> "ReallyGood"
+                else -> ""
+            }
+
+
+            // 이미지!!!!!!!!!!!!!
+            val bitmap = (imgBtnPic.drawable as BitmapDrawable).bitmap
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+
+            val str_diImg : ByteArray = stream.toByteArray()
+            stream.close()
+
 
             // DB에 저장
             sqlitedb = dbManager.writableDatabase
@@ -86,34 +128,35 @@ class MemRecored : AppCompatActivity() {
 //            sqlitedb.execSQL("INSERT INTO diaries (diTitle, diContents, diStartDate, diEndDate, diImg) VALUES ('"
 //                    +str_diTitle+"','"+str_diContents+"', "+str_diStartDate+" , '"+str_diEndDate+"', '"+str_diImg+"')")
 //            sqlitedb.close()
-            val sql = "INSERT INTO diaries (memTitleForDi, diTitle, diContents, diStartDate, diEndDate, diImg) " +
-                    "VALUES (?, ?, ?, ?, ?, ?);"
+            val sql = "INSERT INTO diaries (memTitleForDi, diTitle, diContents, diStartDate, diEndDate, diEmotion, diImg) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?);"
 
-            val values = arrayOf(memTitleForDi, str_diTitle, str_diContents, str_diStartDate, str_diEndDate, str_diImg)
+            val values = arrayOf(memTitleForDi, str_diTitle, str_diContents, str_diStartDate, str_diEndDate,str_emotion,str_diImg)    // 마지막에 str_diImg 추가
             sqlitedb.execSQL(sql, values)
 
             // 추억 상세 페이지로 데이터 전달 및 이동
             val intent: Intent = Intent(this, MemoryInfo::class.java)
             intent.putExtra("intent_diTitle", str_diTitle)
-            intent.putExtra("intent_title", memTitleForDi)
-            //startActivity(intent)
+            intent.putExtra("intent_memTitle", memTitleForDi)
+            startActivity(intent)
 
-            //GPT
-            setResult(Activity.RESULT_OK, intent)
-            finish()
+//            //GPT
+//            setResult(Activity.RESULT_OK, intent)
+//            finish()
         }
 
         // 뒤로 가기 버튼
         backButton = findViewById<ImageButton>(R.id.imgBtnBack)
         backButton.setOnClickListener{
-            // 클릭되면 MapActivity로 이동
+            // 클릭되면 MemoryInfo로 이동
             val intent: Intent = Intent(this, MemoryInfo::class.java)
+            intent.putExtra("intent_title", memTitleForDi)
             startActivity(intent)
         }
     } // onCreate
 
 
-    // 결과 가져오기 - 이미지?
+//    // 결과 가져오기 - 이미지
     private val activityResult : ActivityResultLauncher<Intent> = registerForActivityResult(
     ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == RESULT_OK && it.data != null){
@@ -126,4 +169,12 @@ class MemRecored : AppCompatActivity() {
             .into(binding.imgBtnPic) // 보여줄 위치
         }
     }
+
+     // 이미지!!!!!!!
+    fun bitmapToByteArray(bitmap: Bitmap): ByteArray {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        return stream.toByteArray()
+    }
+
 }
