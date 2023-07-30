@@ -74,8 +74,8 @@
                 android:elevation="10dp"
                 app:cardCornerRadius="10dp">
 
-                <ImageButton
-                    android:id="@+id/imgBtnPic"
+                <ImageView
+                    android:id="@+id/imgPic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -84,6 +84,21 @@
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/before_select_pic" />
             </androidx.cardview.widget.CardView>
+
+            <!--[사진 선택]-->
+            <Button
+                android:id="@+id/btnPicSelect"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/round_navy_box"
+                android:padding="0dp"
+                android:text="사진 선택"
+                android:textAlignment="center"
+                android:textAppearance="@style/whiteBold"
+                tools:ignore="TouchTargetSizeCheck"
+                />
 
             <!--[제목 입력]-->
             <EditText

@@ -2,7 +2,10 @@ package com.example.trabapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Layout
@@ -44,8 +47,10 @@ class MemoryInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_memory_info)
-
         dbManager=DBManager(this)
+
+        // 데이터베이스 조회 후 목록에 추가
+        loadMemories()
 
         // ---id 연결---
         edtTextTitle = findViewById(R.id.edtTextTitle)
@@ -99,8 +104,6 @@ class MemoryInfo : AppCompatActivity() {
             sqlitedb = dbManager.writableDatabase
             sqlitedb.execSQL("UPDATE INTO memories VALUES ('$str_title','$str_members', '$str_startDate' , '$str_endDate', '$str_color')")
             sqlitedb.close()
-
-
         }
 
 
@@ -123,9 +126,11 @@ class MemoryInfo : AppCompatActivity() {
     // 데이터베이스 조회 후 목록에 추가하는 함수
     private fun loadMemories(){
         //dbManager = DBManager(this, "memories", null, 1)
+        dbManager=DBManager(this)
         sqlitedb = dbManager.readableDatabase
 
-        val cursor = dbManager.getAllMemories()
+        val cursor :Cursor
+        cursor = sqlitedb.rawQuery("SELECT * FROM diaries", null)
 
         var num : Int = 0
 
@@ -151,8 +156,13 @@ class MemoryInfo : AppCompatActivity() {
             testTitle.text = str_diaTitle
             textContents.text = str_diaContents
             textDate.text = "$str_diaStartDate ~ $str_diaEndDate"
-//          imgPic = str_diImg
 
+
+            // 이미지
+            val bm = byteArrayToBitmap(str_diImg)
+            imgPic.setImageBitmap(bm)
+
+            // 일지 클릭 시 상세로
             diaryItemView.setOnClickListener {
                 val intent = Intent(this, DiaryInfo::class.java)
                 intent.putExtra("intent_name", str_diaTitle)
@@ -165,5 +175,14 @@ class MemoryInfo : AppCompatActivity() {
         cursor.close()
         sqlitedb.close()
         dbManager.close()
+    }
+
+    fun ByteArray.toBitmap(): Bitmap {
+        return BitmapFactory.decodeByteArray(this, 0, this.size)
+    }
+
+    fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
+        val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
+        return bitmap
     }
 }
