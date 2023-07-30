@@ -95,12 +95,12 @@ class MemRecored : AppCompatActivity() {
             // 추억 상세 페이지로 데이터 전달 및 이동
             val intent: Intent = Intent(this, MemoryInfo::class.java)
             intent.putExtra("intent_diTitle", str_diTitle)
-            intent.putExtra("intent_title", memTitleForDi)
-            //startActivity(intent)
+            intent.putExtra("intent_memTitle", memTitleForDi)
+            startActivity(intent)
 
-            //GPT
-            setResult(Activity.RESULT_OK, intent)
-            finish()
+//            //GPT
+//            setResult(Activity.RESULT_OK, intent)
+//            finish()
         }
 
         // 뒤로 가기 버튼
@@ -108,6 +108,7 @@ class MemRecored : AppCompatActivity() {
         backButton.setOnClickListener{
             // 클릭되면 MapActivity로 이동
             val intent: Intent = Intent(this, MemoryInfo::class.java)
+            intent.putExtra("intent_title", memTitleForDi)
             startActivity(intent)
         }
     } // onCreate

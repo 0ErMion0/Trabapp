@@ -57,13 +57,10 @@ class MemoryInfo : AppCompatActivity() {
 
     lateinit var str_diaTitle : String
 
-    // GPT 망한 답변
-    companion object {
-        const val MEM_RECORED_REQUEST_CODE = 100 // You can use any unique request code
-    }
-
-    // GPT
-
+//    // GPT 망한 답변
+//    companion object {
+//        const val MEM_RECORED_REQUEST_CODE = 100 // You can use any unique request code
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,8 +83,16 @@ class MemoryInfo : AppCompatActivity() {
 
         val intent = intent
         str_memTitle = intent.getStringExtra("intent_memTitle").toString()
-        //str_memFirstTitle = intent.getStringExtra("intent_memFirstTitle").toString()
         str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
+
+//        if (intent.hasExtra("intent_memTitle")) {
+//            str_memTitle = intent.getStringExtra("intent_memTitle").toString()
+//            loadMemories()
+//        }
+//        if(intent.hasExtra("intent_memTitleDi")){
+//            str_memTitle = intent.getStringExtra("intent_title").toString()
+//            loadMemories()
+//        }
 
 
         dbManager=DBManager(this)
@@ -183,8 +188,13 @@ class MemoryInfo : AppCompatActivity() {
 
             sqlitedb.close()
 
-            loadMemories()
+            //loadMemories() // 이렇게 하면 추억 목록이 2배가 되는 문제 발생
             Toast.makeText(this, "변경되었습니다.", Toast.LENGTH_SHORT).show()
+
+            // 그냥 해당 액티비티 다시 로드해볼까? 근데 여기 로드 위해 필요한 내용 보내줘야 함
+            val intent: Intent = Intent(this, MemoryInfo::class.java)
+            intent.putExtra("intent_memTitle", str_memTitle)
+            startActivity(intent)
         }
 
         // ---뒤로 가기 버튼---
@@ -294,20 +304,20 @@ class MemoryInfo : AppCompatActivity() {
         //dbManager.close()
     }
 
-    // GPT 망한 답변. 이러면 목록이 2배가 됨.
-    // Add this method to receive the result from MemRecored activity
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == MEM_RECORED_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // Data received from MemRecored activity
-            str_diaTitle = data?.getStringExtra("intent_diTitle").toString()
-            //str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
-
-            // Update the UI or reload the data as per your requirement
-            loadMemories()
-        }
-    }
+//    // GPT 망한 답변. 이러면 목록이 2배가 됨.
+//    // Add this method to receive the result from MemRecored activity
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode == MEM_RECORED_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+//            // Data received from MemRecored activity
+//            str_diaTitle = data?.getStringExtra("intent_diTitle").toString()
+//            //str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
+//
+//            // Update the UI or reload the data as per your requirement
+//            loadMemories()
+//        }
+//    }
 
 //    override fun onResume() {
 //        super.onResume()
