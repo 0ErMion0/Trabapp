@@ -22,6 +22,7 @@
 
     <!--타이틀-->
     <EditText
+        android:background="#00ff0000"
         android:id="@+id/edtTextTitle"
         android:layout_width="260dp"
         android:layout_height="56dp"
