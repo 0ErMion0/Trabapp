@@ -20,6 +20,7 @@
         app:srcCompat="@drawable/left_icon" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="180dp"
         android:layout_height="56dp"
         android:layout_marginTop="10dp"
@@ -27,46 +28,24 @@
         android:singleLine="true"
         android:text="일지 수정"
         android:textAlignment="textStart"
-        android:textAppearance="@style/title"
 
+        android:textAppearance="@style/title"
         app:layout_constraintStart_toEndOf="@+id/imgBtnBack"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat" />
 
-    <ImageButton
-        android:id="@+id/imgBtnDel"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:background="#00FFFFFF"
-        android:importantForAccessibility="no"
-
-        android:padding="10dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/trash_icon" />
-
-    <ImageView
-        android:id="@+id/seroBar"
-        android:layout_width="15dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/imgBtnDel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sero_bar" />
 
     <ImageButton
         android:id="@+id/imgBtnEdit"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
         android:background="#00FFFFFF"
         android:importantForAccessibility="no"
         android:padding="10dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/seroBar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/check_icon" />
 
@@ -109,14 +88,15 @@
                 android:layout_gravity="center|top"
                 app:cardCornerRadius="10dp"
                 tools:layout_marginTop="0dp">
-
-                <ImageView
+                <ImageButton
                     android:id="@+id/imgPic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/test_pic" />
+                    app:srcCompat="@drawable/test_pic"
+                    android:importantForAccessibility="no"/>
             </androidx.cardview.widget.CardView>
 
             <View
@@ -142,6 +122,7 @@
                     android:id="@+id/textTitle2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:text="개쩌는 파리, 김뱁새가 영접하다"
                     android:textAppearance="@style/titleSmall"
@@ -208,10 +189,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:padding="5dp"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
                 android:text="  마참내 에펠탑 영접~!!~! \n신난돠~~~~~ \n\n
     사진 마구마구 찍어야지 \n촬칵촬칵쓰~~!!~! \n해외여행 즐 겁 따 \n아무말블라블라 \n스크롤 실험용aaaaaaaaaaaaaaabbbbbbbbxccccccccccadssssdaadasdasdasdasdas"
-                android:textAppearance="@style/content"/>
+                android:textAppearance="@style/content" />
         </LinearLayout>
     </ScrollView>
 

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +30,8 @@ class DiaryInfo : AppCompatActivity() {
     lateinit var diMainTitle: TextView
     lateinit var diEditBtn: ImageButton
     lateinit var imgBtnDel: ImageButton
-    lateinit var diDate: TextView
+    lateinit var diStartDate: TextView
+    lateinit var diEndDate : TextView
     lateinit var imgPic: ImageView
     lateinit var imgFace: ImageView
     lateinit var diTitle: TextView
@@ -64,7 +67,8 @@ class DiaryInfo : AppCompatActivity() {
         diMainTitle = findViewById<TextView>(R.id.textTitle)
         diEditBtn = findViewById<ImageButton>(R.id.imgBtnEdit)
         //diDelBtn = findViewById<ImageButton>(R.id.imgBtnDel)
-        diDate = findViewById<TextView>(R.id.textDate)
+        diStartDate = findViewById<TextView>(R.id.textStartDate)
+        diEndDate = findViewById<TextView>(R.id.textEndDate)
         imgPic = findViewById<ImageView>(R.id.imgPic)
         imgFace = findViewById<ImageView>(R.id.imgFace)
         diTitle = findViewById<TextView>(R.id.textTitle2)
@@ -145,13 +149,14 @@ class DiaryInfo : AppCompatActivity() {
             str_diContents = cursor.getString(cursor.getColumnIndex("diContents")).toString()
             str_diStartDate = cursor.getString(cursor.getColumnIndex("diStartDate")).toString()
             str_diEndDate = cursor.getString(cursor.getColumnIndex("diEndDate")).toString()
-            //str_diImg = cursor.getString(cursor.getColumnIndex("diImg")).toString()
+            val str_diImg = cursor.getBlob(cursor.getColumnIndex("diImg"))
             str_diEmotion = cursor.getString(cursor.getColumnIndex("diEmotion")).toString()
             str_memTitleForDi = cursor.getString(cursor.getColumnIndex("memTitleForDi")).toString()
 
             // 저장된 값 대입
             diMainTitle.text = str_diTitle
-            diDate.text = "$str_diStartDate ~ $str_diEndDate"
+            diStartDate.text = "$str_diStartDate"
+            diEndDate.text = "$str_diEndDate"
             //imgPic =
             when(str_diEmotion){
                 "ReallyBad"->imgFace.setImageResource(R.drawable.face_really_bad)
@@ -162,10 +167,21 @@ class DiaryInfo : AppCompatActivity() {
             }
             diTitle.text = str_diTitle
             diCont.text = str_diContents
+
+            // 이미지
+            val bm = byteArrayToBitmap(str_diImg)
+            imgPic.setImageBitmap(bm)
+
         }
 
         cursor.close()
         //sqlitedb.close()
         //dbManager.close()
+    }
+
+    // 이미지
+    fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
+        val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
+        return bitmap
     }
 }

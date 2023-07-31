@@ -5,6 +5,9 @@ import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -14,19 +17,26 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
+import com.example.trabapp.databinding.ActivityDiaryEditBinding
+import com.example.trabapp.databinding.ActivityMemRecoredBinding
+import java.io.ByteArrayOutputStream
 
 @SuppressLint("Range")
 class DiaryEdit : AppCompatActivity() {
     lateinit var backButton: ImageButton // 뒤로 가기 버튼
+
+    private lateinit var binding: ActivityDiaryEditBinding
 
     lateinit var dbManager: DBManager
     lateinit var sqlitedb: SQLiteDatabase
 
     // id 정의
     lateinit var diEditBtn: ImageButton
-    lateinit var diDelBtn: ImageButton
     lateinit var diDate: TextView
-    lateinit var imgPic: ImageView
+    lateinit var imgPic: ImageButton
     lateinit var diTitle: TextView
     lateinit var diCont: EditText
 
@@ -45,9 +55,21 @@ class DiaryEdit : AppCompatActivity() {
     lateinit var str_diEmotion: String
     lateinit var str_memTitleForDi: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_diary_edit)
+        // setContentView(R.layout.activity_diary_edit)
+        binding = ActivityDiaryEditBinding.inflate(layoutInflater) // Initialize the binding property
+        setContentView(binding.root)
+
+        // 사진선택 클릭 시
+        binding.imgPic.setOnClickListener {
+            // 갤러리 호출
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            activityResult.launch(intent)
+        }
+
 
         dbManager = DBManager(this)
         sqlitedb = dbManager.writableDatabase
@@ -57,11 +79,11 @@ class DiaryEdit : AppCompatActivity() {
 
         // ---id 연결---
         diEditBtn = findViewById<ImageButton>(R.id.imgBtnEdit)
-        diDelBtn = findViewById<ImageButton>(R.id.imgBtnDel)
         diDate = findViewById<TextView>(R.id.textDate)
-        imgPic = findViewById<ImageView>(R.id.imgPic)
+        imgPic = findViewById<ImageButton>(R.id.imgPic)
         diTitle = findViewById<TextView>(R.id.textTitle2)
         diCont = findViewById<EditText>(R.id.textDiContents)
+
 
         rdoGrpEmotion = findViewById<RadioGroup>(R.id.rdoGrpEmotion)
         rdoReallyBad = findViewById<RadioButton>(R.id.rdoReallyBad)
@@ -72,6 +94,7 @@ class DiaryEdit : AppCompatActivity() {
 
         // 내용 불러오기
         loadDiary()
+
 
         // 체크 버튼 - 편집한 내용 업데이트
         diEditBtn.setOnClickListener{
@@ -87,13 +110,22 @@ class DiaryEdit : AppCompatActivity() {
                 else->""
             }
 
+            // 이미지
+            val bitmap = (imgPic.drawable as BitmapDrawable).bitmap
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+
+            val str_diImg : ByteArray = stream.toByteArray()
+            stream.close()
+
+
             // Use the update method to modify the existing record with the new values
             val values = ContentValues().apply {
                 put("diContents", str_diContents)
                 //put("diStartDate", str_diStartDate)
                 //put("diEndDate", str_diEndDate)
                 put("diEmotion", str_diEmotion)
-                //put("diImg", str_diImg) // 여기 사진 관련 추가
+                put("diImg", str_diImg) // 여기 사진 관련 추가
             }
 
             sqlitedb.update("diaries", values, "diTitle = ?", arrayOf(str_diTitle))
@@ -133,12 +165,16 @@ class DiaryEdit : AppCompatActivity() {
             val str_diContents = cursor.getString(cursor.getColumnIndex("diContents")).toString()
             val str_diStartDate = cursor.getString(cursor.getColumnIndex("diStartDate")).toString()
             val str_diEndDate = cursor.getString(cursor.getColumnIndex("diEndDate")).toString()
-            //val str_diImg = cursor.getString(cursor.getColumnIndex("diImg")).toString()
+            val str_diImg = cursor.getBlob(cursor.getColumnIndex("diImg"))
             val str_diEmotion = cursor.getString(cursor.getColumnIndex("diEmotion")).toString()
 
             // 저장된 값 대입
             diDate.text = "$str_diStartDate ~ $str_diEndDate"
-            //imgPic =
+
+            // 이미지
+            val bm = byteArrayToBitmap(str_diImg)
+            imgPic.setImageBitmap(bm)
+
             when(str_diEmotion){
                 "ReallyBad" -> rdoReallyBad.isChecked = true
                 "Bad" -> rdoBad.isChecked = true
@@ -152,5 +188,24 @@ class DiaryEdit : AppCompatActivity() {
         }
 
         cursor.close()
+    }
+
+    // 결과 가져오기 - 이미지
+    private val activityResult : ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){
+        if(it.resultCode == RESULT_OK && it.data != null){
+            // 값 담기
+            val uri = it.data!!.data
+
+            // 화면에 보여주기
+            Glide.with(this)
+                .load(uri) // 이미지
+                .into(binding.imgPic) // 보여줄 위치
+        }
+    }
+
+    fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
+        val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
+        return bitmap
     }
 }
