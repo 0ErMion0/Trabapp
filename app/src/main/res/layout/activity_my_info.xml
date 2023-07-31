@@ -161,6 +161,7 @@
         android:layout_marginBottom="20dp"
         android:text="확인"
         android:textAppearance="@style/whiteBold"
+        android:background="@drawable/round_navy_box"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
