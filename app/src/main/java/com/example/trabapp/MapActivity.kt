@@ -1,45 +1,5 @@
 package com.example.trabapp
 
-import android.content.pm.PackageManager
-import android.location.Address
-import android.location.Geocoder
-import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.SearchView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.tasks.Task
-import java.io.IOException
-import java.util.Locale
-import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
-import android.util.Log
-import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat.startActivity
-import androidx.drawerlayout.widget.DrawerLayout
-import com.example.test.MySharePreferences
 /*
 import com.google.android.gms.common.api.ApiException
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
@@ -49,7 +9,35 @@ import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRe
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode*/
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
+import android.net.Uri
+import android.os.Bundle
+import android.provider.Settings
+import android.view.MenuItem
+import android.widget.Button
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.example.test.MySharePreferences
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.navigation.NavigationView
+import java.util.Locale
 
 
 //class MapActivity : AppCompatActivity() {
@@ -498,6 +486,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
             //해당 창 닫기
             finish()
         }
+
+        MySharePreferences.id = intent.getStringExtra("id").toString()
     }
 
     // map이 사용될 준비되면 호출됨

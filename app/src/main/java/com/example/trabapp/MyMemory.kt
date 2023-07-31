@@ -1,11 +1,12 @@
 package com.example.trabapp
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -20,6 +21,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.trabapp.databinding.ActivityMyMemoryBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 
 @SuppressLint("Range")
 class MyMemory : AppCompatActivity() {
@@ -85,6 +89,25 @@ class MyMemory : AppCompatActivity() {
             val rdoBlue = mDialogView.findViewById<RadioButton>(R.id.rdoBlue)
             val rdoPurple = mDialogView.findViewById<RadioButton>(R.id.rdoPurple)
 
+            //텍스트 오늘 날짜로 설정
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+            startDate.text = "$year. ${month+1}. $dayOfMonth"
+            endDate.text = "$year. ${month+1}. $dayOfMonth"
+
+            //달력 모양 클릭했을 때 (시작)
+            startDateIconBtn.setOnClickListener {
+                datePopup(startDate, year, month, dayOfMonth)
+            }
+
+            //달력 모양 클릭했을 때 (끝)
+            endDateIconButton.setOnClickListener{
+                datePopup(endDate, year, month, dayOfMonth)
+            }
+
             // 확인 버튼
             val okButton = mDialogView.findViewById<Button>(R.id.addGroupAcceptBtn)
             okButton.setOnClickListener{
@@ -99,6 +122,8 @@ class MyMemory : AppCompatActivity() {
                 var str_endDate : String = endDate.text.toString() // 마감일
                 var str_memColor : String = "" // 기록 색
                 var str_memTitleForDi : String = newGroupName.text.toString() // 일지에서 쓸 추억 제목
+
+                Log.d("날짜", str_startDate)
 
                 // 라디오버튼
                 if (rdoGrpColor.checkedRadioButtonId == R.id.rdoRed){           // 빨강(핑크)
@@ -120,8 +145,10 @@ class MyMemory : AppCompatActivity() {
                     str_memColor = "purple"
                 }
 
+                Log.d("제목", str_startDate)
+
                 sqlitedb = dbManager.writableDatabase
-                sqlitedb.execSQL("INSERT INTO memories VALUES ('"+str_memTitle+"','"+str_memMb+"', "+str_startDate+" , '"+str_endDate+"', '"+str_memColor+"')")
+                sqlitedb.execSQL("INSERT INTO memories VALUES ('"+str_memTitle+"','"+str_memMb+"', '"+str_startDate+"', '"+str_endDate+"', '"+str_memColor+"')")
                 sqlitedb.execSQL("INSERT INTO diaries (memTitleForDi) VALUES ('str_memTitle')")
                 sqlitedb.close()
                 //dbManager.close()
@@ -165,6 +192,8 @@ class MyMemory : AppCompatActivity() {
             val str_startDate = cursor.getString(cursor.getColumnIndex("memStartDate")).toString()
             val str_endDate = cursor.getString(cursor.getColumnIndex("memEndDate")).toString()
             val str_memColor = cursor.getString(cursor.getColumnIndex("memColor")).toString()
+
+            Log.d("날짜",str_startDate)
 
             // Inflate memory_item_layout.xml for each memory item
             val memoryItemView = layoutInflater.inflate(R.layout.memory_item_layout, null)
@@ -210,5 +239,42 @@ class MyMemory : AppCompatActivity() {
         cursor.close()
         sqlitedb.close()
         dbManager.close()
+    }
+
+    private fun datePopup(text: TextView, yearC: Int, monthC: Int, dayC: Int){
+        //데이터 피커 팝업
+        val cDiaryView = LayoutInflater.from(this).inflate(R.layout.date_picker_popup, null)
+        val cBuilder = AlertDialog.Builder(this).setView(cDiaryView)
+        val cAlerDialog = cBuilder.show()
+
+        //데이터 피커 팝업 요소(캘린더&버튼)
+        val Calendar = cDiaryView.findViewById<MaterialCalendarView>(R.id.datePicker)
+        val btnConfirm = cDiaryView.findViewById<Button>(R.id.btnConfirmCalender)
+        val btnCancel = cDiaryView.findViewById<Button>(R.id.btnCancelCalender)
+
+        //시작 날짜 오늘로 설정
+        Calendar.setSelectedDate(CalendarDay.today())
+
+        var year : Int = yearC
+        var month : Int = monthC
+        var day : Int = dayC
+
+        //날짜를 옮기면(선택된 게 변하면)
+        Calendar.setOnDateChangedListener(object: OnDateSelectedListener {
+            override fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay, selected: Boolean) {
+                year = date.year
+                month = date.month
+                day = date.day
+            }
+        })
+        //확인 버튼
+        btnConfirm.setOnClickListener {
+            text.setText("$year. ${month+1}. $day")
+            cAlerDialog.dismiss()
+        }
+        //취소 버튼
+        btnCancel.setOnClickListener {
+            cAlerDialog.dismiss()
+        }
     }
 }

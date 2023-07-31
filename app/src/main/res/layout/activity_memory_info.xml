@@ -133,19 +133,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnCalenderStart"
+                <TextView
+                    android:id="@+id/startDateInfo"
                     android:layout_width="150dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:background="#00FFFFFF"
-                    android:drawableRight="@drawable/calendar_icon"
-                    android:gravity="left"
-                    android:padding="11dp"
-                    android:text="2023 - 07 - 25"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="2023. 05. 20"
                     android:textAlignment="center"
                     android:textAppearance="@style/content"
-                    tools:ignore="RtlCompat" />
+                    tools:ignore="TextSizeCheck"    />
+
+                <ImageView
+                    android:id="@+id/startDateIconBtnInfo"
+                    android:padding="0dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/calendar_icon"
+                    android:layout_gravity="center_vertical"    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -156,19 +162,26 @@
                     android:text="  ~ "
                     android:textAppearance="@style/content" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnCalenderEnd"
+                <TextView
+                    android:id="@+id/endDateInfo"
                     android:layout_width="150dp"
                     android:layout_height="48dp"
-                    android:layout_gravity="right"
                     android:layout_weight="1"
-                    android:background="#00FFFFFF"
-                    android:drawableRight="@drawable/calendar_icon"
-                    android:padding="11dp"
-                    android:text="2023 - 07 - 25"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="2023. 05. 20"
                     android:textAlignment="center"
                     android:textAppearance="@style/content"
-                    tools:ignore="RtlCompat" />
+                    tools:ignore="TextSizeCheck"    />
+
+                <ImageView
+                    android:id="@+id/endDateIconBtnInfo"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:padding="0dp"
+                    android:src="@drawable/calendar_icon"
+                    android:layout_gravity="center_vertical"    />
+
             </LinearLayout>
 
 

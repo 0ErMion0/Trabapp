@@ -185,7 +185,7 @@
                     android:drawableRight="@drawable/calendar_icon"
                     android:gravity="left"
                     android:padding="11dp"
-                    android:text="2023 - 07 - 25"
+                    android:text="2023. 07. 25"
                     android:textAlignment="center"
                     android:textAppearance="@style/content"
                     tools:ignore="RtlCompat" />
@@ -208,7 +208,7 @@
                     android:background="#00FFFFFF"
                     android:drawableRight="@drawable/calendar_icon"
                     android:padding="11dp"
-                    android:text="2023 - 07 - 25"
+                    android:text="2023. 07. 25"
                     android:textAlignment="center"
                     android:textAppearance="@style/content"
                     tools:ignore="RtlCompat" />

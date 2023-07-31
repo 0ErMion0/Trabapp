@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 
 object MySharePreferences {
     private val MY_ACCOUNT : String = "account"
+    var id : String = "id"
 
 //    fun setUserName(context: Context, name: String){
 //        val prefs: SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)

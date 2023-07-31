@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -25,6 +26,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import com.example.trabapp.databinding.ActivityMyMemoryBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import org.w3c.dom.Text
 @SuppressLint("Range")
 class MemoryInfo : AppCompatActivity() {
@@ -38,8 +42,10 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var btnConfirm : Button
     lateinit var edtTextTitle : EditText
     lateinit var edtTextMember : EditText
-    lateinit var btnCalenderStart : AppCompatButton
-    lateinit var btnCalenderEnd: AppCompatButton
+    lateinit var textStartDate : TextView
+    lateinit var imgStartDate : ImageView
+    lateinit var textEndDate : TextView
+    lateinit var imgEndDate : ImageView
     lateinit var rdoGrpColor : RadioGroup
     lateinit var rdoRed : RadioButton
     lateinit var rdoOrange : RadioButton
@@ -77,8 +83,10 @@ class MemoryInfo : AppCompatActivity() {
         btnConfirm = findViewById(R.id.btnConfirm)
         edtTextTitle = findViewById(R.id.edtTextTitle)
         edtTextMember = findViewById(R.id.edtTextMember)
-        btnCalenderStart = findViewById(R.id.btnCalenderStart)
-        btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
+        textStartDate = findViewById(R.id.startDateInfo)
+        imgStartDate = findViewById(R.id.startDateIconBtnInfo)
+        textEndDate = findViewById(R.id.endDateInfo)
+        imgEndDate = findViewById(R.id.endDateIconBtnInfo)
         rdoGrpColor = findViewById(R.id.rdoGrpColor)
         rdoRed = findViewById(R.id.rdoRed)
         rdoOrange = findViewById(R.id.rdoOrange)
@@ -159,8 +167,8 @@ class MemoryInfo : AppCompatActivity() {
 //            // Get the new values from the input fields and radio button
             str_memTitle = edtTextTitle.text.toString()
             str_memMb = edtTextMember.text.toString()
-            str_memStartDate = btnCalenderStart.text.toString()
-            str_memEndDate = btnCalenderEnd.text.toString()
+            str_memStartDate = textStartDate.text.toString()
+            str_memEndDate = textEndDate.text.toString()
             str_memColor = when (rdoGrpColor.checkedRadioButtonId) {
                 R.id.rdoRed -> "pink"
                 R.id.rdoOrange -> "orange"
@@ -193,6 +201,14 @@ class MemoryInfo : AppCompatActivity() {
             val intent: Intent = Intent(this, MemoryInfo::class.java)
             intent.putExtra("intent_memTitle", str_memTitle)
             startActivity(intent)
+        }
+
+        imgStartDate.setOnClickListener {
+            Log.d("로그", "후후")
+            datePopup(textStartDate, 0, 0, 0)
+        }
+        imgEndDate.setOnClickListener {
+            datePopup(textEndDate, 0, 0, 0)
         }
 
         // ---뒤로 가기 버튼---
@@ -243,8 +259,8 @@ class MemoryInfo : AppCompatActivity() {
             // ---- 추억 상세 ----
             edtTextTitle.setText(str_memTitle)
             edtTextMember.setText(str_memMb)
-            btnCalenderStart.setText(str_memStartDate)
-            btnCalenderEnd.setText(str_memEndDate)
+            textStartDate.setText(str_memStartDate)
+            textEndDate.setText(str_memEndDate)
             when (str_memColor) {
                 "pink" -> rdoGrpColor.check(R.id.rdoRed)
                 "orange" -> rdoGrpColor.check(R.id.rdoOrange)
@@ -359,5 +375,43 @@ class MemoryInfo : AppCompatActivity() {
     fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
         val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
         return bitmap
+    }
+
+    //일정 팝업
+    private fun datePopup(text: TextView, yearC: Int, monthC: Int, dayC: Int){
+        //데이터 피커 팝업
+        val cDiaryView = LayoutInflater.from(this).inflate(R.layout.date_picker_popup, null)
+        val cBuilder = AlertDialog.Builder(this).setView(cDiaryView)
+        val cAlerDialog = cBuilder.show()
+
+        //데이터 피커 팝업 요소(캘린더&버튼)
+        val Calendar = cDiaryView.findViewById<MaterialCalendarView>(R.id.datePicker)
+        val btnConfirm = cDiaryView.findViewById<Button>(R.id.btnConfirmCalender)
+        val btnCancel = cDiaryView.findViewById<Button>(R.id.btnCancelCalender)
+
+        //시작 날짜 오늘로 설정
+        //Calendar.setSelectedDate(CalendarDay.today())
+
+        var year : Int = yearC
+        var month : Int = monthC
+        var day : Int = dayC
+
+        //날짜를 옮기면(선택된 게 변하면)
+        Calendar.setOnDateChangedListener(object: OnDateSelectedListener {
+            override fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay, selected: Boolean) {
+                year = date.year
+                month = date.month
+                day = date.day
+            }
+        })
+        //확인 버튼
+        btnConfirm.setOnClickListener {
+            text.setText("$year. ${month+1}. $day")
+            cAlerDialog.dismiss()
+        }
+        //취소 버튼
+        btnCancel.setOnClickListener {
+            cAlerDialog.dismiss()
+        }
     }
 }
