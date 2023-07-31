@@ -19,7 +19,6 @@ class LoginAccount : AppCompatActivity() {
     lateinit var sqlitedb: SQLiteDatabase
 
     lateinit var btnLogin : Button
-    lateinit var btnReg : Button
     lateinit var btnCheck : CheckBox
 
     lateinit var edtId : EditText
@@ -30,8 +29,8 @@ class LoginAccount : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_account)
-//
-//        dbHelper = DBHelper(this)
+
+        dbHelper = DBHelper(this)
 
         btnLogin = findViewById(R.id.btnLogin)
         btnCheck = findViewById(R.id.checkBox)

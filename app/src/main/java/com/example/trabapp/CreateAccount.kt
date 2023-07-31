@@ -72,7 +72,7 @@ class CreateAccount : AppCompatActivity() {
 
                         //데이터 삽입
                         sqlitedb.execSQL("INSERT INTO users VALUES ('"
-                                + str_name + "', '" + str_id + "', '" + str_password + "');")
+                                + str_id + "', '" + str_name + "', '" + str_password + "');")
 
                         //토스트 메시지
                         Toast.makeText(this@CreateAccount, "가입되었습니다.", Toast.LENGTH_SHORT).show()
