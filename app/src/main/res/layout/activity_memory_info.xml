@@ -72,15 +72,15 @@
     <!--[내용]-->
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="650dp"
+        android:layout_height="600dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/edtTextTitle">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -266,7 +266,7 @@ class MemoryInfo : AppCompatActivity() {
             val str_diaContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString()
             val str_diaStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString()
             val str_diaEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString()
-//            val str_emotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
+            val str_emotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
             val str_diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
 
 
@@ -279,18 +279,18 @@ class MemoryInfo : AppCompatActivity() {
             val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
             val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
             val textDate = diaryItemView.findViewById<TextView>(R.id.textDate)
-//            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgFace)
             var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
 
 
             // 라디오 관련
-//            val mem_recored = layoutInflater.inflate(R.layout.activity_mem_recored, null)
-//            val rdoGrpEmotion = mem_recored.findViewById<RadioGroup>(R.id.rdoGrpEmotion)
-//            val rdoReallyBad = mem_recored.findViewById<RadioButton>(R.id.rdoReallyBad)
-//            val rdoBad = mem_recored.findViewById<RadioButton>(R.id.rdoBad)
-//            val rdoSoso = mem_recored.findViewById<RadioButton>(R.id.rdoSoso)
-//            val rdoGood = mem_recored.findViewById<RadioButton>(R.id.rdoGood)
-//            val rdoReallyGood = mem_recored.findViewById<RadioButton>(R.id.rdoReallyGood)
+            val mem_recored = layoutInflater.inflate(R.layout.activity_mem_recored, null)
+            val rdoGrpEmotion = mem_recored.findViewById<RadioGroup>(R.id.rdoGrpEmotion)
+            val rdoReallyBad = mem_recored.findViewById<RadioButton>(R.id.rdoReallyBad)
+            val rdoBad = mem_recored.findViewById<RadioButton>(R.id.rdoBad)
+            val rdoSoso = mem_recored.findViewById<RadioButton>(R.id.rdoSoso)
+            val rdoGood = mem_recored.findViewById<RadioButton>(R.id.rdoGood)
+            val rdoReallyGood = mem_recored.findViewById<RadioButton>(R.id.rdoReallyGood)
 
             diaryItemView.id = num
 
@@ -299,20 +299,20 @@ class MemoryInfo : AppCompatActivity() {
             textContents.setText(str_diaContents)
             textDate.text = "$str_diaStartDate ~ $str_diaEndDate"
             // 라디오
-//            when (str_emotion){
-//                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
-//                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
-//                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
-//                "Good" -> imotion.setImageResource(R.drawable.face_good)
-//                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
-//            }
+            when (str_emotion){
+                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
+                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
+                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
+                "Good" -> imotion.setImageResource(R.drawable.face_good)
+                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
+            }
 
 
             // 이미지
             val bm = byteArrayToBitmap(str_diImg)
             imgPic.setImageBitmap(bm)
 
-            // 일지 클릭 시 상세로
+            // 일지 클릭 시 일지 상세로
             diaryItemView.setOnClickListener {
                 val intent = Intent(this, DiaryInfo::class.java)
                 intent.putExtra("intent_diTitle", str_diaTitle)
@@ -328,28 +328,6 @@ class MemoryInfo : AppCompatActivity() {
         sqlitedb.close()
         //dbManager.close()
     }
-
-    // GPT 망한 답변. 이러면 목록이 2배가 됨.
-    // Add this method to receive the result from MemRecored activity
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (requestCode == MEM_RECORED_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-//            // Data received from MemRecored activity
-//            str_diaTitle = data?.getStringExtra("intent_diTitle").toString()
-//            //str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
-//
-//            // Update the UI or reload the data as per your requirement
-//            loadMemories()
-//        }
-//    }
-
-//    override fun onResume() {
-//        super.onResume()
-//        loadMemories() // Call loadMemories() to refresh the data whenever the activity resumes
-//    }
-//
-
 
     // 이미지!!!!!
     fun ByteArray.toBitmap(): Bitmap {
