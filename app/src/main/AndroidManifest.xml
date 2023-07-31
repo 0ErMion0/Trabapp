@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trabapp">
         <activity
+            android:name=".DiaryEdit"
+            android:exported="false" />
+        <activity
             android:name=".LoginAccount"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -32,22 +35,19 @@
         <activity
             android:name=".MyInfo"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MemoryInfo"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-<!--        <activity-->
-<!--            android:name=".MemoryInfo"-->
-<!--            android:exported="true"-->
-<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- <activity -->
+        <!-- android:name=".MemoryInfo" -->
+        <!-- android:exported="true" -->
+        <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
             android:name=".MyMemory"
             android:exported="false"
@@ -55,72 +55,65 @@
         <activity
             android:name=".MemRecored"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-<!--        <activity-->
-<!--                    android:name=".MemRecored"-->
-<!--                    android:exported="true"-->
-<!--                    android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
-<!--                    <intent-filter>-->
-<!--                        <action android:name="android.intent.action.MAIN" />-->
-
-<!--                        <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                    </intent-filter>-->
-<!--                </activity>-->
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- <activity -->
+        <!-- android:name=".MemRecored" -->
+        <!-- android:exported="true" -->
+        <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <!-- 스플래쉬 액티비티 -->
-<!--        <activity-->
-<!--            android:name=".SplashActivity"-->
-<!--            android:exported="false" />-->
-         <activity
-         android:name=".SplashActivity"
-         android:exported="true"
-         android:theme="@style/ScreenTheme">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
+        <!-- <activity -->
+        <!-- android:name=".SplashActivity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/ScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <!-- 지도 액티비티 -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- 지도 액티비티 -->
         <activity
             android:name=".MapActivity"
-            android:exported="false" />
-<!--         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" -->
-<!--         android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
-<!--         <activity-->
-<!--         android:name=".MapActivity"-->
-<!--         android:exported="true">-->
-<!--         <intent-filter>-->
-<!--         <action android:name="android.intent.action.MAIN" />-->
-<!--         <category android:name="android.intent.category.LAUNCHER" />-->
-<!--         </intent-filter>-->
-<!--         </activity>-->
+            android:exported="false" /> <!-- android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" -->
+        <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> -->
+        <!-- <activity -->
+        <!-- android:name=".MapActivity" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA56R8rCebyo7yWcMmBTdn3jKoLbKq5WgQ" />
-        <!--        1. 그 제한 함 안드로이드에서만 쓸 수 있도록: AIzaSyAiwr0z4bdktSB79uB4LmLwjEReLJ0eNGM-->
-        <!--        2. 제한x: AIzaSyA56R8rCebyo7yWcMmBTdn3jKoLbKq5WgQ-->
-
+            android:value="AIzaSyA56R8rCebyo7yWcMmBTdn3jKoLbKq5WgQ" /> <!-- 1. 그 제한 함 안드로이드에서만 쓸 수 있도록: AIzaSyAiwr0z4bdktSB79uB4LmLwjEReLJ0eNGM -->
+        <!-- 2. 제한x: AIzaSyA56R8rCebyo7yWcMmBTdn3jKoLbKq5WgQ -->
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false" />
-        <!-- 나중에 주석 해제하기. 메인 엑티비티를 런처로 설정하는 것 -->
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
-         <activity
-         android:name=".MainActivity"
-         android:exported="true"
-         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
+            android:required="false" /> <!-- 나중에 주석 해제하기. 메인 엑티비티를 런처로 설정하는 것 -->
+        <!-- <activity -->
+        <!-- android:name=".MainActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
