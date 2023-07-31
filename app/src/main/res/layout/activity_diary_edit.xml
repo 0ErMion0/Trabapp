@@ -50,17 +50,40 @@
         app:srcCompat="@drawable/check_icon" />
 
 
-    <!--[이미지]-->
+
     <TextView
-        android:id="@+id/textDate"
+        android:id="@+id/textStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/pretendard_regular"
-        android:text="2020.05.20"
+        android:text="2020 . 05 . 20"
         android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
+
+    <TextView
+        android:id="@+id/wave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/pretendard_regular"
+        android:text=" ~ "
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@+id/textStartDate"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
+
+    <TextView
+        android:id="@+id/textEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/pretendard_regular"
+        android:text="2020 . 05 . 20"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@+id/wave"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -81,7 +104,7 @@
             android:paddingRight="15dp">
 
 
-
+            <!--[이미지]-->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="381dp"
