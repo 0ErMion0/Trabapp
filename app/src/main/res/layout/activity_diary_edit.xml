@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiaryInfo">
+    tools:context=".DiaryEdit">
 
     <!--[상단 네비게이션]-->
     <ImageButton
@@ -20,13 +20,12 @@
         app:srcCompat="@drawable/left_icon" />
 
     <TextView
-        android:id="@+id/textTitle"
         android:layout_width="180dp"
         android:layout_height="56dp"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal|center_vertical"
         android:singleLine="true"
-        android:text="개쩌는 파리, 김뱁새가 영접하다"
+        android:text="일지 수정"
         android:textAlignment="textStart"
         android:textAppearance="@style/title"
 
@@ -35,51 +34,53 @@
         tools:ignore="RtlCompat" />
 
     <ImageButton
-        android:id="@+id/imgBtnEdit"
+        android:id="@+id/imgBtnDel"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="16dp"
         android:background="#00FFFFFF"
         android:importantForAccessibility="no"
+
         android:padding="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pencil_icon" />
+        app:srcCompat="@drawable/trash_icon" />
+
+    <ImageView
+        android:id="@+id/seroBar"
+        android:layout_width="15dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/imgBtnDel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sero_bar" />
+
+    <ImageButton
+        android:id="@+id/imgBtnEdit"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:background="#00FFFFFF"
+        android:importantForAccessibility="no"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/seroBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/check_icon" />
 
 
+    <!--[이미지]-->
     <TextView
-        android:id="@+id/textStartDate"
+        android:id="@+id/textDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/pretendard_regular"
-        android:text="2020 . 05 . 20"
+        android:text="2020.05.20"
         android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
-
-    <TextView
-        android:id="@+id/wave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:fontFamily="@font/pretendard_regular"
-        android:text=" ~ "
-        android:textColor="@color/gray"
-        app:layout_constraintStart_toEndOf="@+id/textStartDate"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
-
-    <TextView
-        android:id="@+id/textEndDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:fontFamily="@font/pretendard_regular"
-        android:text="2020 . 05 . 20"
-        android:textColor="@color/gray"
-        app:layout_constraintStart_toEndOf="@+id/wave"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
 
     <ScrollView
@@ -131,11 +132,11 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imgFace"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/face_really_good" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/imgFace"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:srcCompat="@drawable/face_really_good" />-->
 
                 <TextView
                     android:id="@+id/textTitle2"
@@ -143,19 +144,74 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="개쩌는 파리, 김뱁새가 영접하다"
-                    android:textAppearance="@style/titleSmall" />
+                    android:textAppearance="@style/titleSmall"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
+            <RadioGroup
+                android:id="@+id/rdoGrpEmotion"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <TextView
+
+                <RadioButton
+                    android:id="@+id/rdoReallyBad"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_really_bad"
+                    android:drawablePadding="0dp" />
+
+                <RadioButton
+                    android:id="@+id/rdoBad"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_bad" />
+
+                <RadioButton
+                    android:id="@+id/rdoSoso"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_soso" />
+
+                <RadioButton
+                    android:id="@+id/rdoGood"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_good" />
+
+                <RadioButton
+                    android:id="@+id/rdoReallyGood"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:drawableTop="@drawable/face_really_good" />
+            </RadioGroup>
+
+            <EditText
                 android:id="@+id/textDiContents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:padding="5dp"
                 android:text="  마참내 에펠탑 영접~!!~! \n신난돠~~~~~ \n\n
-사진 마구마구 찍어야지 \n촬칵촬칵쓰~~!!~! \n해외여행 즐 겁 따 \n아무말블라블라 \n스크롤 실험용aaaaaaaaaaaaaaabbbbbbbbxccccccccccadssssdaadasdasdasdasdas"
-                android:textAppearance="@style/content" />
+    사진 마구마구 찍어야지 \n촬칵촬칵쓰~~!!~! \n해외여행 즐 겁 따 \n아무말블라블라 \n스크롤 실험용aaaaaaaaaaaaaaabbbbbbbbxccccccccccadssssdaadasdasdasdasdas"
+                android:textAppearance="@style/content"/>
         </LinearLayout>
     </ScrollView>
 

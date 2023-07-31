@@ -312,7 +312,7 @@ class MemoryInfo : AppCompatActivity() {
             val bm = byteArrayToBitmap(str_diImg)
             imgPic.setImageBitmap(bm)
 
-            // 일지 클릭 시 상세로
+            // 일지 클릭 시 일지 상세로
             diaryItemView.setOnClickListener {
                 val intent = Intent(this, DiaryInfo::class.java)
                 intent.putExtra("intent_diTitle", str_diaTitle)
@@ -328,28 +328,6 @@ class MemoryInfo : AppCompatActivity() {
         sqlitedb.close()
         //dbManager.close()
     }
-
-    // GPT 망한 답변. 이러면 목록이 2배가 됨.
-    // Add this method to receive the result from MemRecored activity
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (requestCode == MEM_RECORED_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-//            // Data received from MemRecored activity
-//            str_diaTitle = data?.getStringExtra("intent_diTitle").toString()
-//            //str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
-//
-//            // Update the UI or reload the data as per your requirement
-//            loadMemories()
-//        }
-//    }
-
-//    override fun onResume() {
-//        super.onResume()
-//        loadMemories() // Call loadMemories() to refresh the data whenever the activity resumes
-//    }
-//
-
 
     // 이미지!!!!!
     fun ByteArray.toBitmap(): Bitmap {
