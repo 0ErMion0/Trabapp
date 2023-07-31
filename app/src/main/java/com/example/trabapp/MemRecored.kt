@@ -67,8 +67,8 @@ class MemRecored : AppCompatActivity() {
 
         // id 연결
         edtTextTitle = findViewById(R.id.edtTextTitle)
-        btnCalenderStart = findViewById(R.id.btnCalenderStart)
-        btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
+        //btnCalenderStart = findViewById(R.id.btnCalenderStart)
+        //btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
         editTextContents = findViewById(R.id.editTextContents)
         imgBtnCheck = findViewById(R.id.imgBtnCheck)
         imgBtnPic = findViewById(R.id.imgBtnPic)

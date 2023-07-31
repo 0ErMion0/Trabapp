@@ -38,8 +38,8 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var btnConfirm : Button
     lateinit var edtTextTitle : EditText
     lateinit var edtTextMember : EditText
-    lateinit var btnCalenderStart : AppCompatButton
-    lateinit var btnCalenderEnd: AppCompatButton
+    //lateinit var btnCalenderStart : AppCompatButton
+    //lateinit var btnCalenderEnd: AppCompatButton
     lateinit var rdoGrpColor : RadioGroup
     lateinit var rdoRed : RadioButton
     lateinit var rdoOrange : RadioButton
@@ -77,8 +77,8 @@ class MemoryInfo : AppCompatActivity() {
         btnConfirm = findViewById(R.id.btnConfirm)
         edtTextTitle = findViewById(R.id.edtTextTitle)
         edtTextMember = findViewById(R.id.edtTextMember)
-        btnCalenderStart = findViewById(R.id.btnCalenderStart)
-        btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
+        //btnCalenderStart = findViewById(R.id.btnCalenderStart)
+        //btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
         rdoGrpColor = findViewById(R.id.rdoGrpColor)
         rdoRed = findViewById(R.id.rdoRed)
         rdoOrange = findViewById(R.id.rdoOrange)
@@ -159,8 +159,8 @@ class MemoryInfo : AppCompatActivity() {
 //            // Get the new values from the input fields and radio button
             str_memTitle = edtTextTitle.text.toString()
             str_memMb = edtTextMember.text.toString()
-            str_memStartDate = btnCalenderStart.text.toString()
-            str_memEndDate = btnCalenderEnd.text.toString()
+            //str_memStartDate = btnCalenderStart.text.toString()
+            //str_memEndDate = btnCalenderEnd.text.toString()
             str_memColor = when (rdoGrpColor.checkedRadioButtonId) {
                 R.id.rdoRed -> "pink"
                 R.id.rdoOrange -> "orange"
@@ -243,8 +243,8 @@ class MemoryInfo : AppCompatActivity() {
             // ---- 추억 상세 ----
             edtTextTitle.setText(str_memTitle)
             edtTextMember.setText(str_memMb)
-            btnCalenderStart.setText(str_memStartDate)
-            btnCalenderEnd.setText(str_memEndDate)
+            //btnCalenderStart.setText(str_memStartDate)
+            //btnCalenderEnd.setText(str_memEndDate)
             when (str_memColor) {
                 "pink" -> rdoGrpColor.check(R.id.rdoRed)
                 "orange" -> rdoGrpColor.check(R.id.rdoOrange)
@@ -278,7 +278,7 @@ class MemoryInfo : AppCompatActivity() {
             // 아이템 레이아웃 id 연결
             val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
             val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
-            val textDate = diaryItemView.findViewById<TextView>(R.id.textDate)
+            //val textDate = diaryItemView.findViewById<TextView>(R.id.textDate)
             var imotion = diaryItemView.findViewById<ImageView>(R.id.imgFace)
             var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
 
@@ -297,7 +297,7 @@ class MemoryInfo : AppCompatActivity() {
             // 정보 넣기
             testTitle.setText(str_diaTitle)
             textContents.setText(str_diaContents)
-            textDate.text = "$str_diaStartDate ~ $str_diaEndDate"
+            //textDate.text = "$str_diaStartDate ~ $str_diaEndDate"
             // 라디오
             when (str_emotion){
                 "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)

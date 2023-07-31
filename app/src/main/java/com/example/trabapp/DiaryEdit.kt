@@ -24,7 +24,7 @@ class DiaryEdit : AppCompatActivity() {
 
     // id 정의
     lateinit var diEditBtn: ImageButton
-    lateinit var diDelBtn: ImageButton
+    //lateinit var diDelBtn: ImageButton
     lateinit var diDate: TextView
     lateinit var imgPic: ImageView
     lateinit var diTitle: TextView
@@ -57,7 +57,7 @@ class DiaryEdit : AppCompatActivity() {
 
         // ---id 연결---
         diEditBtn = findViewById<ImageButton>(R.id.imgBtnEdit)
-        diDelBtn = findViewById<ImageButton>(R.id.imgBtnDel)
+        //diDelBtn = findViewById<ImageButton>(R.id.imgBtnDel)
         diDate = findViewById<TextView>(R.id.textDate)
         imgPic = findViewById<ImageView>(R.id.imgPic)
         diTitle = findViewById<TextView>(R.id.textTitle2)
