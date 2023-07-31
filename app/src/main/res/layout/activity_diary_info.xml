@@ -35,47 +35,22 @@
         tools:ignore="RtlCompat" />
 
     <ImageButton
-
-        android:id="@+id/imgBtnDel"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:background="#00FFFFFF"
-        android:importantForAccessibility="no"
-
-        android:padding="10dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/trash_icon" />
-
-    <ImageView
-        android:id="@+id/seroBar"
-        android:layout_width="15dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/imgBtnDel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sero_bar" />
-
-    <ImageButton
         android:id="@+id/imgBtnEdit"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="#00FFFFFF"
         android:importantForAccessibility="no"
         android:padding="10dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/seroBar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pencil_icon" />
 
 
-    <!--[이미지]-->
     <TextView
-        android:id="@+id/textDate"
+        android:id="@+id/textStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -83,6 +58,28 @@
         android:text="2020 . 05 . 20"
         android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
+
+    <TextView
+        android:id="@+id/wave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/pretendard_regular"
+        android:text=" ~ "
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@+id/textStartDate"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
+
+    <TextView
+        android:id="@+id/textEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/pretendard_regular"
+        android:text="2020 . 05 . 20"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@+id/wave"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnBack" />
 
     <ScrollView
