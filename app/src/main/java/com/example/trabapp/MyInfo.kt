@@ -35,6 +35,8 @@ class MyInfo : AppCompatActivity() {
 
     lateinit var str_newName : String
 
+    lateinit var id : String
+
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +49,7 @@ class MyInfo : AppCompatActivity() {
 
         btnConfirm = findViewById(R.id.btnConfirm)
 
-        str_id = MySharePreferences.getUserId(this)
+        str_id = MySharePreferences.id
 
         dbHelper = DBHelper(this)
         sqlitedb = dbHelper.writableDatabase
