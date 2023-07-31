@@ -15,6 +15,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -36,8 +37,8 @@ class MemRecored : AppCompatActivity() {
 
     // 변수 선언
     lateinit var edtTextTitle:EditText
-    lateinit var btnCalenderStart: AppCompatButton
-    lateinit var btnCalenderEnd: AppCompatButton
+    lateinit var btnCalenderStart: TextView
+    lateinit var btnCalenderEnd: TextView
     lateinit var editTextContents:EditText
     lateinit var imgBtnCheck : ImageButton
     lateinit var rdoGrpEmotion : RadioGroup
@@ -67,8 +68,8 @@ class MemRecored : AppCompatActivity() {
 
         // id 연결
         edtTextTitle = findViewById(R.id.edtTextTitle)
-        btnCalenderStart = findViewById(R.id.btnCalenderStart)
-        btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
+        btnCalenderStart = findViewById(R.id.startDate)
+        btnCalenderEnd = findViewById(R.id.endDate)
         editTextContents = findViewById(R.id.editTextContents)
         imgBtnCheck = findViewById(R.id.imgBtnCheck)
         imgBtnPic = findViewById(R.id.imgBtnPic)

@@ -354,7 +354,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
     lateinit var dbManager: DBManager
     lateinit var sqlitedb: SQLiteDatabase
 
-    lateinit var layout: LinearLayout
+    //lateinit var layout: LinearLayout // 레이아웃 넣을 바텀시트의 부분
 
     lateinit var btnShowBottomSheet : FloatingActionButton
 
@@ -382,9 +382,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
 
         dbManager=DBManager(this)
 
-
+        // 바텀 시트 버튼
         btnShowBottomSheet = findViewById(R.id.btmsheetbtn)
-
         btnShowBottomSheet.setOnClickListener(){
 
             //loadMemories()
@@ -395,6 +394,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
             val view = layoutInflater.inflate(R.layout.bottom_sheet, null)
             val addmembtn = view.findViewById<Button>(R.id.addMemBtn)
 
+            // 바텀 시트 - 추억 추가 버튼
             addmembtn.setOnClickListener(){
                 //Toast.makeText(this, "추억 추가", Toast.LENGTH_SHORT).show()
                 // Dialog
@@ -454,16 +454,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
                     sqlitedb.close()
 
 
-// 내 추억,추억 상세로 데이터 전달
+                    // 내 추억,추억 상세로 데이터 전달
                     val intentMyMemory = Intent(this, MyMemory::class.java)
-//                //val intentMemoryInfo = Intent(this, MemoryInfo::class.java)
                     intentMyMemory.putExtra("intent_title", str_memTitle)
-//                //intentMemoryInfo.putExtra("intent_title", str_memTitle)
 
-                    Toast.makeText(this, "내 추억을 작성했습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "내 추억을 작성했습니다", Toast.LENGTH_SHORT).show()
 
                     startActivity(intentMyMemory)
-
                 }
                 val noButton = mDialogView.findViewById<Button>(R.id.btnCancel)
                 noButton.setOnClickListener {
@@ -473,7 +470,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
             dialog.setContentView(view)
             dialog.show()
         }
-        //toolBar.setBackgroundColor(Color.rgb(0, 123 ,3))
 
         // 슬라이드 메뉴
         drawerLayout = findViewById(R.id.drawerLayout)

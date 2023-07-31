@@ -38,8 +38,8 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var btnConfirm : Button
     lateinit var edtTextTitle : EditText
     lateinit var edtTextMember : EditText
-    lateinit var btnCalenderStart : AppCompatButton
-    lateinit var btnCalenderEnd: AppCompatButton
+    lateinit var btnCalenderStart : TextView
+    lateinit var btnCalenderEnd: TextView
     lateinit var rdoGrpColor : RadioGroup
     lateinit var rdoRed : RadioButton
     lateinit var rdoOrange : RadioButton
@@ -77,8 +77,8 @@ class MemoryInfo : AppCompatActivity() {
         btnConfirm = findViewById(R.id.btnConfirm)
         edtTextTitle = findViewById(R.id.edtTextTitle)
         edtTextMember = findViewById(R.id.edtTextMember)
-        btnCalenderStart = findViewById(R.id.btnCalenderStart)
-        btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
+        btnCalenderStart = findViewById(R.id.startDate)
+        btnCalenderEnd = findViewById(R.id.endDate)
         rdoGrpColor = findViewById(R.id.rdoGrpColor)
         rdoRed = findViewById(R.id.rdoRed)
         rdoOrange = findViewById(R.id.rdoOrange)
