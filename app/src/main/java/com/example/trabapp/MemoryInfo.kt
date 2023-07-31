@@ -25,6 +25,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import com.example.trabapp.databinding.ActivityMyMemoryBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import org.w3c.dom.Text
 @SuppressLint("Range")
 class MemoryInfo : AppCompatActivity() {
@@ -337,5 +340,42 @@ class MemoryInfo : AppCompatActivity() {
     fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
         val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
         return bitmap
+    }
+    //일정 팝업
+    private fun datePopup(text: TextView, yearC: Int, monthC: Int, dayC: Int){
+        //데이터 피커 팝업
+        val cDiaryView = LayoutInflater.from(this).inflate(R.layout.date_picker_popup, null)
+        val cBuilder = AlertDialog.Builder(this).setView(cDiaryView)
+        val cAlerDialog = cBuilder.show()
+
+        //데이터 피커 팝업 요소(캘린더&버튼)
+        val Calendar = cDiaryView.findViewById<MaterialCalendarView>(R.id.datePicker)
+        val btnConfirm = cDiaryView.findViewById<Button>(R.id.btnConfirmCalender)
+        val btnCancel = cDiaryView.findViewById<Button>(R.id.btnCancelCalender)
+
+        //시작 날짜 오늘로 설정
+        //Calendar.setSelectedDate(CalendarDay.today())
+
+        var year : Int = yearC
+        var month : Int = monthC
+        var day : Int = dayC
+
+        //날짜를 옮기면(선택된 게 변하면)
+        Calendar.setOnDateChangedListener(object: OnDateSelectedListener {
+            override fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay, selected: Boolean) {
+                year = date.year
+                month = date.month
+                day = date.day
+            }
+        })
+        //확인 버튼
+        btnConfirm.setOnClickListener {
+            text.setText("$year. ${month+1}. $day")
+            cAlerDialog.dismiss()
+        }
+        //취소 버튼
+        btnCancel.setOnClickListener {
+            cAlerDialog.dismiss()
+        }
     }
 }

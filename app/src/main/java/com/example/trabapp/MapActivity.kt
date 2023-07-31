@@ -611,6 +611,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
             //해당 창 닫기
             finish()
         }
+
+        //자동로그인하지 않았을 때 아이디 저장
+        MySharePreferences.id = intent.getStringExtra("id").toString()
     }
 
     // map이 사용될 준비되면 호출됨
