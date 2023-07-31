@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,39 +15,39 @@
     tools:context=".MapActivity"
     android:orientation="vertical"
     >
-<!--    android:fitsSystemWindows="true"-->
-<!--    tools:openDrawer="start"-->
+    <!--    android:fitsSystemWindows="true"-->
+    <!--    tools:openDrawer="start"-->
 
-<!--    <FrameLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/frame_layout"/>-->
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:id="@+id/frame_layout"/>-->
 
 
-<!--    Fragment없이 시도1-->
+    <!--    Fragment없이 시도1-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-            <!--검색창-->
-            <SearchView
-                android:id="@+id/mapSearch"
-                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/round_edit_text"
-                android:elevation="45dp"
-                android:iconifiedByDefault="false"
-                android:queryHint="Search..."
-                android:gravity="left"
-                android:paddingLeft="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <!--검색창-->
+        <SearchView
+            android:id="@+id/mapSearch"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/round_edit_text"
+            android:elevation="45dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search..."
+            android:gravity="left"
+            android:paddingLeft="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <!--    구글맵-->
@@ -65,7 +71,7 @@
             />
     </FrameLayout>
 
-<!--    슬라이드 메뉴-->
+    <!--    슬라이드 메뉴-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
         android:layout_width="wrap_content"
@@ -77,4 +83,12 @@
         app:itemTextColor="@color/navyBlack"
 
         app:menu="@menu/drawer_list" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
+
+    <include
+        layout="@layout/bottom_sheet"
+        />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

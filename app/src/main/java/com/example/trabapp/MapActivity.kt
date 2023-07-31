@@ -35,11 +35,14 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat.startActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.test.MySharePreferences
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 /*
 import com.google.android.gms.common.api.ApiException
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
@@ -338,6 +341,10 @@ import com.google.android.material.navigation.NavigationView
 
 // 수정 코드(3) - 현재 위치로 이동 버튼(마커 안 찍힘), 검색 가능, 누른 위치에 마커 찍기
 class MapActivity : AppCompatActivity(), OnMapReadyCallback{
+
+    val bottomSheet: LinearLayout by lazy{findViewById<LinearLayout>(R.id.bottom_sheet_layout)}
+    lateinit var sheetBehavior: BottomSheetBehavior<LinearLayout>
+
     private val FINE_PERMISSION_CODE : Int = 1
     lateinit var currentLocation : Location
     lateinit var fusedLocationProviderClient : FusedLocationProviderClient
@@ -650,4 +657,5 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
         intent.data = Uri.fromParts("package", packageName, null)
         startActivity(intent)
     }
+
 }
