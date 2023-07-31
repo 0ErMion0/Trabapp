@@ -9,11 +9,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import com.example.test.DBHelper
 import com.example.test.MySharePreferences
 
 class MyInfo : AppCompatActivity() {
+    lateinit var backButton: ImageButton // 뒤로 가기 버튼
 
     lateinit var edtName : EditText
     lateinit var edtCurrentPass : EditText
@@ -136,5 +138,12 @@ class MyInfo : AppCompatActivity() {
 
         //sqlitedb.close()
 
+        // 뒤로 가기 버튼
+        backButton = findViewById<ImageButton>(R.id.imgBtnBack)
+        backButton.setOnClickListener{
+            // 클릭되면 MapActivity로 이동
+            val intent: Intent = Intent(this, MapActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

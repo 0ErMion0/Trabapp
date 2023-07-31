@@ -149,7 +149,7 @@ class MemRecored : AppCompatActivity() {
         backButton.setOnClickListener{
             // 클릭되면 MemoryInfo로 이동
             val intent: Intent = Intent(this, MemoryInfo::class.java)
-            intent.putExtra("intent_title", memTitleForDi)
+            intent.putExtra("intent_memTitle", memTitleForDi)
             startActivity(intent)
         }
     } // onCreate
