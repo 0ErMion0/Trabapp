@@ -39,6 +39,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat.startActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.test.MySharePreferences
 /*
 import com.google.android.gms.common.api.ApiException
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
@@ -352,6 +353,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var navView: NavigationView
     //private lateinit var toolBar : Toolbar
 
+    lateinit var btnMyInfo : Button
+    lateinit var btnLogOut : Button
+
     override fun onCreate(savedInstanceState: Bundle?) { // initialize SupportMapFragment, SearchView
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
@@ -360,6 +364,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
 
         // 슬라이드 메뉴
         drawerLayout = findViewById(R.id.drawerLayout)
+
         // Pass the ActionBarToggle action into the drawerListener
         actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
         drawerLayout.addDrawerListener(actionBarToggle)
@@ -467,6 +472,32 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
 
         // Async map
         //supportMapFragment.getMapAsync(this)
+
+        //네비게이션
+        var header = navView.getHeaderView(0)
+
+        var myInfo : Button
+        var logOut : Button
+
+        myInfo = header.findViewById(R.id.btnMyInfo)
+        logOut = header.findViewById(R.id.btnLogOut)
+
+        myInfo.setOnClickListener {
+            //화면 전환
+            val intent = Intent(applicationContext, MyInfo::class.java)
+            startActivity(intent)
+        }
+        logOut.setOnClickListener {
+            //저장된 데이터 삭제
+            MySharePreferences.clearUser(this)
+
+            //화면 전환
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            
+            //해당 창 닫기
+            finish()
+        }
     }
 
     // map이 사용될 준비되면 호출됨
