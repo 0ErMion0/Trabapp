@@ -49,7 +49,14 @@ class MyInfo : AppCompatActivity() {
 
         btnConfirm = findViewById(R.id.btnConfirm)
 
-        str_id = MySharePreferences.id
+        //데이터가 저장되어 있으면 (자동로그인)
+        if(!MySharePreferences.getUserId(this).isNullOrBlank()){
+
+            str_id = MySharePreferences.getUserId(this)
+
+        }else{ //자동로그인X
+            str_id = MySharePreferences.id
+        }
 
         dbHelper = DBHelper(this)
         sqlitedb = dbHelper.writableDatabase
@@ -72,12 +79,7 @@ class MyInfo : AppCompatActivity() {
             if(cursor.moveToNext()){
                 str_name = cursor.getString(cursor.getColumnIndex("userName")).toString()
                 str_password = cursor.getString(cursor.getColumnIndex("userPassword")).toString()
-
-                Log.v("알람0", "AA")
             }
-
-            Log.v("알람1", str_password)
-            Log.v("알람1", str_name)
             
             //현재 닉네임 칸에 입력된 닉네임 얻어옴
             str_newName = edtName.text.toString()
