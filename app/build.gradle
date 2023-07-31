@@ -7,7 +7,7 @@ plugins {
 android {
     // 사진선택기
     buildFeatures{
-        viewBinding = true
+        viewBinding true
     }
 
     namespace 'com.example.trabapp'

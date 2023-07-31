@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
-
-<androidx.drawerlayout.widget.DrawerLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,6 +9,8 @@
     tools:context=".MapActivity"
     android:orientation="vertical"
     >
+
+
     <!--    android:fitsSystemWindows="true"-->
     <!--    tools:openDrawer="start"-->
 
@@ -71,6 +67,24 @@
             />
     </FrameLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- 플로팅 버튼 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btmsheetbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="30dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/mainNavy"
+            android:src="@drawable/up_arrow"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <!--    슬라이드 메뉴-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
@@ -81,14 +95,7 @@
         app:headerLayout="@layout/nav_header"
         app:itemTextAppearance="@style/content"
         app:itemTextColor="@color/navyBlack"
-
+        android:clickable="true"
+        android:focusable="true"
         app:menu="@menu/drawer_list" />
-
 </androidx.drawerlayout.widget.DrawerLayout>
-
-    <include
-        layout="@layout/bottom_sheet"
-        />
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
