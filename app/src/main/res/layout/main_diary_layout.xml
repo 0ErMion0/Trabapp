@@ -39,7 +39,7 @@
 
             <!--제목-->
             <TextView
-                android:id="@+id/testTitle"
+                android:id="@+id/textTitle"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -50,7 +50,7 @@
             <!--내용-->
             <TextView
                 android:id="@+id/textContents"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxLines="2"
