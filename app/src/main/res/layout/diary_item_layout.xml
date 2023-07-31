@@ -11,10 +11,21 @@
         android:id="@+id/dGroupButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/roundbox_edit_text"
         android:orientation="horizontal"
-        android:padding="15dp"
-        android:layout_marginBottom="15dp">
+        android:paddingLeft="0dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp">
+
+        <ImageView
+            android:id="@+id/imgFace"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/face_really_good" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +39,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text=""
+                android:text="테스트 제목"
                 android:textAppearance="@style/smallBold" />
 
             <!--내용-->
@@ -38,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxLines="2"
-                android:text=""
+                android:text="내용 테스트 \n내용 테스트"
                 android:textAppearance="@style/smallGray"
                 tools:ignore="TextSizeCheck" />
 
@@ -47,7 +58,7 @@
                 android:id="@+id/textDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="2023 - 07 - 23 ~ 2023 - 07 - 30"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/smallGray2"
                 tools:ignore="TextSizeCheck" />
@@ -64,7 +75,8 @@
                 android:id="@+id/imgPic"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/test_pic" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
