@@ -51,11 +51,19 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imgProfile"
+        <androidx.cardview.widget.CardView
             android:layout_width="63dp"
             android:layout_height="63dp"
-            android:src="@drawable/profile_bird" />
+            app:cardCornerRadius="100dp">
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:scaleType="centerCrop"
+                android:padding="0dp"
+                android:src="@drawable/profile_pic" />
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
     <View

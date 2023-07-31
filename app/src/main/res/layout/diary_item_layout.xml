@@ -53,15 +53,36 @@
                 android:textAppearance="@style/smallGray"
                 tools:ignore="TextSizeCheck" />
 
-            <!--날짜-->
-            <TextView
-                android:id="@+id/textDate"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2023 - 07 - 23 ~ 2023 - 07 - 30"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/smallGray2"
-                tools:ignore="TextSizeCheck" />
+                android:orientation="horizontal"
+                android:gravity="right">
+                <TextView
+                    android:id="@+id/textStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2023 - 07 - 23"
+                    android:textAppearance="@style/smallGray2"
+                    tools:ignore="TextSizeCheck" />
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/smallGray2"
+                    tools:ignore="TextSizeCheck"
+                    android:text=" ~ "/>
+                <TextView
+                    android:id="@+id/textEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2023 - 07 - 30"
+                    android:textAppearance="@style/smallGray2"
+                    tools:ignore="TextSizeCheck" />
+            </LinearLayout>
+            <!--날짜-->
+
         </LinearLayout>
 
         <!--사진 미리보기-->
