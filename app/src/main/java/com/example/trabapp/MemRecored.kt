@@ -15,12 +15,14 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.bumptech.glide.Glide
 import com.example.trabapp.databinding.ActivityMemRecoredBinding
+import org.w3c.dom.Text
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 
@@ -36,8 +38,10 @@ class MemRecored : AppCompatActivity() {
 
     // 변수 선언
     lateinit var edtTextTitle:EditText
-    lateinit var btnCalenderStart: AppCompatButton
-    lateinit var btnCalenderEnd: AppCompatButton
+    lateinit var startDate : TextView
+    lateinit var btnCalenderStart: ImageButton
+    lateinit var endDate : TextView
+    lateinit var btnCalenderEnd: ImageButton
     lateinit var editTextContents:EditText
     lateinit var imgBtnCheck : ImageButton
     lateinit var rdoGrpEmotion : RadioGroup
@@ -67,11 +71,13 @@ class MemRecored : AppCompatActivity() {
 
         // id 연결
         edtTextTitle = findViewById(R.id.edtTextTitle)
-        btnCalenderStart = findViewById(R.id.btnCalenderStart)
-        btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
+        btnCalenderStart = findViewById(R.id.startDateIconBtn)
+        btnCalenderEnd = findViewById(R.id.endDateIconBtn)
         editTextContents = findViewById(R.id.editTextContents)
         imgBtnCheck = findViewById(R.id.imgBtnCheck)
         imgBtnPic = findViewById(R.id.imgBtnPic)
+        startDate = findViewById(R.id.startDate)
+        endDate = findViewById(R.id.endDate)
 
         rdoGrpEmotion = findViewById(R.id.rdoGrpEmotion)
         rdoReallyBad = findViewById(R.id.rdoReallyBad)
@@ -96,8 +102,8 @@ class MemRecored : AppCompatActivity() {
             str_diTitle = edtTextTitle.text.toString()
             //val str_diTitle :String = edtTextTitle.text.toString()
             val str_diContents :String = editTextContents.text.toString()
-            val str_diStartDate : String = "2023 - 07 - 02"
-            val str_diEndDate : String = "2023 - 07 - 20"
+            val str_diStartDate : String = startDate.text.toString()
+            val str_diEndDate : String = endDate.text.toString()
             var str_emotion : String
 
             // 만족도 (라디오 버튼)

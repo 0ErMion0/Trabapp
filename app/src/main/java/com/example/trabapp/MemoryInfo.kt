@@ -1,7 +1,6 @@
 package com.example.trabapp
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
@@ -10,8 +9,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
-import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -21,11 +18,9 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
-import com.example.trabapp.databinding.ActivityMyMemoryBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.w3c.dom.Text
+
 @SuppressLint("Range")
 class MemoryInfo : AppCompatActivity() {
     lateinit var backButton: ImageButton // 뒤로 가기 버튼
@@ -38,8 +33,8 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var btnConfirm : Button
     lateinit var edtTextTitle : EditText
     lateinit var edtTextMember : EditText
-    lateinit var btnCalenderStart : AppCompatButton
-    lateinit var btnCalenderEnd: AppCompatButton
+    lateinit var btnCalenderStart : ImageButton
+    lateinit var btnCalenderEnd: ImageButton
     lateinit var rdoGrpColor : RadioGroup
     lateinit var rdoRed : RadioButton
     lateinit var rdoOrange : RadioButton
@@ -48,6 +43,8 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var rdoBlue : RadioButton
     lateinit var rdoPurple : RadioButton
     lateinit var floatBtn : FloatingActionButton
+    lateinit var startDate : TextView
+    lateinit var endDate : TextView
 
 
 
@@ -77,8 +74,8 @@ class MemoryInfo : AppCompatActivity() {
         btnConfirm = findViewById(R.id.btnConfirm)
         edtTextTitle = findViewById(R.id.edtTextTitle)
         edtTextMember = findViewById(R.id.edtTextMember)
-        btnCalenderStart = findViewById(R.id.btnCalenderStart)
-        btnCalenderEnd = findViewById(R.id.btnCalenderEnd)
+        btnCalenderStart = findViewById(R.id.startDateIconBtn)
+        btnCalenderEnd = findViewById(R.id.endDateIconBtn)
         rdoGrpColor = findViewById(R.id.rdoGrpColor)
         rdoRed = findViewById(R.id.rdoRed)
         rdoOrange = findViewById(R.id.rdoOrange)
@@ -86,6 +83,8 @@ class MemoryInfo : AppCompatActivity() {
         rdoMint = findViewById(R.id.rdoMint)
         rdoBlue = findViewById(R.id.rdoBlue)
         rdoPurple = findViewById(R.id.rdoPurple)
+        startDate = findViewById(R.id.startDate)
+        endDate = findViewById(R.id.endDate)
 
         val intent = intent
         str_memTitle = intent.getStringExtra("intent_memTitle").toString()
@@ -159,8 +158,8 @@ class MemoryInfo : AppCompatActivity() {
 //            // Get the new values from the input fields and radio button
             str_memTitle = edtTextTitle.text.toString()
             str_memMb = edtTextMember.text.toString()
-            str_memStartDate = btnCalenderStart.text.toString()
-            str_memEndDate = btnCalenderEnd.text.toString()
+            str_memStartDate = startDate.text.toString()
+            str_memEndDate = endDate.text.toString()
             str_memColor = when (rdoGrpColor.checkedRadioButtonId) {
                 R.id.rdoRed -> "pink"
                 R.id.rdoOrange -> "orange"
@@ -243,8 +242,8 @@ class MemoryInfo : AppCompatActivity() {
             // ---- 추억 상세 ----
             edtTextTitle.setText(str_memTitle)
             edtTextMember.setText(str_memMb)
-            btnCalenderStart.setText(str_memStartDate)
-            btnCalenderEnd.setText(str_memEndDate)
+            startDate.setText(str_memStartDate)
+            endDate.setText(str_memEndDate)
             when (str_memColor) {
                 "pink" -> rdoGrpColor.check(R.id.rdoRed)
                 "orange" -> rdoGrpColor.check(R.id.rdoOrange)
@@ -278,7 +277,8 @@ class MemoryInfo : AppCompatActivity() {
             // 아이템 레이아웃 id 연결
             val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
             val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
-            val textDate = diaryItemView.findViewById<TextView>(R.id.textDate)
+            val textStartDate = diaryItemView.findViewById<TextView>(R.id.textStartDate)
+            val textEndDate = diaryItemView.findViewById<TextView>(R.id.textEndDate)
             var imotion = diaryItemView.findViewById<ImageView>(R.id.imgFace)
             var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
 
@@ -297,7 +297,9 @@ class MemoryInfo : AppCompatActivity() {
             // 정보 넣기
             testTitle.setText(str_diaTitle)
             textContents.setText(str_diaContents)
-            textDate.text = "$str_diaStartDate ~ $str_diaEndDate"
+            textStartDate.text = "$str_diaStartDate"
+            textEndDate.text = "$str_diaEndDate"
+
             // 라디오
             when (str_emotion){
                 "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
