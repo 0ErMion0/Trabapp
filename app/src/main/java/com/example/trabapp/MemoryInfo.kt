@@ -195,7 +195,7 @@ class MemoryInfo : AppCompatActivity() {
             sqlitedb.close()
 
             //loadMemories() // 이렇게 하면 추억 목록이 2배가 되는 문제 발생
-            Toast.makeText(this, "변경되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "변경되었습니다", Toast.LENGTH_SHORT).show()
 
             // 그냥 해당 액티비티 다시 로드해볼까? 근데 여기 로드 위해 필요한 내용 보내줘야 함
             val intent: Intent = Intent(this, MemoryInfo::class.java)

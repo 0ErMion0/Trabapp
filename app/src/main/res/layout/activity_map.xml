@@ -67,24 +67,23 @@
             />
     </FrameLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!-- 플로팅 버튼 -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btmsheetbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginBottom="30dp"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:backgroundTint="@color/mainNavy"
-            android:src="@drawable/up_arrow"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--        &lt;!&ndash; 플로팅 버튼 &ndash;&gt;-->
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btmsheetbtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginBottom="30dp"-->
+<!--            android:clickable="true"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:backgroundTint="@color/mainNavy"-->
+<!--            android:src="@drawable/up_arrow"-->
+<!--            tools:ignore="SpeakableTextPresentCheck" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
     <!--    슬라이드 메뉴-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"

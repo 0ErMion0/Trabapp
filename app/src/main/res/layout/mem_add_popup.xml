@@ -75,7 +75,7 @@
             android:layout_width="255dp"
             android:layout_height="38dp"
             android:background="#00ff0000"
-            android:hint="똥쟁이 1호, 똥쟁이 2호"
+            android:hint="멤버 1호, 멤버 2호"
             android:text=""
             android:paddingLeft="16dp"
             android:textAppearance="@style/content"

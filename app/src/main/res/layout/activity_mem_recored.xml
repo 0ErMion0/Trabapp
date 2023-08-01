@@ -30,7 +30,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal|center_vertical"
         android:singleLine="true"
-        android:text="추억 기록"
+        android:text="일지 기록"
         android:textAlignment="textStart"
         android:textAppearance="@style/title"
 

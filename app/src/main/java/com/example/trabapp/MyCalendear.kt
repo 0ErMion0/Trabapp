@@ -80,9 +80,10 @@ class MyCalendear : AppCompatActivity() {
 
         var num: Int = 0
 
-        val ItemView = layoutInflater.inflate(R.layout.memory_item_layout, null)
+        //val ItemView = layoutInflater.inflate(R.layout.memory_item_layout, null)
 
         while (cursor.moveToNext()) {
+            val ItemView = layoutInflater.inflate(R.layout.memory_item_layout, null)
 
             // 데이터베이스에 저장된 값 가져옴
             str_memTitle = cursor.getString(cursor.getColumnIndex("memTitle")).toString()
@@ -119,12 +120,12 @@ class MyCalendear : AppCompatActivity() {
                     "purple" -> groupColor.setImageResource(R.drawable.circle_purple)
                 }
 
-                // 레이아웃 클릭하면 추억 기록으로 이동 및 데이터 전달
-                ItemView.setOnClickListener {
-                    val intent = Intent(this, MemoryInfo::class.java)
-                    intent.putExtra("intent_memTitle", str_memTitle)
-                    startActivity(intent)
-                }
+//                // 레이아웃 클릭하면 추억 기록으로 이동 및 데이터 전달
+//                ItemView.setOnClickListener {
+//                    val intent = Intent(this@MyCalendear, MemoryInfo::class.java)
+//                    intent.putExtra("intent_memTitle", str_memTitle)
+//                    startActivity(intent)
+//                }
 
                 // Add the memory item view to LinearLayout
                 layout.addView(ItemView)
@@ -150,12 +151,12 @@ class MyCalendear : AppCompatActivity() {
                     "purple" -> groupColor.setImageResource(R.drawable.circle_purple)
                 }
 
-                // 레이아웃 클릭하면 추억 기록으로 이동 및 데이터 전달
-                ItemView.setOnClickListener {
-                    val intent = Intent(this, MemoryInfo::class.java)
-                    intent.putExtra("intent_memTitle", str_memTitle)
-                    startActivity(intent)
-                }
+//                // 레이아웃 클릭하면 추억 기록으로 이동 및 데이터 전달
+//                ItemView.setOnClickListener {
+//                    val intent = Intent(this@MyCalendear, MemoryInfo::class.java)
+//                    intent.putExtra("intent_memTitle", str_memTitle)
+//                    startActivity(intent)
+//                }
 
                 // Add the memory item view to LinearLayout
                 layout.addView(ItemView)

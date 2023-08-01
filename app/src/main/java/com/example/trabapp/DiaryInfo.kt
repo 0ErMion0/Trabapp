@@ -95,6 +95,9 @@ class DiaryInfo : AppCompatActivity() {
                 .setView(mDialogView)
             val mAlertDialog = mBuilder.show()
 
+            var deleteContentTitle = mDialogView.findViewById<TextView>(R.id.deleteContentTitle)
+            deleteContentTitle.setText(str_diTitle)
+
             // 확인 버튼
             val okButton = mDialogView.findViewById<Button>(R.id.deleteAcceptBtn)
             okButton.setOnClickListener{
