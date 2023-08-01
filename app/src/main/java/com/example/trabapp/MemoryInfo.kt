@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -29,7 +30,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 @SuppressLint("Range")
 class MemoryInfo : AppCompatActivity() {
 
-    private val diaryList: MutableList<Diary> = mutableListOf() // 일지에 넣을 것들 리스트 형태로
+//    private val diaryList: MutableList<Diary> = mutableListOf() // 일지에 넣을 것들 리스트 형태로
 
     lateinit var backButton: ImageButton // 뒤로 가기 버튼
 
@@ -64,7 +65,7 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var str_memEndDate : String // 마감일
     lateinit var str_memColor : String // 기록 색
 
-    lateinit var str_diaTitle : String
+    //lateinit var str_diaTitle : String
 
     // GPT 망한 답변
 //    companion object {
@@ -97,7 +98,7 @@ class MemoryInfo : AppCompatActivity() {
         val intent = intent
         str_memTitle = intent.getStringExtra("intent_memTitle").toString()
         //str_memFirstTitle = intent.getStringExtra("intent_memFirstTitle").toString()
-        str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
+        //str_diaTitle = intent.getStringExtra("intent_diTitle").toString()
 
 
         dbManager=DBManager(this)
@@ -203,10 +204,46 @@ class MemoryInfo : AppCompatActivity() {
         }
 
         btnCalenderStart.setOnClickListener{
-            datePopup(startDate, 0, 0, 0)
+
+            ////날짜 슬라이싱
+            //.을 기준으로 자름
+            var str_arr = startDate.text.toString().split(".")
+
+            //연월일 구분
+            var year = str_arr.get(0)
+            var month = str_arr.get(1)
+            var dayOfMonth = str_arr.get(2)
+
+            //공백 제거
+            month = month.substring(1,month.length)
+            dayOfMonth = dayOfMonth.substring(1,dayOfMonth.length)
+
+            Log.d("연", year)
+            Log.d("월", month)
+            Log.d("일", dayOfMonth)
+
+            datePopup(startDate, year.toInt(), month.toInt(), dayOfMonth.toInt())
         }
         btnCalenderEnd.setOnClickListener{
-            datePopup(endDate, 0, 0, 0)
+
+            ////날짜 슬라이싱
+            //.을 기준으로 자름
+            var str_arr = endDate.text.toString().split(".")
+
+            //연월일 구분
+            var year = str_arr.get(0)
+            var month = str_arr.get(1)
+            var dayOfMonth = str_arr.get(2)
+
+            //공백 제거
+            month = month.substring(1,month.length)
+            dayOfMonth = dayOfMonth.substring(1,dayOfMonth.length)
+
+            Log.d("연", year)
+            Log.d("월", month)
+            Log.d("일", dayOfMonth)
+
+            datePopup(endDate, year.toInt(), month.toInt(), dayOfMonth.toInt())
         }
 
         // ---뒤로 가기 버튼---
@@ -233,7 +270,7 @@ class MemoryInfo : AppCompatActivity() {
 
     // 데이터베이스 조회 후 추억 상세와 목록에 추가하는 함수
     private fun loadMemories(){
-        diaryList.clear()
+//        diaryList.clear()
 
         //dbManager = DBManager(this, "memories", null, 1)
         var sqlitedb: SQLiteDatabase = dbManager.readableDatabase
@@ -274,98 +311,98 @@ class MemoryInfo : AppCompatActivity() {
         }
 
         // 일지 목록 관련
-//        while (cursorDiy.moveToNext()){
-//            // 데이터베이스에 저장된 값 가져옴
-//            // 일지 목록
-//            //val str_diaTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString()
-//            str_diaTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString()
-//            val str_diaContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString()
-//            val str_diaStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString()
-//            val str_diaEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString()
-//            val str_emotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
-//            val str_diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
-//
-//
-//
-//            // ---- 작성한 일지 토대로 일지 목록 만듦 ----
-//            // 아이템 레이아웃 불러오기
-//            val diaryItemView = layoutInflater.inflate(R.layout.diary_item_layout, null)
-//
-//            // 아이템 레이아웃 id 연결
-//            val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
-//            val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
-//            val textStartDate = diaryItemView.findViewById<TextView>(R.id.textStartDate)
-//            val textEndDate = diaryItemView.findViewById<TextView>(R.id.textEndDate)
-//            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgFace)
-//            var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
-//
-//
-//            // 라디오 관련
-//            val mem_recored = layoutInflater.inflate(R.layout.activity_mem_recored, null)
-//            val rdoGrpEmotion = mem_recored.findViewById<RadioGroup>(R.id.rdoGrpEmotion)
-//            val rdoReallyBad = mem_recored.findViewById<RadioButton>(R.id.rdoReallyBad)
-//            val rdoBad = mem_recored.findViewById<RadioButton>(R.id.rdoBad)
-//            val rdoSoso = mem_recored.findViewById<RadioButton>(R.id.rdoSoso)
-//            val rdoGood = mem_recored.findViewById<RadioButton>(R.id.rdoGood)
-//            val rdoReallyGood = mem_recored.findViewById<RadioButton>(R.id.rdoReallyGood)
-//
-//            diaryItemView.id = num
-//
-//            // 정보 넣기
-//            testTitle.setText(str_diaTitle)
-//            textContents.setText(str_diaContents)
-//            textStartDate.text = "$str_diaStartDate"
-//            textEndDate.text = "$str_diaEndDate"
-//
-//            // 라디오
-//            when (str_emotion){
-//                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
-//                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
-//                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
-//                "Good" -> imotion.setImageResource(R.drawable.face_good)
-//                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
-//            }
-//
-//
-//            // 이미지
-//            val bm = byteArrayToBitmap(str_diImg)
-//            imgPic.setImageBitmap(bm)
-//
-//            // 일지 클릭 시 일지 상세로
-//            diaryItemView.setOnClickListener {
-//                val intent = Intent(this, DiaryInfo::class.java)
-//                intent.putExtra("intent_diTitle", str_diaTitle)
-//                startActivity(intent)
-//            }
-//
-//            memLayout.addView(diaryItemView)
-//            num++;
-//        }
+        while (cursorDiy.moveToNext()){
+            // 데이터베이스에 저장된 값 가져옴
+            // 일지 목록
+            val str_diaTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString()
+            //str_diaTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString()
+            val str_diaContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString()
+            val str_diaStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString()
+            val str_diaEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString()
+            val str_emotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
+            val str_diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
 
-        while (cursorDiy.moveToNext()) {
-//            // Retrieve data from the cursor and add it to the diaryList
-//            val diary = Diary(
-//                cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString(),
-//                cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString(),
-//                cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString(),
-//                cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString(),
-//                cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion")),
-//                cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
-//            )
-//            diaryList.add(diary)
 
-            val diTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle"))
-            val diContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents"))
-            val diStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate"))
-            val diEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate"))
-            val diEmotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
-            val diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
 
-            val diary = Diary(diTitle, diContents, diStartDate, diEndDate, diEmotion, diImg)
-            diaryList.add(diary)
+            // ---- 작성한 일지 토대로 일지 목록 만듦 ----
+            // 아이템 레이아웃 불러오기
+            val diaryItemView = layoutInflater.inflate(R.layout.diary_item_layout, null)
 
-            addDiaryItemsToLayout()
+            // 아이템 레이아웃 id 연결
+            val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
+            val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
+            val textStartDate = diaryItemView.findViewById<TextView>(R.id.textStartDate)
+            val textEndDate = diaryItemView.findViewById<TextView>(R.id.textEndDate)
+            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgFace)
+            var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+
+
+            // 라디오 관련
+            val mem_recored = layoutInflater.inflate(R.layout.activity_mem_recored, null)
+            val rdoGrpEmotion = mem_recored.findViewById<RadioGroup>(R.id.rdoGrpEmotion)
+            val rdoReallyBad = mem_recored.findViewById<RadioButton>(R.id.rdoReallyBad)
+            val rdoBad = mem_recored.findViewById<RadioButton>(R.id.rdoBad)
+            val rdoSoso = mem_recored.findViewById<RadioButton>(R.id.rdoSoso)
+            val rdoGood = mem_recored.findViewById<RadioButton>(R.id.rdoGood)
+            val rdoReallyGood = mem_recored.findViewById<RadioButton>(R.id.rdoReallyGood)
+
+            diaryItemView.id = num
+
+            // 정보 넣기
+            testTitle.setText(str_diaTitle)
+            textContents.setText(str_diaContents)
+            textStartDate.text = "$str_diaStartDate"
+            textEndDate.text = "$str_diaEndDate"
+
+            // 라디오
+            when (str_emotion){
+                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
+                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
+                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
+                "Good" -> imotion.setImageResource(R.drawable.face_good)
+                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
+            }
+
+
+            // 이미지
+            val bm = byteArrayToBitmap(str_diImg)
+            imgPic.setImageBitmap(bm)
+
+            // 일지 클릭 시 일지 상세로
+            diaryItemView.setOnClickListener {
+                val intent = Intent(this, DiaryInfo::class.java)
+                intent.putExtra("intent_diTitle", str_diaTitle)
+                startActivity(intent)
+            }
+
+            memLayout.addView(diaryItemView)
+            num++;
         }
+
+//        while (cursorDiy.moveToNext()) {
+////            // Retrieve data from the cursor and add it to the diaryList
+////            val diary = Diary(
+////                cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString(),
+////                cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString(),
+////                cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString(),
+////                cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString(),
+////                cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion")),
+////                cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
+////            )
+////            diaryList.add(diary)
+//
+//            val diTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle"))
+//            val diContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents"))
+//            val diStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate"))
+//            val diEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate"))
+//            val diEmotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
+//            val diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
+//
+//            val diary = Diary(diTitle, diContents, diStartDate, diEndDate, diEmotion, diImg)
+//            diaryList.add(diary)
+//
+//            addDiaryItemsToLayout()
+//        }
 
         cursorDiy.close()
         cursorMem.close()
@@ -395,8 +432,8 @@ class MemoryInfo : AppCompatActivity() {
         val btnConfirm = cDiaryView.findViewById<Button>(R.id.btnConfirmCalender)
         val btnCancel = cDiaryView.findViewById<Button>(R.id.btnCancelCalender)
 
-        //시작 날짜 오늘로 설정
-        //Calendar.setSelectedDate(CalendarDay.today())
+        //시작 날짜 설정되어있던 날짜로 설정
+        Calendar.setSelectedDate(CalendarDay.from(yearC, monthC-1, dayC))
 
         var year : Int = yearC
         var month : Int = monthC
@@ -421,56 +458,56 @@ class MemoryInfo : AppCompatActivity() {
         }
     }
 
-    private fun addDiaryItemsToLayout() {
-        memLayout.removeAllViews() // 아이템 추가 전 레이아웃 없앰
-
-        for ((index, diary) in diaryList.withIndex()) {
-            val diaryItemView = layoutInflater.inflate(R.layout.diary_item_layout, null)
-
-            // 아이템 레이아웃 id 연결
-            val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
-            val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
-            val textStartDate = diaryItemView.findViewById<TextView>(R.id.textStartDate)
-            val textEndDate = diaryItemView.findViewById<TextView>(R.id.textEndDate)
-            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgFace)
-            var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
-
-            // 정보 넣기
-            testTitle.setText(diary.diTitle)
-            textContents.setText(diary.diContents)
-            textStartDate.text = "$diary.diStartDate"
-            textEndDate.text = "$diary.diEndDate"
-
-            // Set the emotion image based on the diary's emotion value
-            when (diary.diEmotion) {
-                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
-                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
-                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
-                "Good" -> imotion.setImageResource(R.drawable.face_good)
-                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
-            }
-
-            // Set the diary image using the byteArrayToBitmap function
-            val bm = byteArrayToBitmap(diary.diImg)
-            imgPic.setImageBitmap(bm)
-
-            // Set a click listener to open DiaryInfo activity
-            diaryItemView.setOnClickListener {
-                val intent = Intent(this, DiaryInfo::class.java)
-                intent.putExtra("intent_diTitle", diary.diTitle)
-                startActivity(intent)
-            }
-
-            memLayout.addView(diaryItemView)
-        }
-    }
+//    private fun addDiaryItemsToLayout() {
+//        memLayout.removeAllViews() // 아이템 추가 전 레이아웃 없앰
+//
+//        for ((index, diary) in diaryList.withIndex()) {
+//            val diaryItemView = layoutInflater.inflate(R.layout.diary_item_layout, null)
+//
+//            // 아이템 레이아웃 id 연결
+//            val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
+//            val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
+//            val textStartDate = diaryItemView.findViewById<TextView>(R.id.textStartDate)
+//            val textEndDate = diaryItemView.findViewById<TextView>(R.id.textEndDate)
+//            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgFace)
+//            var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
+//
+//            // 정보 넣기
+//            testTitle.setText(diary.diTitle)
+//            textContents.setText(diary.diContents)
+//            textStartDate.text = "$diary.diStartDate"
+//            textEndDate.text = "$diary.diEndDate"
+//
+//            // Set the emotion image based on the diary's emotion value
+//            when (diary.diEmotion) {
+//                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
+//                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
+//                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
+//                "Good" -> imotion.setImageResource(R.drawable.face_good)
+//                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
+//            }
+//
+//            // Set the diary image using the byteArrayToBitmap function
+//            val bm = byteArrayToBitmap(diary.diImg)
+//            imgPic.setImageBitmap(bm)
+//
+//            // Set a click listener to open DiaryInfo activity
+//            diaryItemView.setOnClickListener {
+//                val intent = Intent(this, DiaryInfo::class.java)
+//                intent.putExtra("intent_diTitle", diary.diTitle)
+//                startActivity(intent)
+//            }
+//
+//            memLayout.addView(diaryItemView)
+//        }
+//    }
 }
 
-data class Diary(
-    val diTitle: String,
-    val diContents: String,
-    val diStartDate: String,
-    val diEndDate: String,
-    val diEmotion: String,
-    val diImg: ByteArray
-)
+//data class Diary(
+//    val diTitle: String,
+//    val diContents: String,
+//    val diStartDate: String,
+//    val diEndDate: String,
+//    val diEmotion: String,
+//    val diImg: ByteArray
+//)

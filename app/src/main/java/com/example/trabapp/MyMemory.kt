@@ -123,8 +123,6 @@ class MyMemory : AppCompatActivity() {
                 var str_memColor : String = "" // 기록 색
                 var str_memTitleForDi : String = newGroupName.text.toString() // 일지에서 쓸 추억 제목
 
-                Log.d("날짜", str_startDate)
-
                 // 라디오버튼
                 if (rdoGrpColor.checkedRadioButtonId == R.id.rdoRed){           // 빨강(핑크)
                     str_memColor = "pink"
@@ -239,6 +237,8 @@ class MyMemory : AppCompatActivity() {
         cursor.close()
         sqlitedb.close()
         dbManager.close()
+
+
     }
 
     private fun datePopup(text: TextView, yearC: Int, monthC: Int, dayC: Int){
