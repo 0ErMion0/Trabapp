@@ -75,14 +75,15 @@ class LoginAccount : AppCompatActivity() {
 
                         //로그인 성공 + 자동 로그인 체크되었을 때
                         if(btnCheck.isChecked == true){
-                            //MySharePreferences.setUserName(this, str_name)
                             MySharePreferences.setUserId(this, str_id)
-                            //MySharePreferences.setUserPass(this, str_password)
+                            MySharePreferences.id = str_id
+                        }
+                        else{
+                            MySharePreferences.id = str_id
                         }
 
                         //화면 전환
                         val intent = Intent(applicationContext, MapActivity::class.java)
-                        intent.putExtra("id", str_id)
                         startActivity(intent)
 
                     }else{  //비밀번호가 틀릴 때
