@@ -49,14 +49,8 @@ class MyInfo : AppCompatActivity() {
 
         btnConfirm = findViewById(R.id.btnConfirm)
 
-        //데이터가 저장되어 있으면 (자동로그인)
-        if(!MySharePreferences.getUserId(this).isNullOrBlank()){
-
-            str_id = MySharePreferences.getUserId(this)
-
-        }else{ //자동로그인X
-            str_id = MySharePreferences.id
-        }
+        str_id = MySharePreferences.id
+        Log.d("로그", str_id)
 
         dbHelper = DBHelper(this)
         sqlitedb = dbHelper.writableDatabase
