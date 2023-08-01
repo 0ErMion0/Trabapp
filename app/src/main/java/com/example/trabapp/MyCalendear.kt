@@ -53,9 +53,14 @@ class MyCalendear : AppCompatActivity() {
         //오늘 날짜로 설정
         calendar.setSelectedDate(CalendarDay.today())
 
+        layout.removeAllViews()
+        draw(CalendarDay.today().year, CalendarDay.today().month+1,CalendarDay.today().day)
+
         //날짜를 옮기면(선택된 게 변하면)
         calendar.setOnDateChangedListener(object: OnDateSelectedListener {
             override fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay, selected: Boolean) {
+                layout.removeAllViews()
+
                 var year = date.year
                 var month = date.month
                 var day = date.day
@@ -76,7 +81,6 @@ class MyCalendear : AppCompatActivity() {
         var num: Int = 0
 
         val ItemView = layoutInflater.inflate(R.layout.memory_item_layout, null)
-        layout.removeAllViews()
 
         while (cursor.moveToNext()) {
 
@@ -134,7 +138,7 @@ class MyCalendear : AppCompatActivity() {
 
                 //ItemView.id = num // 목록 번호
 
-                groupName.text = str_memTitle + " 시작" // 그룹 이름 설정
+                groupName.text = str_memTitle + " 끝" // 그룹 이름 설정
                 groupDate.text = "$str_startDate ~ $str_endDate" // 날짜 설정
 
                 when (str_memColor) {
