@@ -8,8 +8,12 @@ import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
+import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -19,9 +23,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.trabapp.databinding.ActivityDiaryEditBinding
 import com.example.trabapp.databinding.ActivityMemRecoredBinding
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import java.io.ByteArrayOutputStream
 
 @SuppressLint("Range")
@@ -35,7 +43,8 @@ class DiaryEdit : AppCompatActivity() {
 
     // id 정의
     lateinit var diEditBtn: ImageButton
-    lateinit var diDate: TextView
+    lateinit var diStartDate: TextView
+    lateinit var diEndDate: TextView
     lateinit var imgPic: ImageButton
     lateinit var diTitle: TextView
     lateinit var diCont: EditText
@@ -70,7 +79,6 @@ class DiaryEdit : AppCompatActivity() {
             activityResult.launch(intent)
         }
 
-
         dbManager = DBManager(this)
         sqlitedb = dbManager.writableDatabase
 
@@ -79,7 +87,8 @@ class DiaryEdit : AppCompatActivity() {
 
         // ---id 연결---
         diEditBtn = findViewById<ImageButton>(R.id.imgBtnEdit)
-        diDate = findViewById<TextView>(R.id.textDate)
+        diStartDate = findViewById<TextView>(R.id.textStartDate)
+        diEndDate = findViewById<TextView>(R.id.textEndDate)
         imgPic = findViewById<ImageButton>(R.id.imgPic)
         diTitle = findViewById<TextView>(R.id.textTitle2)
         diCont = findViewById<EditText>(R.id.textDiContents)
@@ -95,12 +104,47 @@ class DiaryEdit : AppCompatActivity() {
         // 내용 불러오기
         loadDiary()
 
+        diStartDate.setOnClickListener {
+
+            ////날짜 슬라이싱
+            //.을 기준으로 자름
+            var str_arr = diStartDate.text.toString().split(".")
+
+            //연월일 구분
+            var year = str_arr.get(0)
+            var month = str_arr.get(1)
+            var dayOfMonth = str_arr.get(2)
+
+            //공백 제거
+            month = month.substring(1,month.length)
+            dayOfMonth = dayOfMonth.substring(1,dayOfMonth.length)
+
+            datePopup(diStartDate, year.toInt(), month.toInt(), dayOfMonth.toInt())
+        }
+
+        diEndDate.setOnClickListener {
+
+            ////날짜 슬라이싱
+            //.을 기준으로 자름
+            var str_arr = diEndDate.text.toString().split(".")
+
+            //연월일 구분
+            var year = str_arr.get(0)
+            var month = str_arr.get(1)
+            var dayOfMonth = str_arr.get(2)
+
+            //공백 제거
+            month = month.substring(1,month.length)
+            dayOfMonth = dayOfMonth.substring(1,dayOfMonth.length)
+
+            datePopup(diEndDate, year.toInt(), month.toInt(), dayOfMonth.toInt())
+        }
 
         // 체크 버튼 - 편집한 내용 업데이트
         diEditBtn.setOnClickListener{
             str_diContents = diCont.text.toString()
-            //str_diStartDate = btnCalenderStart.text.toString()
-            //str_diEndDate = btnCalenderEnd.text.toString()
+            str_diStartDate = diStartDate.text.toString()
+            str_diEndDate = diEndDate.text.toString()
             str_diEmotion = when (rdoGrpEmotion.checkedRadioButtonId) {
                 R.id.rdoReallyBad -> "ReallyBad"
                 R.id.rdoBad -> "Bad"
@@ -122,8 +166,8 @@ class DiaryEdit : AppCompatActivity() {
             // Use the update method to modify the existing record with the new values
             val values = ContentValues().apply {
                 put("diContents", str_diContents)
-                //put("diStartDate", str_diStartDate)
-                //put("diEndDate", str_diEndDate)
+                put("diStartDate", str_diStartDate)
+                put("diEndDate", str_diEndDate)
                 put("diEmotion", str_diEmotion)
                 put("diImg", str_diImg) // 여기 사진 관련 추가
             }
@@ -138,7 +182,7 @@ class DiaryEdit : AppCompatActivity() {
 
             val intent: Intent = Intent(this, MemoryInfo::class.java)
             intent.putExtra("intent_memTitle", str_memTitleForDi)
-            intent.putExtra("intent_diTitle", str_diTitle)
+            //intent.putExtra("intent_diTitle", str_diTitle)
             startActivity(intent)
         }
 
@@ -169,7 +213,8 @@ class DiaryEdit : AppCompatActivity() {
             val str_diEmotion = cursor.getString(cursor.getColumnIndex("diEmotion")).toString()
 
             // 저장된 값 대입
-            diDate.text = "$str_diStartDate ~ $str_diEndDate"
+            diStartDate.text = "$str_diStartDate"
+            diEndDate.text = "$str_diEndDate"
 
             // 이미지
             val bm = byteArrayToBitmap(str_diImg)
@@ -207,5 +252,42 @@ class DiaryEdit : AppCompatActivity() {
     fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
         val bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.size)
         return bitmap
+    }
+
+    private fun datePopup(text: TextView, yearC: Int, monthC: Int, dayC: Int){
+        //데이터 피커 팝업
+        val cDiaryView = LayoutInflater.from(this).inflate(R.layout.date_picker_popup, null)
+        val cBuilder = AlertDialog.Builder(this).setView(cDiaryView)
+        val cAlerDialog = cBuilder.show()
+
+        //데이터 피커 팝업 요소(캘린더&버튼)
+        val Calendar = cDiaryView.findViewById<MaterialCalendarView>(R.id.datePicker)
+        val btnConfirm = cDiaryView.findViewById<Button>(R.id.btnConfirmCalender)
+        val btnCancel = cDiaryView.findViewById<Button>(R.id.btnCancelCalender)
+
+        //시작 날짜 설정되어있던 날짜로 설정
+        Calendar.setSelectedDate(CalendarDay.from(yearC, monthC-1, dayC))
+
+        var year : Int = yearC
+        var month : Int = monthC
+        var day : Int = dayC
+
+        //날짜를 옮기면(선택된 게 변하면)
+        Calendar.setOnDateChangedListener(object: OnDateSelectedListener {
+            override fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay, selected: Boolean) {
+                year = date.year
+                month = date.month
+                day = date.day
+            }
+        })
+        //확인 버튼
+        btnConfirm.setOnClickListener {
+            text.setText("$year. ${month+1}. $day")
+            cAlerDialog.dismiss()
+        }
+        //취소 버튼
+        btnCancel.setOnClickListener {
+            cAlerDialog.dismiss()
+        }
     }
 }

@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
+import android.icu.util.Calendar
 import android.media.Image
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -18,10 +20,14 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.bumptech.glide.Glide
 import com.example.trabapp.databinding.ActivityMemRecoredBinding
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import org.w3c.dom.Text
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
@@ -86,6 +92,21 @@ class MemRecored : AppCompatActivity() {
         rdoGood = findViewById(R.id.rdoGood)
         rdoReallyGood = findViewById(R.id.rdoReallyGood)
 
+        //텍스트 오늘 날짜로 설정
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        startDate.text = "$year. ${month+1}. $dayOfMonth"
+        endDate.text = "$year. ${month+1}. $dayOfMonth"
+
+        btnCalenderStart.setOnClickListener{
+            datePopup(startDate, year, month, dayOfMonth)
+        }
+        btnCalenderEnd.setOnClickListener {
+            datePopup(endDate, year, month, dayOfMonth)
+        }
 
         // 사진선택 클릭 시
         binding.imgBtnPic.setOnClickListener {
@@ -182,4 +203,40 @@ class MemRecored : AppCompatActivity() {
         return stream.toByteArray()
     }
 
+    private fun datePopup(text: TextView, yearC: Int, monthC: Int, dayC: Int){
+        //데이터 피커 팝업
+        val cDiaryView = LayoutInflater.from(this).inflate(R.layout.date_picker_popup, null)
+        val cBuilder = AlertDialog.Builder(this).setView(cDiaryView)
+        val cAlerDialog = cBuilder.show()
+
+        //데이터 피커 팝업 요소(캘린더&버튼)
+        val Calendar = cDiaryView.findViewById<MaterialCalendarView>(R.id.datePicker)
+        val btnConfirm = cDiaryView.findViewById<Button>(R.id.btnConfirmCalender)
+        val btnCancel = cDiaryView.findViewById<Button>(R.id.btnCancelCalender)
+
+        //시작 날짜 오늘로 설정
+        Calendar.setSelectedDate(CalendarDay.today())
+
+        var year : Int = yearC
+        var month : Int = monthC
+        var day : Int = dayC
+
+        //날짜를 옮기면(선택된 게 변하면)
+        Calendar.setOnDateChangedListener(object: OnDateSelectedListener {
+            override fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay, selected: Boolean) {
+                year = date.year
+                month = date.month
+                day = date.day
+            }
+        })
+        //확인 버튼
+        btnConfirm.setOnClickListener {
+            text.setText("$year. ${month+1}. $day")
+            cAlerDialog.dismiss()
+        }
+        //취소 버튼
+        btnCancel.setOnClickListener {
+            cAlerDialog.dismiss()
+        }
+    }
 }

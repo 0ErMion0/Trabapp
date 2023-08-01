@@ -133,7 +133,7 @@ class DiaryInfo : AppCompatActivity() {
             // 클릭되면 추억 상세 페이지로 이동 (구현해야됨)
             val intent = Intent(this, MemoryInfo::class.java)
             intent.putExtra("intent_memTitle", str_memTitleForDi)
-            intent.putExtra("intent_diTitle", str_diTitle)
+            //intent.putExtra("intent_diTitle", str_diTitle)
             startActivity(intent)
         }
     }

@@ -2,9 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/diary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyCalendear">
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calender"
+        android:layout_width="384dp"
+        android:layout_height="435dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25"
+        app:mcv_selectionColor="#323D9D"
+        app:mcv_showOtherDates="all" />
 
     <!--[상단 네비게이션]-->
     <!--뒤로가기 버튼-->
@@ -35,5 +51,21 @@
         app:layout_constraintStart_toEndOf="@+id/imgBtnBack"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat" />
+
+    <ScrollView
+        android:layout_width="380dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/groupLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

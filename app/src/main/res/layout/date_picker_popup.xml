@@ -7,8 +7,8 @@
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/datePicker"
-        android:layout_width="334dp"
-        android:layout_height="465dp"
+        android:layout_width="358dp"
+        android:layout_height="472dp"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
         android:layout_marginBottom="262dp"
