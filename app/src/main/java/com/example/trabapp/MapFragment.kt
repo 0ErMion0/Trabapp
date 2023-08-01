@@ -1,5 +1,15 @@
 package com.example.trabapp
 
+/*
+
+
+사용하지 않는 코드입니다.
+
+
+
+ */
+
+
 import android.location.Geocoder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -35,33 +45,11 @@ class MapFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Initialize view
+        // 지도 프래그먼트 불러옴
         val view = inflater.inflate(R.layout.fragment_map, container, false)
 
-        // Initialize map fragment
         val supportMapFragment =
             childFragmentManager.findFragmentById(R.id.google_map) as SupportMapFragment
-
-        // 기존 코드, 누르면 그 눌린 부분에 마커 찍힘
-//        // Async map
-//        supportMapFragment.getMapAsync { googleMap ->
-//            // When map is loaded
-//            googleMap.setOnMapClickListener { latLng ->
-//                // When clicked on map
-//                // Initialize marker options
-//                val markerOptions = MarkerOptions()
-//                // Set position of marker
-//                markerOptions.position(latLng)
-//                // Set title of marker
-//                markerOptions.title("${latLng.latitude} : ${latLng.longitude}")
-//                // Remove all markers
-//                googleMap.clear()
-//                // Animating to zoom the marker
-//                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
-//                // Add marker on map
-//                googleMap.addMarker(markerOptions)
-//            }
-//        }
 
         // 수정 코드(1)
         // Async map

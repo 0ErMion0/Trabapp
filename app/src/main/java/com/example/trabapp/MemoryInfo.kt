@@ -29,9 +29,6 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 
 @SuppressLint("Range")
 class MemoryInfo : AppCompatActivity() {
-
-//    private val diaryList: MutableList<Diary> = mutableListOf() // 일지에 넣을 것들 리스트 형태로
-
     lateinit var backButton: ImageButton // 뒤로 가기 버튼
 
     lateinit var dbManager: DBManager
@@ -64,15 +61,6 @@ class MemoryInfo : AppCompatActivity() {
     lateinit var str_memStartDate : String // 시작일
     lateinit var str_memEndDate : String // 마감일
     lateinit var str_memColor : String // 기록 색
-
-    //lateinit var str_diaTitle : String
-
-    // GPT 망한 답변
-//    companion object {
-//        const val MEM_RECORED_REQUEST_CODE = 100 // You can use any unique request code
-//    }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,56 +103,7 @@ class MemoryInfo : AppCompatActivity() {
         // 확인 버튼 - 변경사항 데이터베이스에 수정되어 업데이트 됨
         // 어떤 제목에 있는지 파악 후 진행 되어야 그 행만 수정이 됨
         btnConfirm.setOnClickListener(){
-//            var sqlitedb : SQLiteDatabase = dbManager.writableDatabase
-//            var cursorMem : Cursor // 추억 관련 - 제목으로 해당 추억 찾아가야 함
-//            cursorMem = sqlitedb.rawQuery("SELECT * FROM memories WHERE memFirstTitle = '" + str_memFirstTitle +"';", null)
-//            while (cursorMem.moveToNext()){
-//                // db에 넣을 변수 선언
-//                str_memTitle = edtTextTitle.text.toString()   // 제목
-//                str_memMb = edtTextMember.text.toString()   // 멤버들
-//                str_memColor  = ""                             // 컬러
-//                str_memStartDate = "2023 - 07 - 06"
-//                str_memEndDate = "2023 - 07 - 20"
-//
-//                // 라디오버튼
-//                if (rdoGrpColor.checkedRadioButtonId == R.id.rdoRed){           // 빨강(핑크)
-//                    str_memColor = "pink"
-//                }
-//                else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoOrange){   // 주황
-//                    str_memColor = "orange"
-//                }
-//                else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoGreen){    // 초록
-//                    str_memColor = "green"
-//                }
-//                else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoMint){    // 민트
-//                    str_memColor = "mint"
-//                }
-//                else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoBlue){    // 파랑
-//                    str_memColor = "blue"
-//                }
-//                else if (rdoGrpColor.checkedRadioButtonId == R.id.rdoPurple){  // 보라
-//                    str_memColor = "purple"
-//                }
-//            }
-//
-//            sqlitedb = dbManager.writableDatabase
-//            //sqlitedb.execSQL("UPDATE INTO memories VALUES ('$str_memTitle','$str_memMb', '$str_memStartDate' , '$str_memEndDate', '$str_memColor')")
-////            sqlitedb.execSQL("UPDATE memories SET gNumber = "+edtNumber.text+" WHERE gName = '"
-////                    +edtName.text.toString()+"';")
-//
-//            // Use the update method to modify the existing record with the new values
-//            val sql = "UPDATE memories SET memMb = ?, memColor = ?, memStartDate = ?, memEndDate = ? WHERE memTitle = ?;"
-//            val values = arrayOf(str_memMb, str_memColor, str_memStartDate, str_memEndDate, str_memTitle)
-//
-//            sqlitedb.execSQL(sql, values)
-//            //sqlitedb.close()
-//
-//            cursorMem.close()
-//            sqlitedb.close()
-
-
-//            // 나의 구원자 지피티.. 일단은 된다.. 근데 제목은 안 바뀐다..
-//            // Get the new values from the input fields and radio button
+            // Get the new values from the input fields and radio button
             str_memTitle = edtTextTitle.text.toString()
             str_memMb = edtTextMember.text.toString()
             str_memStartDate = startDate.text.toString()
@@ -253,17 +192,6 @@ class MemoryInfo : AppCompatActivity() {
             val intent: Intent = Intent(this, MyMemory::class.java)
             startActivity(intent)
         }
-
-        // GPT
-        // Load memories only if the activity is accessed from MyMemory
-//        if (intent.hasExtra("intent_memTitle")) {
-//            str_memTitle = intent.getStringExtra("intent_memTitle").toString()
-//            loadMemories()
-//        }
-//        if(intent.hasExtra("intent_memTitleDi")){
-//            str_memTitle = intent.getStringExtra("intent_title").toString()
-//            loadMemories()
-//        }
     }
 
 
@@ -379,31 +307,6 @@ class MemoryInfo : AppCompatActivity() {
             num++;
         }
 
-//        while (cursorDiy.moveToNext()) {
-////            // Retrieve data from the cursor and add it to the diaryList
-////            val diary = Diary(
-////                cursorDiy.getString(cursorDiy.getColumnIndex("diTitle")).toString(),
-////                cursorDiy.getString(cursorDiy.getColumnIndex("diContents")).toString(),
-////                cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate")).toString(),
-////                cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate")).toString(),
-////                cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion")),
-////                cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
-////            )
-////            diaryList.add(diary)
-//
-//            val diTitle = cursorDiy.getString(cursorDiy.getColumnIndex("diTitle"))
-//            val diContents = cursorDiy.getString(cursorDiy.getColumnIndex("diContents"))
-//            val diStartDate = cursorDiy.getString(cursorDiy.getColumnIndex("diStartDate"))
-//            val diEndDate = cursorDiy.getString(cursorDiy.getColumnIndex("diEndDate"))
-//            val diEmotion = cursorDiy.getString(cursorDiy.getColumnIndex("diEmotion"))
-//            val diImg = cursorDiy.getBlob(cursorDiy.getColumnIndex("diImg"))
-//
-//            val diary = Diary(diTitle, diContents, diStartDate, diEndDate, diEmotion, diImg)
-//            diaryList.add(diary)
-//
-//            addDiaryItemsToLayout()
-//        }
-
         cursorDiy.close()
         cursorMem.close()
         sqlitedb.close()
@@ -457,57 +360,4 @@ class MemoryInfo : AppCompatActivity() {
             cAlerDialog.dismiss()
         }
     }
-
-//    private fun addDiaryItemsToLayout() {
-//        memLayout.removeAllViews() // 아이템 추가 전 레이아웃 없앰
-//
-//        for ((index, diary) in diaryList.withIndex()) {
-//            val diaryItemView = layoutInflater.inflate(R.layout.diary_item_layout, null)
-//
-//            // 아이템 레이아웃 id 연결
-//            val testTitle = diaryItemView.findViewById<TextView>(R.id.testTitle)
-//            val textContents = diaryItemView.findViewById<TextView>(R.id.textContents)
-//            val textStartDate = diaryItemView.findViewById<TextView>(R.id.textStartDate)
-//            val textEndDate = diaryItemView.findViewById<TextView>(R.id.textEndDate)
-//            var imotion = diaryItemView.findViewById<ImageView>(R.id.imgFace)
-//            var imgPic = diaryItemView.findViewById<ImageView>(R.id.imgPic)
-//
-//            // 정보 넣기
-//            testTitle.setText(diary.diTitle)
-//            textContents.setText(diary.diContents)
-//            textStartDate.text = "$diary.diStartDate"
-//            textEndDate.text = "$diary.diEndDate"
-//
-//            // Set the emotion image based on the diary's emotion value
-//            when (diary.diEmotion) {
-//                "ReallyBad" -> imotion.setImageResource(R.drawable.face_really_bad)
-//                "Bad" -> imotion.setImageResource(R.drawable.face_bad)
-//                "Soso" -> imotion.setImageResource(R.drawable.face_soso)
-//                "Good" -> imotion.setImageResource(R.drawable.face_good)
-//                "ReallyGood" -> imotion.setImageResource(R.drawable.face_really_good)
-//            }
-//
-//            // Set the diary image using the byteArrayToBitmap function
-//            val bm = byteArrayToBitmap(diary.diImg)
-//            imgPic.setImageBitmap(bm)
-//
-//            // Set a click listener to open DiaryInfo activity
-//            diaryItemView.setOnClickListener {
-//                val intent = Intent(this, DiaryInfo::class.java)
-//                intent.putExtra("intent_diTitle", diary.diTitle)
-//                startActivity(intent)
-//            }
-//
-//            memLayout.addView(diaryItemView)
-//        }
-//    }
 }
-
-//data class Diary(
-//    val diTitle: String,
-//    val diContents: String,
-//    val diStartDate: String,
-//    val diEndDate: String,
-//    val diEmotion: String,
-//    val diImg: ByteArray
-//)
