@@ -4,13 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -80,6 +84,8 @@ class MyCalendear : AppCompatActivity() {
 
         var num: Int = 0
 
+        layout.removeAllViews()
+
         //val ItemView = layoutInflater.inflate(R.layout.memory_item_layout, null)
 
         while (cursor.moveToNext()) {
@@ -127,6 +133,10 @@ class MyCalendear : AppCompatActivity() {
 //                    startActivity(intent)
 //                }
 
+                if (ItemView.parent != null) {
+                    (ItemView.parent as ViewGroup).removeView(ItemView)
+                }
+
                 // Add the memory item view to LinearLayout
                 layout.addView(ItemView)
             }
@@ -139,8 +149,15 @@ class MyCalendear : AppCompatActivity() {
 
                 //ItemView.id = num // 목록 번호
 
-                groupName.text = str_memTitle + " 끝" // 그룹 이름 설정
+                if(endYear==startYear && endMonth==startMonth && endDay==startDay){
+                    groupName.text = str_memTitle // 그룹 이름 설정
+                }else{
+                    groupName.text = str_memTitle + " 끝" // 그룹 이름 설정
+                }
                 groupDate.text = "$str_startDate ~ $str_endDate" // 날짜 설정
+
+//                groupName.text = str_memTitle + " 끝" // 그룹 이름 설정
+//                groupDate.text = "$str_startDate ~ $str_endDate" // 날짜 설정
 
                 when (str_memColor) {
                     "pink" -> groupColor.setImageResource(R.drawable.circle_red)
@@ -158,6 +175,10 @@ class MyCalendear : AppCompatActivity() {
 //                    startActivity(intent)
 //                }
 
+                if (ItemView.parent != null) {
+                    (ItemView.parent as ViewGroup).removeView(ItemView)
+                }
+
                 // Add the memory item view to LinearLayout
                 layout.addView(ItemView)
             }
@@ -173,57 +194,114 @@ class MyCalendear : AppCompatActivity() {
 
         val cursor = dbManager.getAllMemories()
 
-        var num: Int = 0
-        while (cursor.moveToNext()) {
-            // 데이터베이스에 저장된 값 가져옴
-            str_memTitle = cursor.getString(cursor.getColumnIndex("memTitle")).toString()
-            str_startDate = cursor.getString(cursor.getColumnIndex("memStartDate")).toString()
-            str_endDate = cursor.getString(cursor.getColumnIndex("memEndDate")).toString()
-            str_memColor = cursor.getString(cursor.getColumnIndex("memColor")).toString()
+        // DB에 값이 있다면 - 추억 기록 생성한게 있다면
+        if(cursor.moveToFirst()){
+            do{
+                // 데이터베이스에 저장된 값 가져옴
+                str_memTitle = cursor.getString(cursor.getColumnIndex("memTitle")).toString()
+                str_startDate = cursor.getString(cursor.getColumnIndex("memStartDate")).toString()
+                str_endDate = cursor.getString(cursor.getColumnIndex("memEndDate")).toString()
+                str_memColor = cursor.getString(cursor.getColumnIndex("memColor")).toString()
 
-            //날짜 슬라이싱
-            var startYear = sliceDate(str_startDate,0)
-            var startMonth = sliceDate(str_startDate,1)
-            var startDay = sliceDate(str_startDate,2)
+                //날짜 슬라이싱
+                var startYear = sliceDate(str_startDate,0)
+                var startMonth = sliceDate(str_startDate,1)
+                var startDay = sliceDate(str_startDate,2)
 
-            var endYear = sliceDate(str_endDate,0)
-            var endMonth = sliceDate(str_endDate,1)
-            var endDay = sliceDate(str_endDate,2)
+                var endYear = sliceDate(str_endDate,0)
+                var endMonth = sliceDate(str_endDate,1)
+                var endDay = sliceDate(str_endDate,2)
 
-            var color: String
+                var color: String
 
-            when (str_memColor) {
-                "pink" -> color = "#FF96BE"
-                "orange" -> color = "#FFD494"
-                "green" -> color = "#BDFF94"
-                "mint" -> color = "#AEFFF5"
-                "blue" -> color = "#94C5FF"
-                "purple" -> color = "#E394FF"
-                else -> color = "#000000"
-            }
+                when (str_memColor) {
+                    "pink" -> color = "#FF96BE"
+                    "orange" -> color = "#FFD494"
+                    "green" -> color = "#BDFF94"
+                    "mint" -> color = "#AEFFF5"
+                    "blue" -> color = "#94C5FF"
+                    "purple" -> color = "#E394FF"
+                    else -> color = "#000000"
+                }
 
-            calendar.addDecorator(
-                EventDecorator(
-                    Color.parseColor(color),
-                    Collections.singleton(
-                        CalendarDay.from(startYear, startMonth-1, startDay)
+                calendar.addDecorator(
+                    EventDecorator(
+                        Color.parseColor(color),
+                        Collections.singleton(
+                            CalendarDay.from(startYear, startMonth-1, startDay)
+                        )
                     )
                 )
-            )
 
-            calendar.addDecorator(
-                EventDecorator(
-                    Color.parseColor(color),
-                    Collections.singleton(
-                        CalendarDay.from(endYear, endMonth-1, endDay)
+                calendar.addDecorator(
+                    EventDecorator(
+                        Color.parseColor(color),
+                        Collections.singleton(
+                            CalendarDay.from(endYear, endMonth-1, endDay)
+                        )
                     )
                 )
-            )
-
-
+            }while(cursor.moveToNext())
+            sliceDate(str_startDate,0)
+        }else{ // DB에 값이 없다면 - 추억 기록 생성한게 없다면
+            //
+            calendar.setSelectedDate(CalendarDay.today())
+            Toast.makeText(this@MyCalendear, "추억을 추가하면 표시됩니다", Toast.LENGTH_SHORT).show()
+            //val intent: Intent = Intent(this, MapActivity::class.java)
+            //startActivity(intent)
         }
 
-        sliceDate(str_startDate,0)
+//        var num: Int = 0
+//        while (cursor.moveToNext()) {
+//            // 데이터베이스에 저장된 값 가져옴
+//            str_memTitle = cursor.getString(cursor.getColumnIndex("memTitle")).toString()
+//            str_startDate = cursor.getString(cursor.getColumnIndex("memStartDate")).toString()
+//            str_endDate = cursor.getString(cursor.getColumnIndex("memEndDate")).toString()
+//            str_memColor = cursor.getString(cursor.getColumnIndex("memColor")).toString()
+//
+//            //날짜 슬라이싱
+//            var startYear = sliceDate(str_startDate,0)
+//            var startMonth = sliceDate(str_startDate,1)
+//            var startDay = sliceDate(str_startDate,2)
+//
+//            var endYear = sliceDate(str_endDate,0)
+//            var endMonth = sliceDate(str_endDate,1)
+//            var endDay = sliceDate(str_endDate,2)
+//
+//            var color: String
+//
+//            when (str_memColor) {
+//                "pink" -> color = "#FF96BE"
+//                "orange" -> color = "#FFD494"
+//                "green" -> color = "#BDFF94"
+//                "mint" -> color = "#AEFFF5"
+//                "blue" -> color = "#94C5FF"
+//                "purple" -> color = "#E394FF"
+//                else -> color = "#000000"
+//            }
+//
+//            calendar.addDecorator(
+//                EventDecorator(
+//                    Color.parseColor(color),
+//                    Collections.singleton(
+//                        CalendarDay.from(startYear, startMonth-1, startDay)
+//                    )
+//                )
+//            )
+//
+//            calendar.addDecorator(
+//                EventDecorator(
+//                    Color.parseColor(color),
+//                    Collections.singleton(
+//                        CalendarDay.from(endYear, endMonth-1, endDay)
+//                    )
+//                )
+//            )
+//
+//
+//        }
+
+        //sliceDate(str_startDate,0)
 
         cursor.close()
         sqlitedb.close()

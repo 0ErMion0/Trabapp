@@ -40,7 +40,7 @@ class LoginAccount : AppCompatActivity() {
 
         //로그인 클릭
         btnLogin.setOnClickListener {
-            sqlitedb = DBHelper(this).writableDatabase
+            sqlitedb = DBHelper(this).readableDatabase
 
             str_id = edtId.text.toString()
             str_password = edtPassword.text.toString()

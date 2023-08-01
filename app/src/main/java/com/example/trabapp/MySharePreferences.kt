@@ -5,7 +5,8 @@ import android.content.SharedPreferences
 
 object MySharePreferences {
     private val MY_ACCOUNT : String = "account"
-    var id : String = "id"
+    //var id : String = "id"
+    var id : String = ""
 
 //    fun setUserName(context: Context, name: String){
 //        val prefs: SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
@@ -30,6 +31,8 @@ object MySharePreferences {
         //MY_ID에 id 넣음
         editor.putString("MY_ID", id)
         editor.commit()
+
+        this.id = id
     }
 
     fun getUserId(context: Context): String{

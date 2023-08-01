@@ -49,7 +49,8 @@ class MyInfo : AppCompatActivity() {
 
         btnConfirm = findViewById(R.id.btnConfirm)
 
-        str_id = MySharePreferences.id
+        //str_id = MySharePreferences.id
+        str_id = MySharePreferences.getUserId(this)
         Log.d("로그", str_id)
 
         dbHelper = DBHelper(this)
@@ -58,12 +59,12 @@ class MyInfo : AppCompatActivity() {
         var cursor : Cursor
         cursor = sqlitedb.rawQuery("SELECT * FROM users WHERE userId = '" + str_id + "';", null)
 
-        if(cursor.moveToNext()){
+        if(cursor.moveToNext()){ // 데베 값 가져옴
             str_name = cursor.getString(cursor.getColumnIndex("userName")).toString()
             str_password = cursor.getString(cursor.getColumnIndex("userPassword")).toString()
         }
 
-        edtName.setText(str_name)
+        edtName.setText(str_name) // 읽어온 값으로 닉네임 재설정
 
         //버튼을 눌렀을 때
         btnConfirm.setOnClickListener {
@@ -76,7 +77,7 @@ class MyInfo : AppCompatActivity() {
             }
             
             //현재 닉네임 칸에 입력된 닉네임 얻어옴
-            str_newName = edtName.text.toString()
+            str_newName = edtName.text.toString() // 바뀐 내용으로
             
             //기존에 입력된 닉네임과 현재 입력되어 있는 닉네임이 다를 경우
             if(str_name != str_newName)
